@@ -1,0 +1,187 @@
+{
+  "_description": "Reverse-engineered from Figma TRATON branch WbO2DO6He93w4CCD08hSo4 (cluster 13, CDEP-1967). Mirrors Checkbox structure minus the indeterminate variant axis — radio is always single-select. Per-row aliases use single 4-mode semantics; brand/mode swap is handled by the semantic layer.",
+  "_notes": [
+    "Variant-axis-preservation rule applied: border + background split per variant (standard/selected) even where values are identical. Icon follows canvas evidence (no glyph on standard — the dot only appears on selected). Text label sits off the varying surface — no variant axis.",
+    "Indicator has no variant axis by design: the hover overlay ring is visually identical across both radio variants. Single border/indicator-default + border/indicator-hover pair covers both.",
+    "Indicator hover uses color/border/discrete (Radio-specific); Checkbox uses color/border/subtle. Locked as-is per canvas evidence; flagged for designer review to confirm intentional divergence.",
+    "Background-selected tokens use brand-primitive direct aliases (blue/950 + base/white TRATON; grey/950 + grey/50 Scania) — endpoints copied from color/icon/strong's resolution chain per Tegel UI Library source-of-truth. Resolves the prior icon-to-background property-match smell at the component-token level. A foundation-level color/background/inverse/strong semantic would let this collapse back to a single alias if added later.",
+    "Focus-ring radius uses component/-focus/ring/radius/full because radio is round. Checkbox uses medium for its square box.",
+    "Disabled state via wrapper-only opacity-disabled pattern (LOCKED, see convention-opacity-disabled-wrapper.md): Radio Button/Input root owns opacity for standalone use; Radio Button/Item root owns opacity AND forces nested Input instance to Disabled=False so opacities don't compound; Label Text inherits dim multiplicatively from Item root. No *-disabled color tokens; no Label-level opacity binding.",
+    "Focus state via component/-focus/* helper. No component-level border/focus token.",
+    "Component topology (LOCKED, see convention-component-topology.md): Radio Button/Input (Source, 30173:78572) + Radio Button/Item (Wrapper, 30173:78607) + Radio Button Group (Layout wrapper, 30296:78668). Bindings live on Source; Wrapper owns Label Text + parent opacity; Group inherits.",
+    "Axis-name divergence (designer handover candidate): Radio Button/Item uses Selected=True/False; Radio Button/Input uses Selected=Yes/No (same axis name, different value labels). Different stripe of divergence than Checkbox's (which had Selected vs Checked). Flag for normalization."
+  ],
+  "component": "radio-button",
+  "variables": [
+    {
+      "name": "component/radio-button/border/standard-default",
+      "type": "COLOR",
+      "light": "color/border/strong",
+      "dark": "color/border/strong",
+      "scania-light": "color/border/strong",
+      "scania-dark": "color/border/strong",
+      "confidence": "Confirmed",
+      "comment": "Resting outer Input border (standard variant)."
+    },
+    {
+      "name": "component/radio-button/border/standard-hover",
+      "type": "COLOR",
+      "light": "color/border/strong",
+      "dark": "color/border/strong",
+      "scania-light": "color/border/strong",
+      "scania-dark": "color/border/strong",
+      "confidence": "Confirmed",
+      "comment": "Hover state — outer border unchanged; visual hover comes from indicator overlay."
+    },
+    {
+      "name": "component/radio-button/border/selected-default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": "Selected variant has no outer border (fill-only)."
+    },
+    {
+      "name": "component/radio-button/border/selected-hover",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/radio-button/border/indicator-default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": "Hover-overlay ring at rest (transparent). Single token applied across both radio variants — no variant axis on indicator."
+    },
+    {
+      "name": "component/radio-button/border/indicator-hover",
+      "type": "COLOR",
+      "light": "color/border/discrete",
+      "dark": "color/border/discrete",
+      "scania-light": "color/border/discrete",
+      "scania-dark": "color/border/discrete",
+      "confidence": "Confirmed",
+      "comment": "Hover-overlay ring on hover. Checkbox uses color/border/subtle here — divergence locked, flagged for designer handover."
+    },
+    {
+      "name": "component/radio-button/background/standard-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": "Unfilled circle at rest (standard variant)."
+    },
+    {
+      "name": "component/radio-button/background/standard-hover",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/radio-button/background/selected-default",
+      "type": "COLOR",
+      "light": "traton/color/blue/950",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/grey/950",
+      "scania-dark": "scania/color/grey/50",
+      "confidence": "Confirmed",
+      "comment": "Filled circle when selected. 4-mode brand-primitive direct, endpoints copied from color/icon/strong's resolution chain per Tegel UI source: TRATON Light blue/950 / Dark base/white; Scania Light grey/950 / Dark grey/50. Resolved the prior icon-to-background alias smell at the component level."
+    },
+    {
+      "name": "component/radio-button/background/selected-hover",
+      "type": "COLOR",
+      "light": "traton/color/blue/950",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/grey/950",
+      "scania-dark": "scania/color/grey/50",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/radio-button/icon/selected-default",
+      "type": "COLOR",
+      "light": "color/icon/inverse/strong",
+      "dark": "color/icon/inverse/strong",
+      "scania-light": "color/icon/inverse/strong",
+      "scania-dark": "color/icon/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Inner dot on filled circle. Cross-swap of background-selected — semantic resolves white on dark fill (Light) and dark on white fill (Dark)."
+    },
+    {
+      "name": "component/radio-button/icon/selected-hover",
+      "type": "COLOR",
+      "light": "color/icon/inverse/strong",
+      "dark": "color/icon/inverse/strong",
+      "scania-light": "color/icon/inverse/strong",
+      "scania-dark": "color/icon/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/radio-button/text/default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Label sits adjacent to the circle — off the varying surface. No variant axis by design."
+    },
+    {
+      "name": "component/radio-button/text/hover",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/radio-button/border/radius-default",
+      "type": "FLOAT",
+      "light": "traton/unit/9999",
+      "dark": "traton/unit/9999",
+      "scania-light": "scania/unit/9999",
+      "scania-dark": "scania/unit/9999",
+      "confidence": "Confirmed",
+      "comment": "Corner radius for full-round shape. 4-mode per brand-primitive-aliases convention (LOCKED). NOTE: no canvas binding currently — the Field layer is an ELLIPSE (geometrically round, cornerRadius doesn't apply). Token exists in the spec for symmetry with checkbox + future-proofing if Field is ever restructured to a RECTANGLE with cornerRadius."
+    },
+    {
+      "name": "component/radio-button/focus-ring/radius-default",
+      "type": "FLOAT",
+      "light": "component/-focus/ring/radius/full",
+      "dark": "component/-focus/ring/radius/full",
+      "scania-light": "component/-focus/ring/radius/full",
+      "scania-dark": "component/-focus/ring/radius/full",
+      "confidence": "Confirmed",
+      "comment": "Refs shared -focus utility group. Full radius because radio is round."
+    },
+    {
+      "name": "component/radio-button/opacity/disabled",
+      "type": "FLOAT",
+      "light": "traton/opacity/25",
+      "dark": "traton/opacity/25",
+      "scania-light": "scania/opacity/25",
+      "scania-dark": "scania/opacity/25",
+      "confidence": "Confirmed",
+      "comment": "25% opacity for disabled state. 4-mode per brand-primitive-aliases convention (LOCKED) — each brand has independent primitives."
+    }
+  ]
+}

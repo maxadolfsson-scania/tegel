@@ -1,0 +1,250 @@
+{
+  "_description": "Reverse-engineered from Figma TRATON branch WbO2DO6He93w4CCD08hSo4 (cluster 13, CDEP-1967). Most component variables use a single 4-mode semantic alias per row; brand/mode swap is handled by the semantic layer. Background-selected and -indeterminate use 4-mode brand-primitive direct aliases (TRATON blue/950 + base/white; Scania grey/950 + grey/50) per Tegel UI Library source-of-truth — endpoints copied from color/icon/strong's resolution chain to preserve visual while resolving the icon-to-background property-match smell at the component-token level.",
+  "_notes": [
+    "Variant-axis-preservation rule applied: border + background split per variant (standard/selected/indeterminate) even where values are identical. Icon follows canvas evidence (no glyph on standard). Text label sits off the varying surface — no variant axis.",
+    "Indicator has no variant axis by design: the hover overlay ring is visually identical across all three checkbox variants. Single border/indicator-default + border/indicator-hover pair covers all variants.",
+    "Background-selected and -indeterminate tokens use brand-primitive direct aliases (blue/950 + base/white TRATON; grey/950 + grey/50 Scania) — endpoints copied from color/icon/strong's resolution chain per Tegel UI Library source-of-truth. This resolves the prior icon-to-background property-match smell at the component-token level. A foundation-level color/background/inverse/strong semantic would let this collapse back to a single alias if added later.",
+    "Indicator overlay code-side: checkbox uses ::before background-color, structure is a stroke layer in Figma — Phase 6 implementation alignment item.",
+    "Indicator hover uses color/border/subtle; Radio Button hover ring uses color/border/discrete (locked as-is; designer handover item to confirm intentional divergence).",
+    "Focus-ring radius value is bind-time-adjustable per the checkbox's square shape (≠ Chip's pill).",
+    "Disabled state via wrapper-only opacity-disabled pattern (LOCKED, see convention-opacity-disabled-wrapper.md): Checkbox/Input root owns opacity for standalone use (Dropdown etc.); Checkbox/Item root owns opacity AND forces nested Input instance to Disabled=False so opacities don't compound; Label Text inherits dim multiplicatively from Item root. No *-disabled color tokens; no Label-level opacity binding.",
+    "Focus state via component/-focus/* helper. No component-level border/focus token.",
+    "Component topology (LOCKED, see convention-component-topology.md): Checkbox/Input (Source, 30515:78570) + Checkbox/Item (Wrapper, 30515:78521) + Checkbox Group (Layout wrapper, 30515:79481). Bindings live on Source; Wrapper owns Label Text + parent opacity; Group inherits.",
+    "Pre-existing Indicator alias divergence (informational): Input source binds Indicator stroke to color/border/inverse/subtle; Item wrapper's instance had an override to color/border/subtle. Both now bind via component/checkbox/border/indicator-hover, which aliases color/border/subtle — chose non-inverse for cluster consistency. Designer handover candidate to confirm intent.",
+    "Axis-name divergence (designer handover candidate): Checkbox/Item uses Selected=True/False axis; Checkbox/Input uses Checked=True/False. Same concept, different label. Item axis order also differs from Input's. No functional impact; flag for normalization.",
+    "Vector glyphs not yet brand-aware (designer handover candidate): Symbol/Icon-Check-Temp and Symbol/Indeterminate are VECTOR layers, not instances of icons from a brand-aware icon library. They won't swap per brand. The 'Icon / Check / Temp' layer name also needs renaming to a stable name."
+  ],
+  "component": "checkbox",
+  "variables": [
+    {
+      "name": "component/checkbox/border/standard-default",
+      "type": "COLOR",
+      "light": "color/border/strong",
+      "dark": "color/border/strong",
+      "scania-light": "color/border/strong",
+      "scania-dark": "color/border/strong",
+      "confidence": "Confirmed",
+      "comment": "Resting outer Input border (standard variant)."
+    },
+    {
+      "name": "component/checkbox/border/standard-hover",
+      "type": "COLOR",
+      "light": "color/border/strong",
+      "dark": "color/border/strong",
+      "scania-light": "color/border/strong",
+      "scania-dark": "color/border/strong",
+      "confidence": "Confirmed",
+      "comment": "Hover state — outer border unchanged; visual hover comes from indicator overlay."
+    },
+    {
+      "name": "component/checkbox/border/selected-default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": "Selected variant has no outer border (fill-only)."
+    },
+    {
+      "name": "component/checkbox/border/selected-hover",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/checkbox/border/indeterminate-default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": "Indeterminate variant has no outer border (fill-only)."
+    },
+    {
+      "name": "component/checkbox/border/indeterminate-hover",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/checkbox/border/indicator-default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": "Hover-overlay ring at rest (transparent). Single token applied across all 3 checkbox variants — no variant axis on indicator."
+    },
+    {
+      "name": "component/checkbox/border/indicator-hover",
+      "type": "COLOR",
+      "light": "color/border/subtle",
+      "dark": "color/border/subtle",
+      "scania-light": "color/border/subtle",
+      "scania-dark": "color/border/subtle",
+      "confidence": "Confirmed",
+      "comment": "Hover-overlay ring on hover. Radio Button uses color/border/discrete here — divergence locked, flagged for designer handover."
+    },
+    {
+      "name": "component/checkbox/background/standard-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": "Unfilled box at rest (standard variant)."
+    },
+    {
+      "name": "component/checkbox/background/standard-hover",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/checkbox/background/selected-default",
+      "type": "COLOR",
+      "light": "traton/color/blue/950",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/grey/950",
+      "scania-dark": "scania/color/grey/50",
+      "confidence": "Confirmed",
+      "comment": "Filled box when selected. 4-mode brand-primitive direct, endpoints copied from color/icon/strong's resolution chain per Tegel UI source: TRATON Light blue/950 / Dark base/white; Scania Light grey/950 / Dark grey/50. Resolved the prior icon-to-background alias smell at the component level."
+    },
+    {
+      "name": "component/checkbox/background/selected-hover",
+      "type": "COLOR",
+      "light": "traton/color/blue/950",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/grey/950",
+      "scania-dark": "scania/color/grey/50",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/checkbox/background/indeterminate-default",
+      "type": "COLOR",
+      "light": "traton/color/blue/950",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/grey/950",
+      "scania-dark": "scania/color/grey/50",
+      "confidence": "Confirmed",
+      "comment": "Filled box when indeterminate — identical alias matrix to selected."
+    },
+    {
+      "name": "component/checkbox/background/indeterminate-hover",
+      "type": "COLOR",
+      "light": "traton/color/blue/950",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/grey/950",
+      "scania-dark": "scania/color/grey/50",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/checkbox/icon/selected-default",
+      "type": "COLOR",
+      "light": "color/icon/inverse/strong",
+      "dark": "color/icon/inverse/strong",
+      "scania-light": "color/icon/inverse/strong",
+      "scania-dark": "color/icon/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Checkmark glyph on filled box. Cross-swap of background-selected — semantic resolves white on dark fill (Light) and dark on white fill (Dark)."
+    },
+    {
+      "name": "component/checkbox/icon/selected-hover",
+      "type": "COLOR",
+      "light": "color/icon/inverse/strong",
+      "dark": "color/icon/inverse/strong",
+      "scania-light": "color/icon/inverse/strong",
+      "scania-dark": "color/icon/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/checkbox/icon/indeterminate-default",
+      "type": "COLOR",
+      "light": "color/icon/inverse/strong",
+      "dark": "color/icon/inverse/strong",
+      "scania-light": "color/icon/inverse/strong",
+      "scania-dark": "color/icon/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Dash glyph on filled box — identical alias matrix to selected checkmark."
+    },
+    {
+      "name": "component/checkbox/icon/indeterminate-hover",
+      "type": "COLOR",
+      "light": "color/icon/inverse/strong",
+      "dark": "color/icon/inverse/strong",
+      "scania-light": "color/icon/inverse/strong",
+      "scania-dark": "color/icon/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/checkbox/text/default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Label sits adjacent to the box — off the varying surface. No variant axis by design."
+    },
+    {
+      "name": "component/checkbox/text/hover",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/checkbox/border/radius-default",
+      "type": "FLOAT",
+      "light": "traton/unit/2",
+      "dark": "traton/unit/2",
+      "scania-light": "scania/unit/2",
+      "scania-dark": "scania/unit/2",
+      "confidence": "Confirmed",
+      "comment": "Corner radius on the Input rectangle (the box itself). 2px primitive. 4-mode per brand-primitive-aliases convention (LOCKED) — each brand has independent primitives. Distinct from focus-ring/radius-default which addresses the focus ring (different purpose, different value due to focus offset placement)."
+    },
+    {
+      "name": "component/checkbox/focus-ring/radius-default",
+      "type": "FLOAT",
+      "light": "component/-focus/ring/radius/medium",
+      "dark": "component/-focus/ring/radius/medium",
+      "scania-light": "component/-focus/ring/radius/medium",
+      "scania-dark": "component/-focus/ring/radius/medium",
+      "confidence": "Confirmed",
+      "comment": "Refs shared -focus utility group. Size (small/medium/full) is bind-time adjustable — checkbox is square, ≠ Chip's pill."
+    },
+    {
+      "name": "component/checkbox/opacity/disabled",
+      "type": "FLOAT",
+      "light": "traton/opacity/25",
+      "dark": "traton/opacity/25",
+      "scania-light": "scania/opacity/25",
+      "scania-dark": "scania/opacity/25",
+      "confidence": "Confirmed",
+      "comment": "25% opacity for disabled state. 4-mode per brand-primitive-aliases convention (LOCKED) — each brand has independent primitives."
+    }
+  ]
+}

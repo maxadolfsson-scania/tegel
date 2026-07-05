@@ -1,0 +1,177 @@
+{
+  "_description": "Reverse-engineered from Figma TRATON branch WbO2DO6He93w4CCD08hSo4 (cluster 13, CDEP-1967). Single COMPONENT_SET (35264:124887) — no Item/Input/Group split like Checkbox + Radio. Variant axes: State (Default only after Focus removal), Size (Large/Small — no token differences), Checked (True/False), Disabled (True/False). 8 variants total post-edit. Helper/Focus Visible instance on Default variants only (skip Disabled for Figma variant-count performance, not for a11y reasons).",
+  "_notes": [
+    "Variant-axis-preservation rule applied: background + border split per variant (selected/standard, mapping Toggle's on/off to the cluster-13 vocabulary). Icon (Switch thumb) follows canvas evidence (same color across variants — single token). Text (Headline + On + Off labels) follows canvas evidence (same color across variants — single token).",
+    "No *-hover tokens: Toggle's State axis no longer has a Hover value post-edit. Only Default remains. State axis may be removed entirely as Figma maintenance.",
+    "Property-match flag on background/standard-default: aliases color/icon/subtle (icon-named semantic for surface). Same shape as Checkbox + Radio + Badge/Button/Chip Selected pattern. A future foundation token color/background/inverse/strong (or similar) would resolve cleanly.",
+    "Phantom-none border tokens (border/selected-default + border/standard-default) intentional per cluster 13 variant-axis-preservation + brand-customization-hook pattern. Bound to transparent paints on the Toggle layer per the same canvas pattern applied to Checkbox + Radio.",
+    "Switch (thumb) fill: 4-mode brand-primitive alias to white (matches bright-on-dark pattern from Toggle's earlier scope discussion). Promoted from INTERNAL/color__wip/brand/neutral/white per INTERNAL token policy.",
+    "Single text token covers Headline + On + Off labels (all bind same on canvas). Could be split per brand-customization need later; flagged as backlog candidate.",
+    "Disabled state via wrapper-only opacity-disabled pattern (LOCKED, see convention-opacity-disabled-wrapper.md). Single COMPONENT_SET — no wrapper distinction. Opacity binding on Disabled=True variant roots. Disabled colors use default tokens (no *-disabled color tokens).",
+    "Focus state via component/-focus/* helper. Helper/Focus Visible instance on Default variants only (4 of 8) per cluster convention; skipped on Disabled variants for Figma variant-count performance (not a11y rationale — disabled controls remain focusable via CSS in real UX).",
+    "Component topology: single COMPONENT_SET (Toggle, 35264:124887). No Item wrapper, no Group. Different from Checkbox + Radio Button which both have 3-set topologies. Toggle's variant axis (Checked) is the equivalent of Checkbox's Selected — same conceptual role, different label."
+  ],
+  "component": "toggle",
+  "variables": [
+    {
+      "name": "component/toggle/background/selected-default",
+      "type": "COLOR",
+      "light": "traton/color/green/300",
+      "dark": "traton/color/green/300",
+      "scania-light": "scania/color/green/300",
+      "scania-dark": "scania/color/green/300",
+      "confidence": "Confirmed",
+      "comment": "Track fill when selected (on), default state. Baseline of the brand-primitive progression: 300 → 400 → 500 across default/hover/active. Re-aliased 2026-05-21 from `color/system/success/default` semantic to brand-primitive direct, so the full state progression stays consistent across all 4 modes (no semantic mode-flip surprises). 4-mode per brand-primitive-aliases convention. Designer-handoff item: canvas axis is `Checked=True`; spec uses `selected` for cluster-13 vocabulary alignment."
+    },
+    {
+      "name": "component/toggle/background/standard-default",
+      "type": "COLOR",
+      "light": "traton/color/grey/400",
+      "dark": "traton/color/grey/400",
+      "scania-light": "scania/color/grey/350",
+      "scania-dark": "scania/color/grey/350",
+      "confidence": "Confirmed",
+      "comment": "Track fill when standard (off), default state. Brand-primitive direct: TRATON grey/400 baseline (no grey/350 in TRATON ladder; 400 picked as closest one-up); Scania grey/350 (matches bridge value --tds-toggle-off-slider). Re-aliased 2026-05-21 from `color/icon/subtle` semantic — removes the property-match smell (background aliasing icon semantic) and fixes the TRATON-dark mode progression that broke when semantic + brand-primitive aliases mixed across the state ladder."
+    },
+    {
+      "name": "component/toggle/background/selected-hover",
+      "type": "COLOR",
+      "light": "traton/color/green/400",
+      "dark": "traton/color/green/400",
+      "scania-light": "scania/color/green/400",
+      "scania-dark": "scania/color/green/400",
+      "confidence": "Confirmed",
+      "comment": "Track fill when selected + hover. 4-mode brand-primitive alias per locked convention. Values sourced from core web component bridge (toggle-vars.scss: --tds-toggle-on-slider-hover → green/400). No semantic equivalent (color/system/success/* doesn't include a hover state); brand primitives direct is the right pattern here."
+    },
+    {
+      "name": "component/toggle/background/standard-hover",
+      "type": "COLOR",
+      "light": "traton/color/grey/500",
+      "dark": "traton/color/grey/500",
+      "scania-light": "scania/color/grey/500",
+      "scania-dark": "scania/color/grey/500",
+      "confidence": "Confirmed",
+      "comment": "Track fill when standard + hover. Values from bridge (--tds-toggle-off-slider-hover → grey/500). 4-mode brand primitives per locked convention."
+    },
+    {
+      "name": "component/toggle/background/selected-active",
+      "type": "COLOR",
+      "light": "traton/color/green/500",
+      "dark": "traton/color/green/500",
+      "scania-light": "scania/color/green/500",
+      "scania-dark": "scania/color/green/500",
+      "confidence": "Confirmed",
+      "comment": "Track fill when selected + active (CSS :active / Toggle canvas State=Active / Tegel UI Library Pressed). 4-mode brand primitives per locked convention. Values from bridge (--tds-toggle-on-slider-pressed → green/500)."
+    },
+    {
+      "name": "component/toggle/background/standard-active",
+      "type": "COLOR",
+      "light": "traton/color/grey/600",
+      "dark": "traton/color/grey/600",
+      "scania-light": "scania/color/grey/600",
+      "scania-dark": "scania/color/grey/600",
+      "confidence": "Confirmed",
+      "comment": "Track fill when standard + active. Values from bridge (--tds-toggle-off-slider-pressed → grey/600). 4-mode brand primitives per locked convention."
+    },
+{
+      "name": "component/toggle/border/radius-default",
+      "type": "FLOAT",
+      "light": "traton/unit/9999",
+      "dark": "traton/unit/9999",
+      "scania-light": "scania/unit/9999",
+      "scania-dark": "scania/unit/9999",
+      "confidence": "Confirmed",
+      "comment": "Track corner radius. `9999` (max-round sentinel) per Toggle's pill identity — always fully round regardless of size. Aligned with focus-ring convention. Re-aliased 2026-05-21 from `traton/unit/16` (specific literal that happened to render fully round at 44×24). 4-mode per brand-primitive-aliases convention."
+    },
+    {
+      "name": "component/toggle/icon/standard-default",
+      "type": "COLOR",
+      "light": "traton/color/base/white",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/base/white",
+      "scania-dark": "scania/color/base/white",
+      "confidence": "Confirmed",
+      "comment": "Thumb fill, standard variant (unchecked / off), default state. White in all 4 modes — bright-on-dark pattern. 4-mode brand-primitive alias per locked convention. Renamed 2026-05-21 from `icon/default` to `icon/standard-default` after Toggle/Thumb COMPONENT_SET introduced state + variant axes on the thumb."
+    },
+    {
+      "name": "component/toggle/icon/standard-hover",
+      "type": "COLOR",
+      "light": "traton/color/base/white",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/base/white",
+      "scania-dark": "scania/color/base/white",
+      "confidence": "Confirmed",
+      "comment": "Thumb fill, standard variant on hover. 4-mode brand-white per locked convention. Canvas + code agree: thumb is uniformly white across all states (no per-state thumb treatment in toggle.scss or toggle-vars.scss). Confirmed 2026-05-21."
+    },
+    {
+      "name": "component/toggle/icon/standard-active",
+      "type": "COLOR",
+      "light": "traton/color/base/white",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/base/white",
+      "scania-dark": "scania/color/base/white",
+      "confidence": "Confirmed",
+      "comment": "Thumb fill, standard variant on active. 4-mode brand-white. Canvas + code agree on white-uniform thumb across all states. State=Active naming aligned across Toggle wrapper and Toggle/Thumb source 2026-05-22 (previously Toggle/Thumb used State=Pressed; renamed to Active to match spec and CSS :active vocabulary)."
+    },
+    {
+      "name": "component/toggle/icon/selected-default",
+      "type": "COLOR",
+      "light": "traton/color/base/white",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/base/white",
+      "scania-dark": "scania/color/base/white",
+      "confidence": "Confirmed",
+      "comment": "Thumb fill, selected variant (checked / on), default state. Same primitives as standard-default — thumb is uniform white across variants on canvas today; tokens split per cluster's variant-axis-preservation rule for brand-customization hook."
+    },
+    {
+      "name": "component/toggle/icon/selected-hover",
+      "type": "COLOR",
+      "light": "traton/color/base/white",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/base/white",
+      "scania-dark": "scania/color/base/white",
+      "confidence": "Confirmed",
+      "comment": "Thumb fill, selected variant on hover. 4-mode brand-white. Canvas + code agree on white-uniform thumb across states."
+    },
+    {
+      "name": "component/toggle/icon/selected-active",
+      "type": "COLOR",
+      "light": "traton/color/base/white",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/base/white",
+      "scania-dark": "scania/color/base/white",
+      "confidence": "Confirmed",
+      "comment": "Thumb fill, selected variant on active. 4-mode brand-white. Canvas + code agree on white-uniform thumb across states."
+    },
+    {
+      "name": "component/toggle/text/default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Headline + On + Off labels. Shared across all three text layers (canvas evidence). Could be split per brand-customization need later."
+    },
+    {
+      "name": "component/toggle/focus-ring/radius-default",
+      "type": "FLOAT",
+      "light": "component/-focus/ring/radius/full",
+      "dark": "component/-focus/ring/radius/full",
+      "scania-light": "component/-focus/ring/radius/full",
+      "scania-dark": "component/-focus/ring/radius/full",
+      "confidence": "Confirmed",
+      "comment": "Refs shared -focus utility group. Full radius — Toggle's track is fully round-ended (pill shape). Bind-time adjustable if a brand wants a different focus-ring radius."
+    },
+    {
+      "name": "component/toggle/opacity/disabled",
+      "type": "FLOAT",
+      "light": "traton/opacity/25",
+      "dark": "traton/opacity/25",
+      "scania-light": "scania/opacity/25",
+      "scania-dark": "scania/opacity/25",
+      "confidence": "Confirmed",
+      "comment": "25% opacity for disabled state. 4-mode per brand-primitive-aliases convention (LOCKED) — each brand has independent primitives."
+    }
+  ]
+}
