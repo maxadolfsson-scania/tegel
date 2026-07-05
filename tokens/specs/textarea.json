@@ -1,0 +1,48 @@
+{
+  "_description": "Textarea component spec. Almost all tokens shared via component/-input/*. Unique tokens: resize handle icon (colour under icon/, dimensions under size/).",
+  "_cluster": 6,
+  "_sharedWith": "component/-input",
+  "component": "textarea",
+  "variables": [
+    {
+      "name": "component/textarea/icon/resize-default",
+      "type": "COLOR",
+      "light": "color/icon/subtle",
+      "dark": "color/icon/subtle",
+      "scania-light": "color/icon/subtle",
+      "scania-dark": "color/icon/subtle",
+      "confidence": "Confirmed",
+      "comment": "Resize handle icon colour. 4-mode explicit (expanded from 2-mode 2026-07-04 per 4-mode-universal convention; Figma push pending). Foreground element — no hover variant, stays consistent across interaction states."
+    },
+    {
+      "name": "component/textarea/size/resize-width",
+      "type": "FLOAT",
+      "light": "traton/unit/12",
+      "dark": "traton/unit/12",
+      "scania-light": "scania/unit/12",
+      "scania-dark": "scania/unit/12",
+      "confidence": "Confirmed",
+      "comment": "Resize handle icon width (12px). 4-mode explicit — Scania bound to scania/unit/12 (expanded from 2-mode 2026-07-04 per 4-mode-universal convention; Figma push pending)."
+    },
+    {
+      "name": "component/textarea/size/resize-height",
+      "type": "FLOAT",
+      "light": "traton/unit/12",
+      "dark": "traton/unit/12",
+      "scania-light": "scania/unit/12",
+      "scania-dark": "scania/unit/12",
+      "confidence": "Confirmed",
+      "comment": "Resize handle icon height (12px). 4-mode explicit — Scania bound to scania/unit/12 (expanded from 2-mode 2026-07-04 per 4-mode-universal convention; Figma push pending)."
+    },
+    {
+      "name": "component/textarea/icon/readonly-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Proposed",
+      "comment": "Readonly state indicator icon (Icon: Read only / Edit_inactive). Strong neutral — communicates 'not editable' without using validation colour. Scania VERIFIED from web component 2026-07-05 (textarea-vars.scss: grey-950 light / grey-100 dark = icon/strong; readonly + hideReadonlyIcon in component API). Remaining before Confirmed: TRATON canvas check only. Scoped to textarea; promote to -input if reused across dropdown/datepicker/etc."
+    }
+  ]
+}

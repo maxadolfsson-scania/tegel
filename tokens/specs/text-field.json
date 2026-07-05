@@ -1,0 +1,11 @@
+{
+  "_description": "Text Field component spec. Zero component-specific tokens — text-field reuses the entire shared component/-input/* bucket. Prefix/suffix (previously 'affix') are icons and use component/-input/icon/prefix-default and icon/suffix-default.",
+  "_cluster": 6,
+  "_sharedWith": "component/-input",
+  "component": "text-field",
+  "variables": [],
+  "_openItemsForDesigner": [
+    "data-color (darker grey for formatted data display): present in old web component vars, dropped in tegel-lite. Unclear if intentional. Awaiting designer review.",
+    "Text prefix/suffix (e.g. '$' currency, 'kg' unit): currently reuses shared icon tokens. Designer to decide case-by-case whether a text prefix should use text/value-default (contrast) or icon/prefix-default (treated as symbol)."
+  ]
+}
