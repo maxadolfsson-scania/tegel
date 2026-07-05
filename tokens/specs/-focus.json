@@ -1,0 +1,96 @@
+{
+  "_description": "Shared -focus utility group. Variables created on branch ceUobip0KoQIiMSDuoO6Or. Color tokens are new (2026-04-10); radius tokens pre-existing.",
+  "component": "-focus",
+  "variables": [
+    {
+      "name": "component/-focus/ring/color/strong",
+      "type": "COLOR",
+      "light": "color/system/info/default",
+      "dark": "color/system/info/default",
+      "scania-light": "color/system/info/default",
+      "scania-dark": "color/system/info/default",
+      "confidence": "Confirmed",
+      "comment": "Brand-colored focus ring. Semantic ref."
+    },
+    {
+      "name": "component/-focus/ring/color/discrete",
+      "type": "COLOR",
+      "light": "traton/color/base/white",
+      "dark": "traton/color/base/white",
+      "scania-light": "scania/color/base/white",
+      "scania-dark": "scania/color/base/white",
+      "confidence": "Confirmed",
+      "comment": "Contrast/spacer ring. Brand primitive — candidate for semantic promotion."
+    },
+    {
+      "name": "component/-focus/ring/radius/none",
+      "type": "FLOAT",
+      "light": "traton/unit/0",
+      "dark": "traton/unit/0",
+      "scania-light": "traton/unit/0",
+      "scania-dark": "traton/unit/0",
+      "confidence": "Confirmed",
+      "comment": "Square focus ring."
+    },
+    {
+      "name": "component/-focus/ring/radius/extra-small",
+      "type": "FLOAT",
+      "light": 1,
+      "dark": 1,
+      "scania-light": 1,
+      "scania-dark": 1,
+      "confidence": "Confirmed",
+      "comment": "Hardcoded float."
+    },
+    {
+      "name": "component/-focus/ring/radius/small",
+      "type": "FLOAT",
+      "light": 2,
+      "dark": 2,
+      "scania-light": 2,
+      "scania-dark": 2,
+      "confidence": "Confirmed",
+      "comment": "Hardcoded float."
+    },
+    {
+      "name": "component/-focus/ring/radius/medium",
+      "type": "FLOAT",
+      "light": 3,
+      "dark": 3,
+      "scania-light": 3,
+      "scania-dark": 3,
+      "confidence": "Confirmed",
+      "comment": "Hardcoded float."
+    },
+    {
+      "name": "component/-focus/ring/radius/large",
+      "type": "FLOAT",
+      "light": 4,
+      "dark": 4,
+      "scania-light": 4,
+      "scania-dark": 4,
+      "confidence": "Confirmed",
+      "comment": "Hardcoded float."
+    },
+    {
+      "name": "component/-focus/ring/radius/extra-large",
+      "type": "FLOAT",
+      "light": 5,
+      "dark": 5,
+      "scania-light": 5,
+      "scania-dark": 5,
+      "confidence": "Confirmed",
+      "comment": "Hardcoded float."
+    },
+    {
+      "name": "component/-focus/ring/radius/full",
+      "type": "FLOAT",
+      "light": "traton/unit/9999",
+      "dark": "traton/unit/9999",
+      "scania-light": "traton/unit/9999",
+      "scania-dark": "traton/unit/9999",
+      "confidence": "Confirmed",
+      "comment": "Pill/circle focus ring."
+    }
+  ]
+}
