@@ -1,0 +1,105 @@
+{
+  "component": "banner",
+  "variables": [
+    {
+      "name": "component/banner/background/neutral-default",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "Neutral (default) variant background. Same semantic ref across all modes — layer-01 resolves per brand/mode."
+    },
+    {
+      "name": "component/banner/background/information-default",
+      "type": "COLOR",
+      "light": "color/system/info/discrete",
+      "dark": "color/system/info/discrete",
+      "scania-light": "color/system/info/discrete",
+      "scania-dark": "color/system/info/discrete",
+      "confidence": "Confirmed",
+      "comment": "Information variant background. Lite: --banner-background-info → color/system/info/discrete."
+    },
+    {
+      "name": "component/banner/background/error-default",
+      "type": "COLOR",
+      "light": "color/system/danger/discrete",
+      "dark": "color/system/danger/discrete",
+      "scania-light": "color/system/danger/discrete",
+      "scania-dark": "color/system/danger/discrete",
+      "confidence": "Confirmed",
+      "comment": "Error variant background. Lite: --banner-background-error → color/system/danger/discrete."
+    },
+    {
+      "name": "component/banner/text/neutral-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Neutral variant text. All → color/text/strong today. Per-variant for future brand flexibility."
+    },
+    {
+      "name": "component/banner/text/information-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Information variant text. Same as neutral today. Future brands may use variant-specific text color."
+    },
+    {
+      "name": "component/banner/text/error-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Error variant text. Same as neutral today. Future brands may use e.g. red text for error banners."
+    },
+    {
+      "name": "component/banner/icon/neutral-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed",
+      "comment": "Neutral (default) variant prefix icon. Lite: --banner-prefix-default → color/foreground/icon/strong."
+    },
+    {
+      "name": "component/banner/icon/information-default",
+      "type": "COLOR",
+      "light": "color/system/info/default",
+      "dark": "color/system/info/default",
+      "scania-light": "color/system/info/default",
+      "scania-dark": "color/system/info/default",
+      "confidence": "Confirmed",
+      "comment": "Information variant prefix icon. Lite: --banner-prefix-info → color/system/info/default."
+    },
+    {
+      "name": "component/banner/icon/error-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Confirmed",
+      "comment": "Error variant prefix icon. Lite: --banner-prefix-error → color/system/danger/default."
+    },
+    {
+      "name": "component/banner/icon/dismiss-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed",
+      "comment": "Close (X) icon. Named 'dismiss' for consistency with Modal. Lite: --banner-close-icon → color/foreground/icon/strong."
+    }
+  ]
+}

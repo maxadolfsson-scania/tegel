@@ -1,0 +1,215 @@
+{
+  "component": "message",
+  "variables": [
+    {
+      "name": "component/message/background/primary",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "Primary mode base background. Applied to non-error variants on primary surface. Lite: --message-mode-primary-background → color/background/layer-01."
+    },
+    {
+      "name": "component/message/background/secondary",
+      "type": "COLOR",
+      "light": "color/background/layer-02",
+      "dark": "color/background/layer-02",
+      "scania-light": "color/background/layer-02",
+      "scania-dark": "color/background/layer-02",
+      "confidence": "Confirmed",
+      "comment": "Secondary mode base background. Applied to non-error variants on secondary surface. Lite: --message-mode-secondary-background → color/background/layer-02."
+    },
+    {
+      "name": "component/message/background/information-default",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "Information variant background override. Today aliases to primary base. Future brands may use a distinct info background (e.g. light blue)."
+    },
+    {
+      "name": "component/message/background/success-default",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "Success variant background override. Today aliases to primary base. Future brands may use a distinct success background (e.g. light green)."
+    },
+    {
+      "name": "component/message/background/warning-default",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "Warning variant background override. Today aliases to primary base. Future brands may use a distinct warning background (e.g. light yellow)."
+    },
+    {
+      "name": "component/message/background/error-default",
+      "type": "COLOR",
+      "light": "color/system/danger/discrete",
+      "dark": "color/system/danger/discrete",
+      "scania-light": "color/system/danger/discrete",
+      "scania-dark": "color/system/danger/discrete",
+      "confidence": "Confirmed",
+      "comment": "Error variant background override. Uses danger/discrete — distinct from base in all modes. Lite: --message-error-background → color/system/danger/discrete."
+    },
+    {
+      "name": "component/message/text/information-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Information variant text. All → color/text/strong today. Per-variant for future brand flexibility."
+    },
+    {
+      "name": "component/message/text/success-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Success variant text. Same as information today."
+    },
+    {
+      "name": "component/message/text/warning-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Warning variant text. Same as information today."
+    },
+    {
+      "name": "component/message/text/error-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Error variant text. Same as information today. Future brands may use variant-specific text."
+    },
+    {
+      "name": "component/message/text/error-highlight-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Confirmed",
+      "comment": "Error highlight text for minimal variant header. Communicates error through text when border/icon are absent. Lite: --message-error-header-text-color → color/system/danger/default."
+    },
+    {
+      "name": "component/message/border/information-default",
+      "type": "COLOR",
+      "light": "color/system/info/subtle",
+      "dark": "color/system/info/subtle",
+      "scania-light": "color/system/info/subtle",
+      "scania-dark": "color/system/info/subtle",
+      "confidence": "Confirmed",
+      "comment": "Information variant 4px left stripe. Uses 'subtle' level (lower contrast than icon per WCAG — decorative border). Lite: --message-info-border-color → color/system/info/subtle."
+    },
+    {
+      "name": "component/message/border/success-default",
+      "type": "COLOR",
+      "light": "color/system/success/subtle",
+      "dark": "color/system/success/subtle",
+      "scania-light": "color/system/success/subtle",
+      "scania-dark": "color/system/success/subtle",
+      "confidence": "Confirmed",
+      "comment": "Success variant 4px left stripe. Lite: --message-success-border-color → color/system/success/subtle."
+    },
+    {
+      "name": "component/message/border/warning-default",
+      "type": "COLOR",
+      "light": "color/system/warning/subtle",
+      "dark": "color/system/warning/subtle",
+      "scania-light": "color/system/warning/subtle",
+      "scania-dark": "color/system/warning/subtle",
+      "confidence": "Confirmed",
+      "comment": "Warning variant 4px left stripe. Lite: --message-warning-border-color → color/system/warning/subtle."
+    },
+    {
+      "name": "component/message/border/error-default",
+      "type": "COLOR",
+      "light": "color/system/danger/subtle",
+      "dark": "color/system/danger/subtle",
+      "scania-light": "color/system/danger/subtle",
+      "scania-dark": "color/system/danger/subtle",
+      "confidence": "Confirmed",
+      "comment": "Error variant 4px left stripe. Lite: --message-error-border-color → color/system/danger/subtle."
+    },
+    {
+      "name": "component/message/icon/information-default",
+      "type": "COLOR",
+      "light": "color/system/info/default",
+      "dark": "color/system/info/default",
+      "scania-light": "color/system/info/default",
+      "scania-dark": "color/system/info/default",
+      "confidence": "Confirmed",
+      "comment": "Information variant icon. Uses 'default' level (higher contrast than border — meaningful icon per WCAG). Lite: --message-info-icon-color → color/system/info/default."
+    },
+    {
+      "name": "component/message/icon/success-default",
+      "type": "COLOR",
+      "light": "color/system/success/default",
+      "dark": "color/system/success/default",
+      "scania-light": "color/system/success/default",
+      "scania-dark": "color/system/success/default",
+      "confidence": "Confirmed",
+      "comment": "Success variant icon. Lite: --message-success-icon-color → color/system/success/default."
+    },
+    {
+      "name": "component/message/icon/warning-default",
+      "type": "COLOR",
+      "light": "color/system/warning/default",
+      "dark": "color/system/warning/default",
+      "scania-light": "color/system/warning/default",
+      "scania-dark": "color/system/warning/default",
+      "confidence": "Confirmed",
+      "comment": "Warning variant icon. Lite: --message-warning-icon-color → color/system/warning/default."
+    },
+    {
+      "name": "component/message/icon/error-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Confirmed",
+      "comment": "Error variant icon. Lite: --message-error-icon-color → color/system/danger/default."
+    },
+    {
+      "name": "component/message/border/radius-default",
+      "type": "FLOAT",
+      "light": "traton/unit/4",
+      "dark": "traton/unit/4",
+      "scania-light": "scania/unit/4",
+      "scania-dark": "scania/unit/4",
+      "confidence": "Confirmed",
+      "comment": "Corner radius. Aliased to brand primitives for consistency with -input."
+    },
+    {
+      "name": "component/message/border/width-default",
+      "type": "FLOAT",
+      "light": "traton/unit/4",
+      "dark": "traton/unit/4",
+      "scania-light": "scania/unit/4",
+      "scania-dark": "scania/unit/4",
+      "confidence": "Confirmed",
+      "comment": "Left border stripe width. Aliased to brand primitives for consistency with -input."
+    }
+  ]
+}

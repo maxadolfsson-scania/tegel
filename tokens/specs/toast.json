@@ -1,0 +1,185 @@
+{
+  "component": "toast",
+  "variables": [
+    {
+      "name": "component/toast/background/information-default",
+      "type": "COLOR",
+      "light": "color/background/inverse/base",
+      "dark": "color/background/inverse/base",
+      "scania-light": "color/background/inverse/base",
+      "scania-dark": "color/background/inverse/base",
+      "confidence": "Confirmed",
+      "comment": "Information variant background. All → inverse/base today. Future brands may use variant-specific bg."
+    },
+    {
+      "name": "component/toast/background/success-default",
+      "type": "COLOR",
+      "light": "color/background/inverse/base",
+      "dark": "color/background/inverse/base",
+      "scania-light": "color/background/inverse/base",
+      "scania-dark": "color/background/inverse/base",
+      "confidence": "Confirmed",
+      "comment": "Success variant background. Same as information today. Future brands may use e.g. dark green."
+    },
+    {
+      "name": "component/toast/background/warning-default",
+      "type": "COLOR",
+      "light": "color/background/inverse/base",
+      "dark": "color/background/inverse/base",
+      "scania-light": "color/background/inverse/base",
+      "scania-dark": "color/background/inverse/base",
+      "confidence": "Confirmed",
+      "comment": "Warning variant background. Same as information today."
+    },
+    {
+      "name": "component/toast/background/error-default",
+      "type": "COLOR",
+      "light": "color/background/inverse/base",
+      "dark": "color/background/inverse/base",
+      "scania-light": "color/background/inverse/base",
+      "scania-dark": "color/background/inverse/base",
+      "confidence": "Confirmed",
+      "comment": "Error variant background. Same as information today."
+    },
+    {
+      "name": "component/toast/text/title-default",
+      "type": "COLOR",
+      "light": "color/text/inverse/strong",
+      "dark": "color/text/inverse/strong",
+      "scania-light": "color/text/inverse/strong",
+      "scania-dark": "color/text/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Title/headline text on inverse background. Lite: --toast-headline → color/foreground/text/inverse/strong."
+    },
+    {
+      "name": "component/toast/text/body-default",
+      "type": "COLOR",
+      "light": "color/text/inverse/soft",
+      "dark": "color/text/inverse/soft",
+      "scania-light": "color/text/inverse/soft",
+      "scania-dark": "color/text/inverse/soft",
+      "confidence": "Confirmed",
+      "comment": "Subtitle/subheader text on inverse background. Reduced prominence. Lite: --toast-subheadline → color/foreground/text/inverse/soft."
+    },
+    {
+      "name": "component/toast/text/link-default",
+      "type": "COLOR",
+      "light": "color/system/info/default",
+      "dark": "color/system/info/default",
+      "scania-light": "color/system/info/default",
+      "scania-dark": "color/system/info/default",
+      "confidence": "Confirmed",
+      "comment": "Link text on inverse background. Uses system info. NOTE: future Link component inverse variant may provide a better semantic ref. See Footer for similar pattern."
+    },
+    {
+      "name": "component/toast/icon/dismiss-default",
+      "type": "COLOR",
+      "light": "color/text/inverse/strong",
+      "dark": "color/text/inverse/strong",
+      "scania-light": "color/text/inverse/strong",
+      "scania-dark": "color/text/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Close (X) icon on inverse background. Named 'dismiss' for consistency with Modal/Banner. Lite: --toast-dismiss → color/foreground/text/inverse/strong."
+    },
+    {
+      "name": "component/toast/icon/information-default",
+      "type": "COLOR",
+      "light": "color/system/info/default",
+      "dark": "color/system/info/default",
+      "scania-light": "color/system/info/default",
+      "scania-dark": "color/system/info/default",
+      "confidence": "Confirmed",
+      "comment": "Information variant icon. Lite: --toast-icon-info → color/system/info/default."
+    },
+    {
+      "name": "component/toast/icon/success-default",
+      "type": "COLOR",
+      "light": "color/system/success/default",
+      "dark": "color/system/success/default",
+      "scania-light": "color/system/success/default",
+      "scania-dark": "color/system/success/default",
+      "confidence": "Confirmed",
+      "comment": "Success variant icon. Lite: --toast-icon-success → color/system/success/default."
+    },
+    {
+      "name": "component/toast/icon/warning-default",
+      "type": "COLOR",
+      "light": "color/system/warning/default",
+      "dark": "color/system/warning/default",
+      "scania-light": "color/system/warning/default",
+      "scania-dark": "color/system/warning/default",
+      "confidence": "Confirmed",
+      "comment": "Warning variant icon. Lite: --toast-icon-warning → color/system/warning/default."
+    },
+    {
+      "name": "component/toast/icon/error-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Confirmed",
+      "comment": "Error variant icon. Lite: --toast-icon-error → color/system/danger/default."
+    },
+    {
+      "name": "component/toast/border/information-default",
+      "type": "COLOR",
+      "light": "color/system/info/default",
+      "dark": "color/system/info/default",
+      "scania-light": "color/system/info/default",
+      "scania-dark": "color/system/info/default",
+      "confidence": "Confirmed",
+      "comment": "Information variant 4px left stripe. Same level as icon today (both 'default') but kept separate for WCAG flexibility."
+    },
+    {
+      "name": "component/toast/border/success-default",
+      "type": "COLOR",
+      "light": "color/system/success/default",
+      "dark": "color/system/success/default",
+      "scania-light": "color/system/success/default",
+      "scania-dark": "color/system/success/default",
+      "confidence": "Confirmed",
+      "comment": "Success variant 4px left stripe."
+    },
+    {
+      "name": "component/toast/border/warning-default",
+      "type": "COLOR",
+      "light": "color/system/warning/default",
+      "dark": "color/system/warning/default",
+      "scania-light": "color/system/warning/default",
+      "scania-dark": "color/system/warning/default",
+      "confidence": "Confirmed",
+      "comment": "Warning variant 4px left stripe."
+    },
+    {
+      "name": "component/toast/border/error-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Confirmed",
+      "comment": "Error variant 4px left stripe."
+    },
+    {
+      "name": "component/toast/border/radius-default",
+      "type": "FLOAT",
+      "light": "traton/unit/4",
+      "dark": "traton/unit/4",
+      "scania-light": "scania/unit/4",
+      "scania-dark": "scania/unit/4",
+      "confidence": "Confirmed",
+      "comment": "Corner radius. Aliased to brand primitives for consistency with -input."
+    },
+    {
+      "name": "component/toast/border/width-default",
+      "type": "FLOAT",
+      "light": "traton/unit/4",
+      "dark": "traton/unit/4",
+      "scania-light": "scania/unit/4",
+      "scania-dark": "scania/unit/4",
+      "confidence": "Confirmed",
+      "comment": "Left border stripe width. Aliased to brand primitives for consistency with -input."
+    }
+  ]
+}
