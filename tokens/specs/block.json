@@ -1,0 +1,89 @@
+{
+  "_description": "Block component spec — cluster #10 (CDEP-1949). Surface-only component with no surface states. Two mode-variants (primary/secondary) and a nested-block alternation pattern.",
+  "_figmaBranch": "https://www.figma.com/design/6osYTOfd4MgDq7LO6BCoUO/branch/oP5qZaxKDt2s95U7ljjd9R/TRATON-Component-Library?node-id=13675-6217",
+  "_notes": [
+    "Block is surface-only. Children own their own text bindings; the Block frame has no text fill in Figma. No component/block/text/* token is specified.",
+    "Nested-even / nested-odd are first-class Figma alias variables of primary/secondary because the alternation pattern is real on the design side. Designers can bind these directly on alternating layers within a Block instance.",
+    "The Block COMPONENT_SET (13675:6219) exposes a `Nested` BOOLEAN component property (default false) alongside the Mode variant axis. Nested is a per-instance toggle, not a variant — keeps the variant matrix at 2 instead of 4. The nested-even / nested-odd background tokens are intended to be bound on layers gated by `Nested = true`."
+  ],
+  "_divergence": [
+    "Naming: Block uses background/primary and background/secondary (no -default suffix). Block is a surface-only component with no surface-state model — primary/secondary is an option/mode-variant axis. Card spec uses background/primary-default / background/secondary-default because Card is interactive and has at least default + hover states; the -default suffix marks the rest position in a state set, which is correct for Card. Different shapes for different reasons. Both are correct in their own component context."
+  ],
+  "component": "block",
+  "variables": [
+    {
+      "name": "component/block/background/primary",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "Primary mode-variant. Matches Figma live binding on Mode=Primary frame."
+    },
+    {
+      "name": "component/block/background/secondary",
+      "type": "COLOR",
+      "light": "color/background/layer-02",
+      "dark": "color/background/layer-02",
+      "scania-light": "color/background/layer-02",
+      "scania-dark": "color/background/layer-02",
+      "confidence": "Confirmed",
+      "comment": "Secondary mode-variant. Matches Figma live binding on Mode=Secondary frame."
+    },
+    {
+      "name": "component/block/background/nested-even",
+      "type": "COLOR",
+      "light": "component/block/background/primary",
+      "dark": "component/block/background/primary",
+      "scania-light": "component/block/background/primary",
+      "scania-dark": "component/block/background/primary",
+      "confidence": "Confirmed",
+      "comment": "Alias of background/primary. Used on even-position layers in nested-block stacks. The 'nested-' prefix disambiguates the alternation context — these tokens belong to the nesting model, not generic surface choice."
+    },
+    {
+      "name": "component/block/background/nested-odd",
+      "type": "COLOR",
+      "light": "component/block/background/secondary",
+      "dark": "component/block/background/secondary",
+      "scania-light": "component/block/background/secondary",
+      "scania-dark": "component/block/background/secondary",
+      "confidence": "Confirmed",
+      "comment": "Alias of background/secondary. Used on odd-position layers in nested-block stacks."
+    },
+    {
+      "name": "component/block/border/radius-default",
+      "type": "FLOAT",
+      "light": "traton/unit/4",
+      "dark": "traton/unit/4",
+      "scania-light": "scania/unit/4",
+      "scania-dark": "scania/unit/4",
+      "confidence": "Confirmed",
+      "comment": "Both primitives verified to exist in the Primitive collection (FLOAT, value 4). Candidate for promotion to a shared border/radius/sm semantic if/when foundation work lands."
+    },
+    {
+      "name": "component/block/border/radius-none",
+      "type": "FLOAT",
+      "light": "traton/unit/0",
+      "dark": "traton/unit/0",
+      "scania-light": "scania/unit/0",
+      "scania-dark": "scania/unit/0",
+      "confidence": "Confirmed",
+      "comment": "Forward-compat headroom for a future 'rounded off' variant or component property. Not actively bound today — brands can already set radius-default to 0 if needed. Aliases the unit/0 brand primitives. Matches -input.json radius-none precedent. Aligned with developer (Charles), 2026-05-05."
+    }
+  ],
+  "_parked": [
+    {
+      "candidate": "component/block/space/padding-default",
+      "reason": "Hardcoded 16px in design intent. No spacing-token foundation exists for any cluster yet. Revisit when CDEP-2019/2020 (foundation spacing) lands."
+    },
+    {
+      "candidate": "component/block/text/default",
+      "reason": "Block is surface-only; the Figma frame has no text fill. Children own text bindings."
+    },
+    {
+      "candidate": "component/block/background/nested-deeper",
+      "reason": "Figma has no distinct nested-deeper variant; multi-level nesting alternates between nested-even and nested-odd. If design later adds a third surface tone for level-3+ blocks, revisit."
+    }
+  ]
+}
