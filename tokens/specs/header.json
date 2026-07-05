@@ -1,0 +1,482 @@
+{
+  "_description": "Cluster #8 header \u2014 BAR surfaces only. Scope: the header bar surface itself + the items that sit on it (nav items, profile item, icons, dividers). Derived from Figma Header Functional (38845:183926) + Header Expressive (38845:191773) and the existing SCSS bridge (tokens/scss/component/header.scss) as reference. Naming follows Semantic Bridge Framework v1.3, with 'selected' paired under 'standard' (see chip precedent).",
+  "_cluster": 8,
+  "_figmaBranch": "2zP6sIJbTxI6USqaYmbLd7",
+  "_scope": {
+    "in": [
+      "Main bar surface (new tokenisation)",
+      "Sub Header expandable panel surface (new)",
+      "Nav item states under nav-item/ group (standard-default/hover/active, selected-default)",
+      "Profile nav-item (background + sizing)",
+      "Icons on nav-items (standard/subtle/selected)"
+    ],
+    "out": [
+      "Expressive mobile menu \u2014 park until Side Menu #14 / sheet work",
+      "Expressive Bottom Row \u2014 parks with Expressive Menu (TBD)",
+      "Sub Menu Popover surface \u2014 merge into general Popover (cluster #16)",
+      "Sub Menu Items (Global/Local/App/Cat Global/UserID) + App Launcher + Grid menu \u2014 future mega-menu / shared menu-item cluster; see menu-item-consolidation memory",
+      "Typography tokens (application-name, nav-item, link, section-title) \u2014 CDEP-2019 typography track",
+      "Dividers (consume Divider component variants, not header-local tokens)",
+      "Shadow on Sub Header \u2014 defer; revisit when global treatment-vs-token split is addressed",
+      "Focus tokens \u2014 handled globally per v1.3"
+    ]
+  },
+  "_namingConvention": {
+    "surfaces": "main-/sub- prefix following footer's main-/top- precedent: component/header/background/{main|sub}-{state}. Variant qualification (e.g. expressive-bottom-) only when a surface truly diverges between functional/expressive.",
+    "nav-item": "grouped under nav-item/ with paired standard+selected: component/header/{property}/nav-item/{standard|selected}-{state}, plus nav-item/profile-{state} and nav-item/subtle-{state} as option variants",
+    "dividers": "no header-local divider token; consume Divider component variants in Figma",
+    "note": "The existing bridge uses color/background/{state} which muddles bar-scope vs item-scope and pairs 'selected' without its 'standard' counterpart. This spec disambiguates per decisions 2026-04-24."
+  },
+  "component": "header",
+  "variables": [
+    {
+      "name": "component/header/background/main/standard-default",
+      "type": "COLOR",
+      "light": "traton/color/transparent/invisible/light",
+      "dark": "traton/color/transparent/invisible/light",
+      "scania-light": "scania/color/blue/800",
+      "scania-dark": "scania/color/blue/900",
+      "confidence": "Confirmed",
+      "comment": "Main bar surface, standard (Functional) variant. Paired with main/expressive-default. Renamed from `main-default` 2026-04-28 to nest under `main/` group with explicit variant qualifier."
+    },
+    {
+      "name": "component/header/background/content-default",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "scania/color/base/white",
+      "scania-dark": "scania/color/grey/850",
+      "confidence": "Confirmed",
+      "comment": "Expandable content area below the header navigation (Header/Expressive/Nav/Expandable, node 44123:12699). Hosts sub-categories, links, marketing/campaign content, etc. **Updated 2026-05-05:** values changed from `color/background/base` to `color/background/layer-01` after benchmarking against system convention. Dropdown primary mode, Popover Menu primary mode, Date Picker (paired with Text Field), and `component/-input/background/primary` all use `color/background/layer-01` for primary popover/menu/dropdown/input surfaces. Header's expandable nav surface is structurally a mega-dropdown \u2014 same elevated-surface family. Aligns with `popover-default` (today's sister token); separate from popover-default because purpose differs (full-width expandable vs floating popover) and to allow independent divergence when secondary mode is introduced. Replaces 2 direct-primitive bindings on Header/Expressive/Nav/Expandable variant root fills (was bound directly to `color/background/layer-01`). Visual no-op."
+    },
+    {
+      "name": "component/header/background/main/expressive-default",
+      "type": "COLOR",
+      "light": "color/background/base",
+      "dark": "color/background/base",
+      "scania-light": "scania/color/blue/800",
+      "scania-dark": "scania/color/blue/900",
+      "confidence": "Confirmed",
+      "comment": "Main bar surface, expressive variant. Paired with main/standard-default under the `main/` group. Originally added as sibling `expressive-default` 2026-04-27, restructured into `main/` group 2026-04-28 to reflect that both are variants of the same surface. **Dual use (2026-05-03):** also consumed by Mobile Nav drawer surfaces (Header/Expressive/Mobile Nav/Menu, Mobile Nav/Sub Menu Item) — the drawer is conceptually an unfolded extension of the Expressive bar, same surface treatment. Replaces 23 source bindings previously on INTERNAL/expressive-mobile-menu/primary; verified visual no-op across all 4 modes."
+    },
+    {
+      "name": "component/header/border/divider-default",
+      "type": "COLOR",
+      "light": "traton/color/transparent/invisible/light",
+      "dark": "traton/color/transparent/invisible/light",
+      "scania-light": "scania/color/blue/700",
+      "scania-dark": "scania/color/blue/800",
+      "confidence": "Confirmed",
+      "comment": "Inter-item divider + bar bottom border. Footer precedent (component/footer/border/divider-default). Values preserve existing visual from legacy INTERNAL/background/border so the 388-binding rebind is a no-op visually. Header-local divider token rather than consuming Divider component \u2014 lets Header diverge if needed (e.g. specific color on dark bar surface). Added 2026-04-28."
+    },
+    {
+      "name": "component/header/border/menu-item/link-hover",
+      "type": "COLOR",
+      "light": "color/border/discrete",
+      "dark": "color/border/discrete",
+      "scania-light": "color/border/discrete",
+      "scania-dark": "color/border/discrete",
+      "confidence": "Confirmed",
+      "comment": "Stronger row stroke for menu items in Hover/Selected states. Aliases `color/border/discrete` (brand-aware semantic). Sibling to `border/menu-item/link-default` which aliases the subtler `color/border/disabled` for at-rest. 6 source rebinds 2026-05-19: Sub Menu Item Global (3 variant root strokes — Default/Default + Default/Hover + User ID/Default), Sub Menu Item Local (2 — Default/Hover + Selected/Default), Sub Menu Item Cat Global (1 — Variant=Default). Note: Sub Menu Item Global's Default/Default variant gets the stronger stroke today (not the subtler link-default) — that's existing canvas intent."
+    },
+    {
+      "name": "component/header/icon/menu-item/avatar-default",
+      "type": "COLOR",
+      "light": "color/icon/defined",
+      "dark": "color/icon/defined",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed",
+      "comment": "Avatar logo icon fill on Sub Menu Item App Illustration variants. Single token covering both icon-swap brand vectors (Traton + Scania) — visibility booleans (owned by icon-swap workstream) ensure only one vector renders per brand×mode. The 4-mode split preserves the existing per-brand semantic intent: TRATON modes use `color/icon/defined` (softer), Scania modes use `color/icon/strong` (stronger). 6 instance-override fill rebinds 2026-05-26 (Traton + Scania vectors across 3 Illustration variants: Default, Hover, Hover-extended). Replaces the previously-flagged 'icon semantic inconsistency across brand layers' (project-status memory 2026-05-15) with a single component-token home — QA-friendly."
+    },
+    {
+      "name": "component/header/border/menu-item/avatar-default",
+      "type": "COLOR",
+      "light": "color/border/defined",
+      "dark": "color/border/defined",
+      "scania-light": "color/border/defined",
+      "scania-dark": "color/border/defined",
+      "confidence": "Confirmed",
+      "comment": "Avatar circle ring stroke inside menu-item Initials variants (Sub Menu Item App Initials × 3 variants: Default, Hover, Hover-extended). Aliases `color/border/defined` (brand-aware semantic). No Avatar component exists in code yet (verified 2026-05-19); when one lands, this token may migrate or be deprecated. Header-local home for now."
+    },
+    {
+      "name": "component/header/text/menu-item/link-default",
+      "type": "COLOR",
+      "light": "color/text/defined",
+      "dark": "color/text/defined",
+      "scania-light": "color/text/defined",
+      "scania-dark": "color/text/defined",
+      "confidence": "Confirmed",
+      "comment": "Menu-item link text, at-rest state. Aliases `color/text/defined` (brand-aware semantic, safe for popover light surfaces — does NOT carry the `/inverse` Scania-Light value that `text/nav-item/sub-link-default` does). 13 source rebinds 2026-05-19: App name × 6 (Sub Menu Item App), MR Initials × 3 (Sub Menu Item App), Page name × 2 (Sub Menu Item Global), Sub Page name × 2 (Sub Menu Item Local). Used across header-dropdown-list-item + header-launcher-grid-item families."
+    },
+    {
+      "name": "component/header/text/menu-item/current-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Menu-item text, current-page state (paired with `background/menu-item/current-default`). Aliases `color/text/strong` (brand-aware). 1 source rebind 2026-05-19: Sub Menu Item Local Selected/Default variant Sub Page name. Renamed 2026-05-26 from `link-current-default` → `current-default` for consistency with the 2-part naming used across all other `current` tokens (nav-item, breadcrumbs, menu-item background sibling). No hover companion — runtime overlays via link-default state (follows the no-stacked-tokens precedent for current state)."
+    },
+    {
+      "name": "component/header/border/menu-item/link-default",
+      "type": "COLOR",
+      "light": "color/border/disabled",
+      "dark": "color/border/disabled",
+      "scania-light": "color/border/disabled",
+      "scania-dark": "color/border/disabled",
+      "confidence": "Confirmed",
+      "comment": "At-rest internal stroke for menu items in default stacked layout (Sub Menu Item Local + cousins). Subtler than the discrete border used on Hover/Selected states. Replaces a direct binding to `color/border/disabled` on the Default/Default variant root stroke \u2014 the semantic alias is value-correct (subtle transparent-alpha border) but the `disabled` name is misleading-as-used; this component-layer token names the actual intent (resting menu-item divider). Parallels `background/menu-item/link-default`. Added 2026-05-17.",
+      "_notes": "Brand-decidability check: alias chain resolution via color/border/disabled \u2014 each brand handles its own resolution upstream. 2-mode TRATON only; Scania resolves through the chain."
+    },
+    {
+      "name": "component/header/border/search/divider-default",
+      "type": "COLOR",
+      "light": "color/border/discrete",
+      "dark": "color/border/discrete",
+      "scania-light": "color/border/discrete",
+      "scania-dark": "color/border/discrete",
+      "confidence": "Confirmed",
+      "comment": "Row divider stroke inside search result list (Field Rows Type=Title + Advanced search Default/Hover). Aliases `color/border/discrete` (brand-aware semantic). 3 source-level stroke bindings rebound 2026-05-19. Maps to code `--tds-header-searchbar-result-item-top-border-color` family. Canvas-restructure alternative: replace stroke with Divider component INSTANCE (designer task; same pattern as Header/Expressive/Nav/Expandable cleanup). For now, header-local token covers the canvas as-is."
+    },
+    {
+      "name": "component/header/background/nav-item/link-default",
+      "type": "COLOR",
+      "light": "traton/color/transparent/invisible/light",
+      "dark": "traton/color/transparent/invisible/light",
+      "scania-light": "scania/color/blue/800",
+      "scania-dark": "scania/color/blue/900",
+      "confidence": "Confirmed",
+      "comment": "Nav item at rest. Matches bar surface so the item is visually seamless when not interacted with."
+    },
+    {
+      "name": "component/header/background/nav-item/link-hover",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "scania/color/blue/700",
+      "scania-dark": "scania/color/blue/800",
+      "confidence": "Confirmed",
+      "comment": "Nav item on hover. Scania steps one shade lighter on dark blue surface."
+    },
+    {
+      "name": "component/header/background/nav-item/link-active",
+      "type": "COLOR",
+      "light": "color/background/layer-02",
+      "dark": "traton/color/blue/900",
+      "scania-light": "scania/color/blue/600",
+      "scania-dark": "scania/color/blue/700",
+      "confidence": "Confirmed",
+      "comment": "Nav item active (pressed). State-progression rule LOCKED 2026-06-24: Pressed steps one further from Hover, in the direction the surface context dictates. Scania bar is brand-inverse (dark blue) in both modes → items step lighter; TRATON-Light bar is non-inverting (light) → items step darker; TRATON-Dark already differentiated via traton/color/blue/900. Resolves a 3-mode collision (TRATON-L, Scania-L, Scania-D) where link-active and link-hover rendered the same colour — QA designer flag from 2026-06 across Nav/Item/Text, Nav/Item/Symbol, Toolbar/Search (Open=False). Sub-Sub Menu Item pressed binding moved off this token onto a separate menu-item/sub-link-active token (split 2026-05-26); the earlier dual-use warning no longer applies."
+    },
+    {
+      "name": "component/header/background/nav-item/current-default",
+      "type": "COLOR",
+      "light": "color/background/base",
+      "dark": "color/background/base",
+      "scania-light": "scania/color/base/white",
+      "scania-dark": "scania/color/blue/800",
+      "confidence": "Confirmed",
+      "comment": "Nav item background when selected \u2014 paired with nav-item/standard-default. In Scania light the surface inverts (white on dark blue) intentionally; the selected item visually merges with the popover/dropdown surface that opens from it. Renamed from `selected-default` to `selected/default` (nested option group, Chip pattern) 2026-04-28."
+    },
+    {
+      "name": "component/header/background/nav-item/avatar-default",
+      "type": "COLOR",
+      "light": "traton/color/grey/150",
+      "dark": "traton/color/blue/900",
+      "scania-light": "scania/color/blue/700",
+      "scania-dark": "scania/color/blue/800",
+      "confidence": "Confirmed",
+      "comment": "Profile/avatar item background. Distinct from standard items. TRATON cream / dark teal; Scania matches the hover step."
+    },
+    {
+      "name": "component/header/background/menu-item/tile-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": "Default state for tile-layout menu items (Sub Menu Item App tiles in App Launcher / Grid Sub Menu). Transparent — inherits the popover-default surface beneath. Pairs with `menu-item/tile-hover`. Added 2026-05-05. Moved from `nav-item/tile-default` 2026-05-17 when Header tokens split into `nav-item/` (top bar) vs `menu-item/` (items inside popovers/menus, regardless of surface presentation)."
+    },
+    {
+      "name": "component/header/background/menu-item/tile-hover",
+      "type": "COLOR",
+      "light": "traton/color/grey/200",
+      "dark": "traton/color/blue/850",
+      "scania-light": "scania/color/grey/150",
+      "scania-dark": "scania/color/grey/800",
+      "confidence": "Confirmed",
+      "comment": "Hover state for tile-layout menu items (Sub Menu Item App tiles). Replaces 4 source bindings to INTERNAL/color__wip/UNSORTED/background/surface/200 on Sub Menu Item App's State=Hover and State=Hover-extended variants. Visual preserved exactly. Distinct from link-style hover (Sub Menu Item Global/Local — surface/100, lighter step) which gets its own `menu-item/link-hover` token — tile gets a more emphasized hover; link gets a subtler one. Added 2026-05-05. Moved from `nav-item/tile-hover` 2026-05-17."
+    },
+    {
+      "name": "component/header/background/menu-item/link-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": "Default (resting) state for menu items in their default stacked-layout presentation — Sub Menu Item Local, Sub Menu Item Global, and cousins (Cat Global, UserID, App Launcher List, Grid Sub Menu, Sub Menu Popover). Transparent — inherits the popover/menu surface beneath. Mirrors `menu-item/tile-default` (same role, alternate layout). Added 2026-05-06. Renamed from `nav-item/row-default` 2026-05-17 — items inside menus are conceptually links (the role), stacked is the default layout (implicit, not encoded in the name); tile is the explicit alternate layout.",
+      "_notes": "Brand-decidability check: 4 mode slots, each brand can resolve independently. No stacked current-hover companion (follows -input precedent — hover overlays at runtime if both apply)."
+    },
+    {
+      "name": "component/header/background/menu-item/link-hover",
+      "type": "COLOR",
+      "light": "traton/color/grey/150",
+      "dark": "traton/color/blue/900",
+      "scania-light": "scania/color/grey/100",
+      "scania-dark": "scania/color/grey/850",
+      "confidence": "Confirmed",
+      "comment": "Hover state for menu items in default stacked layout (Sub Menu Item Local, Sub Menu Item Global, and cousins). Replaces source bindings to INTERNAL/color__wip/UNSORTED/background/surface/100 — values preserve the rendered visual exactly. Mirrors `component/header/background/search/dismiss-hover` (same INTERNAL resolution, different consumer). Distinct from `menu-item/tile-hover` (App grid, surface/200, one shade darker) by design — tile gets emphasized hover; link gets subtler. Added 2026-05-06. Renamed from `nav-item/row-hover` 2026-05-17.",
+      "_notes": "Brand-decidability check: 4 mode slots, each brand can resolve independently. Same value family as dismiss-hover today, but separate token so future divergence between dismiss-button and menu-link is preserved."
+    },
+    {
+      "name": "component/header/background/menu-item/current-default",
+      "type": "COLOR",
+      "light": "traton/color/grey/150",
+      "dark": "traton/color/blue/900",
+      "scania-light": "scania/color/grey/100",
+      "scania-dark": "scania/color/grey/850",
+      "confidence": "Confirmed",
+      "comment": "Current-page indicator background for menu items (aria-current=\"page\"). Replaces INTERNAL/color__wip/UNSORTED/background/surface/100 on Sub Menu Item Local's `Type=Selected, State=Default` variant. The Figma variant axis is currently named `Selected` but the semantics are aria-current (system-indicated current page, not user-toggleable) — designer-handover task to rename `Selected` → `Current` (per convention-selected-vs-current). Value mirrors `menu-item/link-hover` primitives today; intentionally a separate token so the two concepts (current page marker vs hover overlay) can diverge in the future. No stacked hover/active companion — runtime hover overlays this marker via `menu-item/link-hover`. Added 2026-05-17.",
+      "_notes": "Brand-decidability check: 4 mode slots, each brand resolves independently. Same primitives as link-hover at creation; separation preserves future divergence."
+    },
+    {
+      "name": "component/header/background/menu-item/sub-link-active",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "traton/color/blue/900",
+      "scania-light": "scania/color/blue/700",
+      "scania-dark": "scania/color/blue/800",
+      "confidence": "Confirmed",
+      "comment": "Pressed-state surface for the Sub-Sub Menu Item (Mobile Nav drawer nested item). Split 2026-05-26 from `nav-item/link-active` to eliminate one-token-two-surfaces dual-use — top-bar pressed and Sub-Sub Menu Item pressed previously shared a single token. Identical alias targets across all 4 modes at creation; separation preserves the option for either surface to diverge later if pressed treatments need different colour or contrast. No visual change at split-time. Sub-Sub Menu Item lives under Header/Expressive/Nav (Mobile Nav drawer, not yet in code — cluster #14 territory) so this token has one canvas binding today and no code consumer.",
+      "_notes": "Mirrors nav-item/link-active's mixed-style aliasing (semantic on TRATON-L, direct brand primitives on the other three modes) to ensure value parity at creation. Per three-layer naming parity convention: code prop name for the consuming canvas role is N/A (no Mobile Nav code surface yet)."
+    },
+    {
+      "name": "component/header/border/nav-item/indicator-default",
+      "type": "COLOR",
+      "light": "traton/color/blue/500",
+      "dark": "traton/color/yellow/400",
+      "scania-light": "scania/color/blue/400",
+      "scania-dark": "scania/color/blue/300",
+      "confidence": "Confirmed",
+      "comment": "4px state-indicator stripe on top-bar nav items only (Header/Nav/Item/Text + Header/Nav/Item/Symbol Selected variants — Functional bottom-pinned underline, Expressive top-pinned marker). Replaces INTERNAL/color__wip/border/accent/focus on the top-bar Indicator nodes. Token sits in `border/` namespace following Message/Toast precedent (4px stripes are decorative-border semantics, regardless that the canvas implementation uses fill-on-rectangle). Renamed 2026-05-18 from `background/nav-item/indicator-default` to align with Toast/Message stripe pattern. Sibling token `border/menu-item/indicator-default` handles the same role inside popover/menu items (Sub Menu Item Local + Sub-Sub Menu Item) — values identical at creation, split per context preserves future divergence. Values verified 2026-04-29 via clone-into-mode-frame + fills[0].color read. ⚠ FLAG FOR DESIGNER: TRATON Light renders teal (`traton/color/blue/500`) while TRATON Dark renders gold (`traton/color/yellow/400`) — different hue families across modes within the same brand. Confirm intent at branch handoff. Scania L→D steps blue/400 → blue/300 (cleanly Scania-branded, no cross-brand-ref smell)."
+    },
+    {
+      "name": "component/header/border/menu-item/indicator-default",
+      "type": "COLOR",
+      "light": "traton/color/blue/500",
+      "dark": "traton/color/yellow/400",
+      "scania-light": "scania/color/blue/400",
+      "scania-dark": "scania/color/blue/300",
+      "confidence": "Confirmed",
+      "comment": "4px state-indicator stripe on menu items (Sub Menu Item Local Selected, Sub-Sub Menu Item Selected). Token in `border/` namespace following Message/Toast precedent (decorative-border semantics; canvas binding is fill-on-stroke or fill-on-rect — both acceptable). Renamed 2026-05-18 from `background/menu-item/indicator-default`. Sibling to `border/nav-item/indicator-default` (top-bar version); values identical at creation, split per context so top-bar vs popover-menu can diverge independently. Migrated 2 stroke bindings from `nav-item/indicator-default` (`4309:2048` Sub Menu Item Local + `47144:6241` Sub-Sub Menu Item) 2026-05-17. ⚠ FLAG FOR DESIGNER (same as nav-item counterpart): TRATON Light teal / TRATON Dark gold — hue families differ across modes within TRATON; confirm intent at handoff.",
+      "_notes": "Brand-decidability check: 4 mode slots, each brand resolves independently. Same primitives as nav-item/indicator-default at creation; separation preserves future divergence."
+    },
+    {
+      "name": "component/header/background/popover-default",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "scania/color/base/white",
+      "scania-dark": "scania/color/grey/850",
+      "confidence": "Confirmed",
+      "comment": "Background of header-triggered popover/sub-menu surfaces (Sub Menu Item Cat Global, Sub Menu UserID, Sub Menu App Launcher List, Grid Sub Menu, etc.). Replaces INTERNAL/background/popovers across 23 source bindings; visual preserved exactly. Header-local placeholder until Popover cluster #16 lands a generic component/-popover/* family or component/popover/* component tokens; that future cluster is expected to absorb this token. Added 2026-05-03."
+    },
+    {
+      "name": "component/header/background/search/dismiss-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": "Search expanded field (Open=True) — dismiss button background, default state. Transparent — the dismiss button is invisible until interacted with. Added 2026-04-30."
+    },
+    {
+      "name": "component/header/background/search/dismiss-hover",
+      "type": "COLOR",
+      "light": "traton/color/grey/150",
+      "dark": "traton/color/blue/900",
+      "scania-light": "scania/color/grey/100",
+      "scania-dark": "scania/color/grey/850",
+      "confidence": "Confirmed",
+      "comment": "Search expanded field (Open=True) — dismiss button background, hover state. Replaces INTERNAL/color__wip/UNSORTED/background/surface/100 with brand-aware aliases preserving the rendered visual exactly. Added 2026-04-30."
+    },
+    {
+      "name": "component/header/background/search/dismiss-active",
+      "type": "COLOR",
+      "light": "traton/color/grey/200",
+      "dark": "traton/color/blue/850",
+      "scania-light": "scania/color/grey/150",
+      "scania-dark": "scania/color/grey/800",
+      "confidence": "Confirmed",
+      "comment": "Search expanded field (Open=True) — dismiss button background, active (pressed) state. Replaces INTERNAL/color__wip/UNSORTED/background/surface/200 with brand-aware aliases preserving the rendered visual exactly. Renamed from `pressed` to `active` per v1.3 state vocabulary. Added 2026-04-30."
+    },
+    {
+      "name": "component/header/background/search/result-default",
+      "type": "COLOR",
+      "light": "color/background/base",
+      "dark": "color/background/base",
+      "scania-light": "color/background/base",
+      "scania-dark": "color/background/base",
+      "confidence": "Confirmed",
+      "comment": "Search result-row background, default (resting) state. Used by Field Rows variants (Type=Title, Advanced search Default, Search result Default, Search result marked Default). Aliases `color/background/base` (brand-aware semantic). Maps to code `--tds-header-searchbar-result-item-background`. Added 2026-05-19. The Suggestions container (in Header/Search/Expandable) sits on the same base surface — left on direct semantic per design intent (structural, not a designer decision point)."
+    },
+    {
+      "name": "component/header/background/search/result-hover",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "Search result-row background, hover state (`:hover`). Used by Field Rows Hover variants across Advanced search, Search result, Search result marked. Aliases `color/background/layer-01` (brand-aware semantic). Separate from `result-active` (`:active` pressed) and `result-visited` (`:visited`) — each CSS state has its own token even when values coincide today, for future divergence. Maps to code `--tds-header-searchbar-result-item-background-hover`. Added 2026-05-19."
+    },
+    {
+      "name": "component/header/background/search/result-active",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "Search result-row background, active (pressed) state (CSS `:active`). Used by Field Rows Pressed variants (Advanced search / Search result / Search result marked). Aliases `color/background/layer-01` — same value as `result-hover` today but separate token to preserve future divergence. Maps to code `--tds-header-searchbar-result-item-background-active`. Added 2026-05-19."
+    },
+    {
+      "name": "component/header/background/search/result-visited",
+      "type": "COLOR",
+      "light": "color/background/top",
+      "dark": "color/background/top",
+      "scania-light": "color/background/top",
+      "scania-dark": "color/background/top",
+      "confidence": "Confirmed",
+      "comment": "Search result-row background, visited state (CSS `:visited`). Used by Field Rows Clicked variants (Advanced search / Search result / Search result marked). Aliases `color/background/top` (brand-aware semantic; renders one step lighter than layer-01 on TRATON-Dark). Maps to code `--tds-header-searchbar-result-item-background-visited`. ⚠ DESIGNER HANDOVER: rename Figma variant axis value `State=Clicked` → `State=Visited` to match CSS state vocabulary and code naming. Added 2026-05-19."
+    },
+    {
+      "name": "component/header/icon/nav-item/link-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/inverse/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed",
+      "comment": "Default icon on nav item. Scania light uses inverse refs due to dark surface."
+    },
+    {
+      "name": "component/header/text/nav-item/sub-link-default",
+      "type": "COLOR",
+      "light": "color/text/defined",
+      "dark": "color/text/defined",
+      "scania-light": "color/text/inverse/defined",
+      "scania-dark": "color/text/defined",
+      "confidence": "Confirmed",
+      "comment": "Sub-page link text inside expanded sub-menu items (Header/Expressive/Mobile Nav/Sub Menu Item, Sub-Sub Menu Item). Renamed 2026-04-28 from `icon/nav-item/subtle-default` after audit revealed it was 100% bound to TEXT 'Sub Page name' labels (zero icon use) — a property mismatch. Now correctly typed as text/, aliased to text/* semantics. Sits in parked Expressive Mobile Nav territory; future menu-item cluster may migrate to shared tokens."
+    },
+    {
+      "name": "component/header/icon/nav-item/current-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed",
+      "comment": "Icon when parent item is selected. All four modes use non-inverse icon/strong because the selected item inverts the surface. Renamed from `selected-default` to `selected/default` 2026-04-28."
+    },
+    {
+      "name": "component/header/text/nav-item/link-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/inverse/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Primary nav-item link text (Item.1, Item.2, Application Name). `link` purpose for clickable text per Footer/Breadcrumbs precedent. Mirrors brand-aware logic from icon/nav-item/standard-default. Added 2026-04-28."
+    },
+    {
+      "name": "component/header/text/nav-item/current-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Nav-item link text when item is selected. Uses non-inverse `color/text/strong` across all 4 modes because selected surface inverts (white on Scania-light, base on TRATON, blue/800 on Scania-dark) — text reads as primary text on these surfaces. Paired with background/nav-item/selected/default. Added 2026-04-28."
+    },
+    {
+      "name": "component/header/text/title-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Primary identity text inside Header surfaces (e.g. user name in Sub Menu UserID 'Name Nameson'). Follows the system-wide `text/title-default` pattern established by card / footer / modal / toast specs. Aliased to `color/text/strong` (semantic handles brand×mode resolution). 4-mode with explicit Scania slots per shipped-token default (Block + Accordion precedent); Scania modes resolve identically through the brand-aware alias. Currently consumed by Sub Menu UserID's `Name Nameson` TEXT layer; available for any other Header content with title-style identity text. Added 2026-05-15; promoted to 4-mode 2026-05-26.",
+      "_notes": "Pair with text/subtitle-default for title+subtitle surfaces. Not a nav-item link — different semantic role; existing nav-item/link-default is for clickable nav text."
+    },
+    {
+      "name": "component/header/text/subtitle-default",
+      "type": "COLOR",
+      "light": "color/text/soft",
+      "dark": "color/text/soft",
+      "scania-light": "color/text/soft",
+      "scania-dark": "color/text/soft",
+      "confidence": "Confirmed",
+      "comment": "Secondary identity text inside Header surfaces (e.g. company line in Sub Menu UserID 'Company Name'). Follows the system-wide `text/subtitle-default` pattern (card precedent). Aliased to `color/text/soft` (semantic handles brand×mode resolution). 4-mode with explicit Scania slots per shipped-token default (Block + Accordion precedent); Scania modes resolve identically through the brand-aware alias. Currently consumed by Sub Menu UserID's `Company Name` TEXT layer; available for any other Header content with subtitle text. Added 2026-05-15; promoted to 4-mode 2026-05-26.",
+      "_notes": "Semantically distinct from `text/category-default` (Cat Global's 'CATEGORY NAME' style content — different role, may diverge in value later). Don't reuse subtitle for category content."
+    },
+    {
+      "name": "component/header/text/category-default",
+      "type": "COLOR",
+      "light": "color/text/soft",
+      "dark": "color/text/soft",
+      "scania-light": "color/text/soft",
+      "scania-dark": "color/text/soft",
+      "confidence": "Confirmed",
+      "comment": "Category-header text inside Header surfaces (e.g. 'CATEGORY NAME' label in Sub Menu Item Cat Global; future use in Grid Sub Menu category headers, Sub Menu App Launcher List category dividers). Aliased to `color/text/soft` — same value family as subtitle-default but semantically distinct (category = section header; subtitle = secondary identifier paired with a title). Splitting preserves per-brand decidability if categories ever diverge in treatment (e.g. uppercase + smaller + slightly stronger emphasis). 4-mode with explicit Scania slots per shipped-token default (Block + Accordion precedent); semantic alias handles brand×mode resolution identically. Added 2026-05-15; promoted to 4-mode 2026-05-26.",
+      "_notes": "Pair with `type/system/title/02/*` typography (uppercase small label style seen on Cat Global)."
+    },
+    {
+      "name": "component/header/text/search/result-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Result-row text inside Search field result list (Field Rows Type=Title 'EARLIER SEARCH RESULTS', 'See all search results (click enter)', Advanced search rows, USERS/SITES section labels). 13 source-level text bindings rebound 2026-05-19 from `color/text/strong` direct binding. Aliases `color/text/strong` (brand-aware). Distinct from `-input/text/value-default` (the typed text inside the input field itself). Maps to code `--tds-header-searchbar-result-item-core-color`."
+    },
+    {
+      "name": "component/header/icon/search/result-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed",
+      "comment": "Result-row icon inside Search field result list (mirrors text/search/result-default). Created 2026-05-19 for symmetry. Aliases `color/icon/strong` (brand-aware). Note: source-level icon bindings in Field Rows COMPONENT_SET are 0 — all 40 `color/icon/strong` icon bindings reported by audit live inside icon-component instances (out of Field Rows source scope). This token exists for future result-row icons rendered at source level and for naming consistency with the text counterpart. Maps to code analog of `--tds-header-searchbar-btn-svg-fill` in the row context."
+    },
+    {
+      "name": "component/header/size/avatar-padding",
+      "type": "FLOAT",
+      "light": "traton/unit/20",
+      "dark": "traton/unit/20",
+      "scania-light": "scania/unit/16",
+      "scania-dark": "scania/unit/16",
+      "confidence": "Confirmed",
+      "comment": "Padding around the avatar element on the bar. TRATON 20, Scania 16. Renamed from `size/profile-padding` 2026-04-28."
+    },
+    {
+      "name": "component/header/size/avatar-default",
+      "type": "FLOAT",
+      "light": "traton/unit/24",
+      "dark": "traton/unit/24",
+      "scania-light": "scania/unit/32",
+      "scania-dark": "scania/unit/32",
+      "confidence": "Confirmed",
+      "comment": "Avatar element size. TRATON 24, Scania 32. Renamed from `size/profile-size` 2026-04-28."
+    }
+  ]
+}
