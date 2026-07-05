@@ -1,5 +1,5 @@
 # TEGEL TOKENS - SEMANTIC BRIDGE FRAMEWORK
-**VERSION: 1.3 [LOCKED/Minor Update: Controlled Strict Execution Mode]**
+**VERSION: 1.3 [LOCKED/Minor Update: Controlled Strict Execution Mode] · Amended 2026-07-04 (§2a Interior Scopes & Option Nesting)**
 
 ---
 
@@ -73,6 +73,34 @@ The bridge:
 - Acts as abstraction over implementation tokens  
 
 Legacy tokens remain implementation layers and are aliased.
+
+---
+
+## 2a. Interior Scopes & Option Nesting
+
+Added 2026-07-04 (cluster #15 Tabs). Extends §2.
+
+The leaf grammar `{[purpose-]}{[option-]}{state}` names a token's semantic parts; they need not all be hyphen-fused into a single leaf. The Figma variable path MAY carry interior scope segments for grouping and belonging. All segments flatten to the same CSS custom property (slashes → hyphens), so scoping affects grouping in the Variables panel only — never the emitted CSS-var name.
+
+Permitted scopes:
+
+- Context scope (e.g. `item/`) — groups item-level tokens and separates them from container / bar / wrapper-level tokens of the same property. Already shipped (Header, Side Menu).  
+- Option scope (e.g. `primary/`, `secondary/`) — a mode-variant option MAY be a scope nested under the context scope, rather than fused into the leaf, WHEN (a) it keeps a shipped-canonical leaf clean (e.g. `current-default`) instead of forcing a 3-part hyphen leaf, AND (b) it is a genuine mode-variant axis. This is the only sanctioned path deeper than the prior depth-5 norm.
+
+Rules:
+
+- A scope earns its place only on collision-avoidance OR genuine belonging — never decoratively.  
+- Bar / wrapper / container-level tokens and single shared tokens (e.g. `opacity/disabled`) stay flat under the property — they do not belong to an item scope.  
+- Avoid 3-part hyphen leaves unless the descriptor is intrinsically compound (e.g. `sub-link-{state}`).  
+- Selection status (`current`) is not an interaction state; it carries its own state (`current-default`), never a bare interaction slot.  
+
+Canonical example — cluster #15 Tabs:
+
+- `background/item/{mode-variant}/{state}` — option-scoped (depth 6): `background/item/primary/current-default`.  
+- `border/item/*` and `text/item/*` — context-scoped.  
+- Bars (`background/primary`, `border/default`) and `opacity/disabled` stay flat.  
+
+Segmented Control and future multi-variant component families inherit this shape.
 
 ---
 
@@ -300,5 +328,7 @@ Notes:
 Framework status: LOCKED v1.3
 
 This version introduces controlled strict execution mode to preserve structured output while allowing concise reasoning.
+
+**Amendment 2026-07-04 (in-place, cluster #15 Tabs):** added §2a Interior Scopes & Option Nesting — sanctions interior context scopes (`item/`) and, under stated conditions, a mode-variant carried as an option scope (the system's first depth-6 path), to keep shipped-canonical leaves (e.g. `current-default`) clean rather than forcing 3-part hyphen leaves. Additive clarification; no existing rule reversed. Filename + version references unchanged.
 
 Framework updates must be systemic and rare.
