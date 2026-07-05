@@ -1,0 +1,468 @@
+{
+  "_description": "Cluster #15 Tabs — tokens/specs/tabs-DRAFT.json (ships as tabs.json). Family of three code components — Inline Tabs (CDEP-1969), Folder Tabs, Navigation Tabs — modelled as ONE property-first slug `component/tabs/*` (rev 6, 2026-07-04; text + border flat, background keeps item/). Standard (underline) tab shared by inline + navigation; folder is the enclosed variant. Segmented Control ships separately (component/segmented-control/*, own file/page). 4-mode universal. See _status + _notes for the rev-5 property-first restructure and _framework_extension for the superseded nesting.",
+  "_cluster": 15,
+  "_jira": "CDEP-1969",
+  "_figmaBranch": "xwed5ZyNB6Wt0H1rhtMQhC",
+  "_status": "DRAFT rev 6 — flatten text + border to descriptor-in-leaf 2026-07-04 (option B, Max-locked). 7 ID-stable renames: text/item/{default,current-default,folder-default} → text/{same}; border/item/{default,hover} → border/{item-default,item-hover}; border/item/{divider-default,indicator-default} → border/{divider-default,indicator-default}. `background` keeps the interior `item/` scope (forced — its bar surface `background/primary` would collide with item fills + the mode-variant×state leaves need it). Chip shipped precedent for the flat form (`border/selected-default`); removes bare-state-under-scope. Count + values unchanged (20). rev 5: property-first restructure 34→20 (reversed the variant-first nesting + _framework_extension lock). See _notes + _framework_extension.",
+  "_framework_extension": {
+    "extension_name": "Multi-sibling-component family namespace",
+    "locked_2026_06_18": true,
+    "what_it_does": "Allows the `{component}` segment of the v1.3 pattern to be nested as `{family}/{variant}` when a cluster ships multiple sibling-variant components that share a conceptual family (here: 3 Tabs variants). Exports as `--component-{family}-{variant}-{property}-...` at the CSS-var layer; v1.3 parsers treat `{family}-{variant}` as a registered compound slug.",
+    "why_this_cluster": "Cluster #15 is the first to ship multiple sibling code components grouped as one family. Tabs has 3 separate code components (folder-tabs, inline-tabs, navigation-tabs) with separate *-vars.scss files that do NOT share tokens (folder uses opacity-dimming; inline+nav use per-state colors). Flat slugs would scatter the 3 across A-Z sorting in the Figma Variables panel; nested groups them under `tabs/` for predictability + findability + future extensibility. Storybook + Figma layer naming + code dir all already use nested `Tabs/{variant}/` organization at their respective layers — nested spec namespace aligns the token-name layer with the rest.",
+    "constraints": [
+      "Family slug must be conceptually accurate. Tabs family = tabs only. Segmented Control ships as its own top-level slug `component/segmented-control/*` (distinct UX pattern per Component Gallery taxonomy).",
+      "Phase 6 code-side migration: current `--tds-{variant}-tabs-*` legacy CSS vars get renamed to `--component-tabs-{variant}-...` (family-first order matches spec). One-off code rename, not a permanent constraint.",
+      "Property-first naming inside the namespace still applies: `component/tabs/{variant}/{property}/{scope}/{descriptor}-{state}` (Side Menu shape). No exceptions."
+    ],
+    "precedent_for": "Any future cluster shipping multiple sibling-variant code components as one design family (potential candidates: Date Picker family if range+single split, future Selector family, etc.).",
+    "superseded_2026_07_04": true,
+    "superseded_note": "REVERSED 2026-07-04. The variant-first nesting was dropped for property-first, per an evidence pass over SHIPPED specs (property-first is universal; the nesting broke the shipped leaf/depth ceilings). Anchored on chip (flat descriptor form), Header/Side Menu (interior scope), Popover (mode-variant-in-leaf) — all shipped. Dropdown looked like a twin but is WIP in another conversation, so it is NOT the anchor."
+  },
+  "_figmaNodes": {
+    "_phase_1_capture": "Captured 2026-06-17 by tokens-tegel-ui-prober pattern (manual probe; agent file at .claude/agents/tokens-tegel-ui-prober.md available for future clusters). Both files use Tabs page id 26756:59842 (coincidental match).",
+    "TRATON_branch": {
+      "fileKey": "xwed5ZyNB6Wt0H1rhtMQhC (branchKey)",
+      "page_id": "26756:59842",
+      "bar_level": {
+        "Inline Tabs": {
+          "id": "39520:7741",
+          "variant_axes": [
+            "Mode variant"
+          ],
+          "variant_count": 2
+        },
+        "Folder Tabs": {
+          "id": "40201:2251",
+          "variant_axes": [
+            "Mode variant"
+          ],
+          "variant_count": 2
+        },
+        "Navigation Tabs": {
+          "id": "39520:6900",
+          "variant_axes": [
+            "Mode variant",
+            "Viewport"
+          ],
+          "variant_count": 4
+        }
+      },
+      "atomic_sources_in_Subcomponents_section_3799_79080": {
+        "Tab Inline (shared atom for Inline + Folder)": {
+          "id": "10544:33259",
+          "variant_axes": [
+            "Mode",
+            "Mode variant",
+            "State",
+            "Selected",
+            "Vertical dividers",
+            "Disabled"
+          ],
+          "variant_count": 20,
+          "states_drawn": [
+            "Default",
+            "Hover",
+            "Focus"
+          ]
+        },
+        "Tab Full Page (Navigation atom)": {
+          "id": "10544:31469",
+          "variant_axes": [
+            "Mode",
+            "State",
+            "Height",
+            "Selected",
+            "Disabled"
+          ],
+          "variant_count": 10,
+          "states_drawn": [
+            "Default",
+            "Hover",
+            "Focus"
+          ]
+        },
+        "Scroll (scroll-arrow sub-component)": {
+          "id": "14231:54064",
+          "variant_axes": [
+            "Mode",
+            "Mode variant",
+            "Direction",
+            "Style"
+          ],
+          "variant_count": 8,
+          "states_drawn": [
+            "Default only"
+          ]
+        }
+      },
+      "preview_frames": {
+        "SCANIA_section": "3799:79312 (Component Frame at x=33463 — left of TRATON section)",
+        "TRATON_section": "13890:20295 (Component Frame at x=35423 — right of SCANIA section)",
+        "structure": "Each contains Frame 13 > Frame 1 + Frame 4, with Inline + Folder + Navigation Tabs instances showing real usage. Used for Phase 4c lightweight visual sweep + Phase 5 formal cross-reference."
+      }
+    },
+    "Tegel_UI_Library_Scania_source_of_truth": {
+      "fileKey": "d8bTgEx7h694MSesi2CTLF",
+      "page_id": "26756:59842",
+      "bar_level": {
+        "Inline Tabs": {
+          "id": "72791:47433",
+          "variant_axes": [
+            "Mode",
+            "Mode variant",
+            "Padding"
+          ],
+          "variant_count": 8
+        },
+        "Folder Tabs": {
+          "id": "72791:46597",
+          "variant_axes": [
+            "Mode",
+            "Mode variant"
+          ],
+          "variant_count": 4
+        },
+        "Navigation Tabs": {
+          "id": "39520:6900",
+          "variant_axes": [
+            "Mode",
+            "Mode variant",
+            "Viewport",
+            "Padding"
+          ],
+          "variant_count": 16
+        }
+      },
+      "atomic_sources": {
+        "Folder Tab Item (Inline + Folder atom)": {
+          "id": "10544:33259",
+          "variant_count": 40,
+          "delta_vs_TRATON": "+20: explicit Dark mode variants + Hover + Focus state combinations across Mode variant axis"
+        },
+        "Tab Item (Navigation atom)": {
+          "id": "10544:31469",
+          "variant_count": 20,
+          "delta_vs_TRATON": "+10: explicit Dark mode + Hover + Focus state combinations"
+        },
+        "Tab Scroll": {
+          "id": "14231:54064",
+          "variant_count": 40,
+          "delta_vs_TRATON": "+32: explicit Dark mode + Hover + Focus per direction × style × Mode variant"
+        }
+      },
+      "behavior_example_frame": "72332:32060 (usage doc — not a preview frame; informational only)"
+    },
+    "cross_brand_delta": {
+      "axes_on_Tegel_UI_only": {
+        "Mode (Light/Dark) as explicit variant axis": "Tegel UI draws Light and Dark side-by-side. TRATON branch uses Figma collection modes — same coverage at a different DSL layer. Architectural, not a gap.",
+        "Padding (True/False) on Inline + Navigation Tabs": "Tegel UI exposes padding-on/off as a variant. TRATON branch has no Padding axis. **Designer-handoff item**: add axis parity or close as Scania-only feature."
+      },
+      "state_coverage_on_Tegel_UI_only": {
+        "Hover state variants (Tab Inline + Tab Full Page + Tab Scroll)": "**REAL GAP** on TRATON branch. Hover is per-component visual, not a global utility. Designers on the TRATON branch cannot inspect the hover state directly — they'd need to imagine it. Designer-handoff item: add Hover variants to TRATON atomic sources.",
+        "Focus state variants": "**NOT a gap** — handled via Helper/Focus Visible INSTANCE pattern (Path A, LOCKED — Checkbox / Radio Button / Side Menu precedent). TRATON branch embeds the helper in Default-state variants instead of drawing separate Focus variants. See `_focusHelperWorklist` below for the embed plan for this cluster."
+      }
+    },
+    "expected_status_per_slug": {
+      "inline-tabs": "active — both sources present, atomic source shared with folder-tabs",
+      "folder-tabs": "active — both sources present",
+      "navigation-tabs": "active — both sources present; scroll-button cross-brand divergence noted (tegel-lite only, see _divergence)"
+    }
+  },
+  "_codeStructure": {
+    "core_Scania": [
+      "packages/core/src/components/tabs/inline-tabs/{inline-tabs.tsx, inline-tabs-vars.scss, inline-tabs.scss}",
+      "packages/core/src/components/tabs/inline-tabs/inline-tab/* (child component)",
+      "packages/core/src/components/tabs/folder-tabs/{folder-tabs.tsx, folder-tabs-vars.scss, folder-tabs.scss}",
+      "packages/core/src/components/tabs/folder-tabs/folder-tab/*",
+      "packages/core/src/components/tabs/navigation-tabs/{navigation-tabs.tsx, navigation-tabs-vars.scss, navigation-tabs.scss}",
+      "packages/core/src/components/tabs/navigation-tabs/navigation-tab/*"
+    ],
+    "tegel_lite_TRATON": [
+      "packages/core/src/tegel-lite/components/tl-tabs/tl-inline-tabs/{tl-inline-tabs.scss, _tl-inline-tabs-vars.scss}",
+      "packages/core/src/tegel-lite/components/tl-tabs/tl-folder-tabs/{tl-folder-tabs.scss, _tl-folder-tab.scss, _tl-folder-tabs-vars.scss}",
+      "packages/core/src/tegel-lite/components/tl-tabs/tl-navigation-tabs/{tl-navigation-tabs.scss, _tl-navigation-tabs-vars.scss}"
+    ],
+    "note": "No central bridge SCSS at tokens/scss/component/tabs.scss — each variant carries its own *-vars.scss inside its component directory. Cross-brand divergence: Scania core navigation-tabs has NO scroll-button vars; tegel-lite navigation-tabs DOES (with `--navigation-tabs-scroll-button-*`). Folder Tabs Scania core uses opacity-based color dimming (`--tds-folder-tab-color-opacity` family); tegel-lite folder uses direct surface tokens."
+  },
+  "_notes": [
+    "STRUCTURE (rev 8, 2026-07-04): property-first `component/tabs/{property}/{leaf}`. ITEM-LEVEL tokens nest under an `item/` scope in ALL three colour categories (background, border, text); BAR/WRAPPER-level tokens stay FLAT directly under the property, because they don't belong to a tab item. `item/` communicates belonging + purpose (not just disambiguation) and reads consistently in the Variables panel. — background: `background/item/{mode-variant}/{state}` (item/ + mode-variant/ scopes; e.g. `primary/current-default`) + bars `background/{primary,secondary,folder-primary,folder-secondary}` (flat). — border: item-level `border/item/{default,hover,indicator-default,divider-default}` + bar/wrapper `border/{default,folder-default}` (flat). — text: `text/item/{default,current-default,folder-default}` (all text is item-level; the bar renders no text). — opacity: `opacity/disabled` (single shared token, flat). `current` is a selection STATUS (aria-current), NOT an interaction state, so it carries its own state in the leaf (`current-default`, room for a future `current-hover`). `standard` (underline tab, inline+nav) = unmarked default; `folder` = marked exception WHERE a standard counterpart exists (`text/item/folder-default` is marked; `border/item/divider-default` is unmarked — folder-only, no standard counterpart). Precedent: property-first universal (chip/header/side-menu/button/accordion/popover); `item/` interior scope + `border/item/indicator-default` + `text/item/current-default` all shipped in Header/Side-Menu; `current-default` leaf from Header/Side-Menu/Breadcrumbs. NEW PATTERN (2026-07-04, cluster #15): nesting the mode-variant as a FURTHER scope under `item/` (background only) pairs a mode-variant axis with a selection status — no shipped token did this; it is the system's first depth-6, taken deliberately to keep the `current-default` leaf clean rather than stack option+status+state into a 3-part leaf (Max: no 3-part hyphen leaves unless the name itself forces it, e.g. `sub-link-{state}`). Tabs sets the precedent; Segmented Control inherits it. Popover's flat `background/link/primary-default` is the prior mode-variant×state shape but carries no selection status, so it is not the anchor here. NOTE: Dropdown is a parallel WIP in another conversation — NOT a shipped anchor; do not cite it as precedent.",
+    "FOLDER vs STANDARD text models differ by design (code-verified): standard (inline+nav) is PER-COLOUR (text/item/default soft → text/item/current-default strong); folder is ONE strong colour (text/item/folder-default) differentiated by elevated background + top stripe, with opacity for disabled only. Do not homogenise.",
+    "LEAN where genuinely one thing, LEVER for real axes: the shared item borders (default/hover/indicator-default), divider, and disabled opacity are single shared tokens (identical across styles). Folder item BACKGROUNDS keep the Primary/Secondary mode-variant split (convention-variant-axis-preservation).",
+    "Indicator stripe binds fill-on-rectangle per the cross-cluster lock (Header / Side Menu / Message / Toast). `border/item/indicator-default` serves both the standard underline (bottom) and the folder top-stripe — geometry is canvas implementation; the token is the active-tab marker.",
+    "Mixed routing per project-scania-treatment-import: TRATON modes honour the main-document semantic (zero change); Scania modes carry the a11y web-component values. Applies to folder item backgrounds + border/item/hover.",
+    "Bars: standard bar surfaces (background/primary, background/secondary) are documented levers — the global mode-variant utility (core.scss) paints the bar; the canvas bar is transparent. Folder bar surfaces (background/folder-primary, background/folder-secondary) are real bound surfaces.",
+    "Scroll→Button migration PARKED 2026-07-04 (Max) — local `Tabs/Scroll Indicator` KEPT. Why: no filled icon-only Button exists to sit on the filled folder tabs (a ghost/outline Button blends wrong on a filled surface); and the shared Button is brand-shape-divergent (TRATON round / Scania squared), unreconciled for a tab-bar context. Instead, 2 scroll tokens were PROMOTED 2026-07-05 to get the local indicator off INTERNAL (policy = promote-or-remove): `background/scroll-default` (off INTERNAL surface/300, no-visual-change, all 4 modes measured) + `icon/scroll-default` (aliases color/icon/strong; unified all 16 icon vectors off a local + cross-library-remote color/icon/strong duplicate onto one local token). DEFERRED to scroll-unpark: proper Scania scroll-a11y values, hover/active states, and the full per-variant scroll set (folder/inline/nav diverge in code).",
+    "Padding variant axis exists on Tegel UI Library (Scania source) but NOT on TRATON branch for Inline + Navigation Tabs. Designer-handoff flag (axis-name parity) — not a token-shape blocker; tokens describe colours + opacity, not layout. Logged in _handoverFlags.",
+    "Container-level: the bar itself renders no text — no `text/*` on bar-level tokens; tab labels bind under `text/item/*` (convention-surface-only-no-text-token)."
+  ],
+  "_divergence": [
+    "Scroll button is PER-TAB-VARIANT divergent in code (verified 2026-07-05): Scania core — folder grey/100→300→400 (icon grey/958); inline white→300→400 (icon grey/950) + a Mode-variant bg split (primary white / secondary grey/50); navigation mixes folder+inline vars. TRATON tegel-lite — folder surface-200/300/400 (real states); inline + navigation FLAT (bg=hover=active=tab background). The single shared Figma `Tabs/Scroll Indicator` represents none of it (one bg surface/300 + icon color/icon/strong). Scroll→Button migration PARKED (see _notes); minimal promotion done instead (2 tokens off INTERNAL, no-visual-change). Full per-variant scroll tokenization + code `*-vars.scss` reconciliation deferred to scroll-unpark.",
+    "Folder Tabs background-selected splits per Mode variant in Scania core code (`primary` grey/50 light + grey/850 dark; `secondary` white light + grey/800 dark). Tegel-lite folder also splits but uses semantic aliases (`color/background/layer-01` for primary, `color/background/layer-02` for secondary). Different palette routes but same per-variant intent. Tokens shipped per-variant.",
+    "Padding variant axis CONFIRMED on Tegel UI Library 2026-07-04 (Inline Tabs imported by componentKey ca5920e9: axes Mode/Mode variant/Padding[True,False], 8 variants; Navigation similar) — maps to the code's numeric `leftPadding`=32 (bar left offset), flattened to a boolean in Tegel UI. MISSING on TRATON branch (verified: Inline/Nav bars carry only Mode variant). DECIDED 2026-07-04: LOG as a structural-parity task / defer — it is LAYOUT not colour, out of this cluster's token deliverable, does NOT block close-out. Structural pass (designer canvas): add Padding=T/F to TRATON Inline+Nav bars mirroring Tegel UI.",
+    "Mode (Light/Dark) is a Figma variant axis on Tegel UI Library but TRATON branch uses Figma mode variables instead. DSL difference, not a real coverage divergence; both express the same brand-mode matrix.",
+    "Folder Tabs Scania core uses opacity-based color dimming for text states (`color-opacity` family); tegel-lite folder uses direct surface tokens. Token shape chosen: opacity-pattern (matches Scania source-of-truth + cluster #13 precedent). Tegel-lite may need surface tokens migrated to opacity pattern at Phase 6 implementation — Phase 6 concern, not cluster #15 spec issue.",
+    "Cross-brand palette gap (systemic, same as Header): Scania core *-vars.scss references `--tds-grey-958` (folder-tabs) and similar Scania-only palette IDs without TRATON resolution paths. Phase 6 systemic issue — not cluster #15 to solve. Logged for cross-brand-palette audit at close-out."
+  ],
+  "_parked": [
+    {
+      "candidate": "component/tabs/border/radius-default + border/width-default + border/item/radius-default (FLOAT tokens — stripe width + folder corner radius)",
+      "reason": "Cluster scope is color-only. Layout/spacing/radius tokens follow Phase 6 or separate spacing track. Stripe width is `border/width-default` style; corner radius for Folder Tabs is `border/radius-default`. Add at spacing-track time."
+    },
+    {
+      "candidate": "component/tabs/type/* (typography tokens — font-family, size, weight)",
+      "reason": "Parked to CDEP-2019 typography track. Same parking pattern as Header cluster #8."
+    },
+    {
+      "candidate": "component/tabs/text/item/focus + text/item/active",
+      "reason": "Code defines `--tds-{variant}-tabs-tab-color-focus` + `-active` with values identical to selected. Tab focus/active text follows selected text value at canvas evidence. No companion tokens unless canvas/code diverges later."
+    }
+  ],
+  "_handoverFlags": [
+    "**Hover state variants missing on TRATON branch atomic sources** (Tab Inline + Tab Full Page). Tegel UI Library draws Hover side-by-side with Default; TRATON branch is Light-only Default. Designers on the TRATON branch cannot inspect hover visuals. Designer task: add Hover state variants to the 2 atomic sources, following the Tegel UI pattern (same per-state visual treatment). Code already wires hover via `--tds-{variant}-tabs-tab-color-hover` + `--tds-{variant}-tabs-tab-indicator-background-hover` — the visuals exist, they're just undrawn on the multi-brand canvas. (Scroll dropped from this flag — migrating to Button per separate handoff item.)",
+    "**Migrate Tab Inline + Tab Full Page atoms to Path A focus pattern** (LOCKED convention). Both atoms have native explicit Focus state variants drawn today (legacy pattern). Designer task: remove Focus state variants from both atoms; embed Helper/Focus Visible INSTANCE inside Default-state variants per Side Menu / Checkbox / Radio Button precedent. See `_focusHelperWorklist` for the 18-helper embed plan. Same restructure that cluster #14 Side Menu did across its 35 Default variants.",
+    "Padding variant axis missing on TRATON branch (Inline + Navigation Tabs); Tegel UI has `Padding=True/False` (confirmed 2026-07-04, maps to code numeric `leftPadding`). DECIDED 2026-07-04: add Padding=T/F to TRATON Inline+Nav bars as a STRUCTURAL-parity task — LAYOUT, out of the colour-token cluster, deferred; does NOT block close-out.",
+    "Three-layer divergence documentation (per convention-three-layer-naming-parity): code prop / Figma variant axis = `Selected` (kept for API stability); token L3 = `current-*` (matches Header / Side Menu / Breadcrumbs shipped semantic). Document on Decision_log canvas at handoff so QA designer reading variant axis vs token name sees they refer to the same concept.",
+    "Folder Tabs canvas uses TOP-stripe for selected indicator (border-top binding); Inline + Navigation use BOTTOM-stripe (border-bottom). Token names converge to `indicator-default` regardless of geometric placement. Confirm at design review.",
+    "**Scroll→Button migration PARKED 2026-07-04** — local `Tabs/Scroll Indicator` (14231:54064) KEPT. Reasons: no filled icon-only Button for the filled folder tabs (outline Button blends wrong); shared Button brand-shape-divergent (TRATON round / Scania squared), unreconciled for a tab-bar context — logged in the Decision_log OTHER NOTES. DONE instead 2026-07-05: promoted 2 scroll tokens off INTERNAL (`background/scroll-default` + `icon/scroll-default`, the latter also killing a cross-library color/icon/strong duplicate; 16 icon vectors + 4 bg rebound; INTERNAL count now 0). DEFERRED to scroll-unpark: proper Scania scroll-a11y values, hover/active states, the full per-variant scroll set. Code (Phase 6): `--tds-*-tabs-scroll-btn-*` CSS vars stay for now (local indicator kept, not migrated).",
+    "Cross-brand palette systemic gap (`--tds-grey-958` etc.) inherited from Header cluster #8 unresolved backlog. Same Phase 6 task — Tabs adds to the surface area but doesn't introduce the problem."
+  ],
+  "_focusHelperWorklist": {
+    "pattern": "Each atomic source's Default-state variants embed a Helper/Focus Visible INSTANCE. Path A (LOCKED) — Checkbox / Radio Button / Side Menu precedent. Focus Visible BOOLEAN exposed at wrapper level. No focus-ring tokens shipped in this spec (focus ring is owned by the shared helper component). NOTE: Tab Inline + Tab Full Page atoms today carry native Focus state variants (legacy) — those get REMOVED as part of this work; helper INSTANCEs replace them. See _handoverFlags for the canvas restructure detail.",
+    "needed_total": 18,
+    "sources": {
+      "Tab Inline atom (10544:33259)": "12 Default-state variants — Mode variant (Primary/Secondary) × Selected (T/F) × Vertical dividers (T/F) × Disabled (T/F = false at non-disabled set; helper still embedded on Disabled=True variants per Side Menu precedent — runtime disabled prop suppresses focus visually).",
+      "Tab Full Page atom (10544:31469)": "6 Default-state variants — Height (Default/Condensed) × Selected (T/F) × Disabled (T/F)."
+    },
+    "skip": "Variants where State=Hover or State=Focus already exists (those ARE the focused state; helper is redundant). Tab Inline + Tab Full Page Hover/Focus variants don't need helpers. Scroll sub-component skipped entirely — migrating to Button onlyIcon=true (Button has its own focus helper handling)."
+  },
+  "_dependsOn": [
+    "Header cluster #8 (RELEASED) — indicator-default Header precedent (4-mode direct brand-primitive aliasing for stripe) reused exactly.",
+    "Side Menu cluster #14 (RELEASED post-handoff) — indicator-default cross-cluster fill-on-rect pattern lock. Topic A (indicator-hover) parked there; Tabs unblocks it as a live cross-cluster pattern.",
+    "Cluster #13 Checkbox/Radio/Toggle (RELEASED) — convention-opacity-disabled-wrapper precedent for Folder Tabs opacity pattern.",
+    "Message / Toast (RELEASED, cluster #5) — `border/{variant}/-default` stripe naming pattern parallel.",
+    "No new -focus utility added — Tabs focus uses Helper/Focus Visible INSTANCE pattern (Path A, cluster #13/14 precedent). Embedded in Default-state variants; no focus-ring tokens in this spec."
+  ],
+  "component": "tabs",
+  "variables": [
+    {
+      "name": "component/tabs/text/item/default",
+      "type": "COLOR",
+      "light": "color/text/soft",
+      "dark": "color/text/soft",
+      "scania-light": "color/text/soft",
+      "scania-dark": "color/text/soft",
+      "confidence": "Confirmed (canvas atom + bar probes done 2026-06-17/18; values match code + Tegel UI canonical + shipped precedent)",
+      "comment": "Tab label, at-rest (non-selected). color/text/soft. Shared by the standard (underline) tab — inline + navigation. Per-colour state model: soft at rest, strong when current."
+    },
+    {
+      "name": "component/tabs/text/item/current-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed (canvas atom + bar probes done 2026-06-17/18; values match code + Tegel UI canonical + shipped precedent)",
+      "comment": "Tab label when current/selected. color/text/strong. Standard (underline) tab — inline + navigation."
+    },
+    {
+      "name": "component/tabs/text/item/folder-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed (canvas atom probe 2026-07-04: folder Tab name renders color/text/soft at rest, color/text/strong when selected/hover)",
+      "comment": "Folder tab label. ONE strong colour for every active state (rest/hover/current) — folder differentiates current via the elevated background + top stripe, NOT text colour. Disabled dims the whole tab via opacity/disabled (system rule). No resting-opacity token (folder-tab-color-opacity 0.6 is a code quirk we do not tokenise)."
+    },
+    {
+      "name": "component/tabs/background/item/primary/default",
+      "type": "COLOR",
+      "light": "traton/color/grey/200",
+      "dark": "traton/color/blue/850",
+      "scania-light": "scania/color/grey/100",
+      "scania-dark": "scania/color/grey/800",
+      "confidence": "Confirmed — CODE-FAITHFUL REALIGN 2026-07-05 (code + tegel-lite snapshot + Scania Tegel UI all agree). The ITEM carries the at-rest fill, the bar is transparent (both brands): TRATON grey/200 (tegel-lite --folder-tab-surface: surface-200); Scania grey/100(L)/grey/800(D) (core --tds-folder-tab-background-primary). Prior TRATON=transparent relied on the painted-bar showing through — reversed to match the code layering (item-carries-colour).",
+      "comment": "Folder tab fill, Primary mode-variant, at-rest. MIXED ROUTING: TRATON grey/200 (surface-200, solid); Scania grey/100(L)/grey/800(D). Item carries the colour; bar (folder-primary) is transparent — per code, both brands. Selected pops lighter, hover darkens (grey/300)."
+    },
+    {
+      "name": "component/tabs/background/item/secondary/default",
+      "type": "COLOR",
+      "light": "traton/color/grey/200",
+      "dark": "traton/color/blue/850",
+      "scania-light": "scania/color/grey/100",
+      "scania-dark": "scania/color/grey/750",
+      "confidence": "Confirmed — CODE-FAITHFUL REALIGN 2026-07-05. Was `layer-01` (grey/100 = the CREAM bug Max spotted). Fixed to TRATON grey/200 (tegel-lite --folder-tab-surface: surface-200 — both variants share the at-rest base); Scania grey/100(L)/grey/750(D) (core --tds-folder-tab-background-secondary). Item carries the fill; bar transparent. Verified: tegel-lite snapshot + Scania Tegel UI both render grey at-rest, not cream.",
+      "comment": "Folder tab fill, Secondary mode-variant, at-rest. MIXED ROUTING: TRATON grey/200 (surface-200, solid); Scania grey/100(L)/grey/750(D). Item carries the colour; bar (folder-secondary) transparent — per code, both brands."
+    },
+    {
+      "name": "component/tabs/background/item/primary/hover",
+      "type": "COLOR",
+      "light": "traton/color/grey/300",
+      "dark": "traton/color/blue/800",
+      "scania-light": "scania/color/grey/200",
+      "scania-dark": "scania/color/grey/800",
+      "confidence": "Confirmed — HONOUR-MAIN FIX 2026-07-04. TRATON grey/300(L)/blue/800(D) matches main folder item hover (INTERNAL surface/300); prior layer-02 was a regression (rendered grey/50, near-white). Scania grey/200(L)/grey/800(D) per web-component --tds-folder-tab-background-hover.",
+      "comment": "Folder tab fill, Primary mode-variant, hover. MIXED ROUTING: TRATON grey/300 (honour main surface/300); Scania grey/200(L)/grey/800(D)."
+    },
+    {
+      "name": "component/tabs/background/item/secondary/hover",
+      "type": "COLOR",
+      "light": "traton/color/grey/300",
+      "dark": "traton/color/blue/800",
+      "scania-light": "scania/color/grey/200",
+      "scania-dark": "scania/color/grey/800",
+      "confidence": "Confirmed — HONOUR-MAIN FIX 2026-07-04. TRATON grey/300(L)/blue/800(D) matches main folder item hover (INTERNAL surface/300); prior layer-02 was a regression (rendered grey/50, near-white). Scania grey/200(L)/grey/800(D) per web-component --tds-folder-tab-background-hover.",
+      "comment": "Folder tab fill, Secondary mode-variant, hover. MIXED ROUTING: TRATON grey/300 (honour main surface/300); Scania grey/200(L)/grey/800(D)."
+    },
+    {
+      "name": "component/tabs/background/item/primary/current-default",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "scania/color/grey/50",
+      "scania-dark": "scania/color/grey/850",
+      "confidence": "Confirmed — MIXED ROUTING 2026-07-01. TRATON verified via main-file canvas boundVariables (selected primary fill → color/background/layer-01, all modes); Scania verified via web-component folder-tabs-vars.scss (selected-primary grey/50 Light / grey/850 Dark).",
+      "comment": "Folder tab fill, Primary mode-variant, current/selected (the elevated surface). MIXED ROUTING: TRATON layer-01; Scania grey/50(L)/grey/850(D)."
+    },
+    {
+      "name": "component/tabs/background/item/secondary/current-default",
+      "type": "COLOR",
+      "light": "color/background/layer-02",
+      "dark": "color/background/layer-02",
+      "scania-light": "scania/color/base/white",
+      "scania-dark": "scania/color/grey/800",
+      "confidence": "Confirmed — MIXED ROUTING 2026-07-01. TRATON verified via main-file canvas boundVariables (selected secondary fill → color/background/layer-02, all modes); Scania verified via web-component folder-tabs-vars.scss (selected-secondary white Light / grey/800 Dark).",
+      "comment": "Folder tab fill, Secondary mode-variant, current/selected. MIXED ROUTING: TRATON layer-02; Scania white(L)/grey/800(D)."
+    },
+    {
+      "name": "component/tabs/background/primary",
+      "type": "COLOR",
+      "light": "color/background/base",
+      "dark": "color/background/base",
+      "scania-light": "color/background/base",
+      "scania-dark": "color/background/base",
+      "confidence": "Confirmed (Tegel UI canvas probe 2026-06-18 + TRATON-branch transparent canvas)",
+      "comment": "Standard tab BAR surface, Primary mode-variant. color/background/base (the mode-variant utility paints it; canvas bar is transparent). Documented lever — shared by inline + navigation bars."
+    },
+    {
+      "name": "component/tabs/background/secondary",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed (Tegel UI canvas probe 2026-06-18 + TRATON-branch transparent canvas)",
+      "comment": "Standard tab BAR surface, Secondary mode-variant. color/background/layer-01. Documented lever — shared by inline + navigation bars."
+    },
+    {
+      "name": "component/tabs/background/folder-primary",
+      "type": "COLOR",
+      "light": "traton/color/transparent/invisible/light",
+      "dark": "traton/color/transparent/invisible/dark",
+      "scania-light": "scania/color/transparent/invisible/light",
+      "scania-dark": "scania/color/transparent/invisible/dark",
+      "confidence": "Confirmed — CODE-FAITHFUL REALIGN 2026-07-05. Bar is TRANSPARENT (all 4 modes): code (tegel-lite `.tl-folder-tabs` + core `:host`/`.wrapper`) paints NO container background in either brand — the tab ITEM carries the colour. Supersedes the 2026-07-04 TRATON grey/200 fix (which followed main's painted-bar layering); the grey/200 moved to `item/primary/default` where the code puts it. Render-verified: at-rest tabs read grey/200, bar transparent.",
+      "comment": "Folder tab BAR container, Primary mode-variant — TRANSPARENT, both brands (per code: the item carries the fill, the bar paints nothing). Kept as a lever; the visible at-rest grey/200 lives on item/primary/default."
+    },
+    {
+      "name": "component/tabs/background/folder-secondary",
+      "type": "COLOR",
+      "light": "traton/color/transparent/invisible/light",
+      "dark": "traton/color/transparent/invisible/dark",
+      "scania-light": "scania/color/transparent/invisible/light",
+      "scania-dark": "scania/color/transparent/invisible/dark",
+      "confidence": "Confirmed — CODE-FAITHFUL REALIGN 2026-07-05. Bar TRANSPARENT (all 4 modes): code paints no container background in either brand; the item carries the colour. Supersedes the 2026-07-04 grey/200 fix; grey/200 now on item/secondary/default. Render-verified.",
+      "comment": "Folder tab BAR container, Secondary mode-variant — TRANSPARENT, both brands (per code). Kept as a lever; visible at-rest grey/200 lives on item/secondary/default. Same value as folder-primary; kept split per variant-axis-preservation."
+    },
+    {
+      "name": "component/tabs/background/scroll-default",
+      "type": "COLOR",
+      "light": "traton/color/grey/300",
+      "dark": "traton/color/blue/800",
+      "scania-light": "scania/color/grey/200",
+      "scania-dark": "scania/color/grey/750",
+      "confidence": "Confirmed — all 4 modes measured 2026-07-05 (no assumptions). No-visual-change promotion off INTERNAL surface/300: TRATON grey/300(L)/blue/800(D) + Scania grey/200(L)/grey/750(D) exactly match what surface/300 rendered per mode (getter for TRATON, clone-into-mode-frame for Scania).",
+      "comment": "Scroll Indicator button background (local scroll indicator kept — Scroll→Button parked). Promoted off INTERNAL surface/300 (INTERNAL policy = promote-or-remove); bound on the 4 Scroll Indicator bg variants. Bar-level control → flat. Values are no-visual-change today; proper Scania scroll-a11y + hover/active states deferred to scroll-unpark."
+    },
+    {
+      "name": "component/tabs/icon/scroll-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed 2026-07-05. Aliases the brand-aware semantic color/icon/strong (4-mode; resolves TRATON #001d21(L)/#ffffff(D), Scania #0e1013(L)/#f6f7f9(D) — clone-frame verified). Main uses color/icon/strong for the scroll icon, so the semantic is canonical.",
+      "comment": "Scroll Indicator chevron icon. Unifies all 16 scroll icon vectors onto ONE local component token — resolving a pre-existing local + cross-library-remote color/icon/strong duplicate (main had the same split). Aliases local color/icon/strong; kills the cross-library reference. Pairs with background/scroll-default."
+    },
+    {
+      "name": "component/tabs/border/item/default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed — at-rest 'none' border, sibling of border/item/hover (added 2026-07-02 border restructure).",
+      "comment": "Tab item border, at-rest (non-selected). Aliases the brand-aware color/border/none semantic (invisible lever). Shared across standard + folder items."
+    },
+    {
+      "name": "component/tabs/border/item/hover",
+      "type": "COLOR",
+      "light": "color/border/discrete",
+      "dark": "color/border/discrete",
+      "scania-light": "scania/color/grey/850",
+      "scania-dark": "scania/color/grey/50",
+      "confidence": "Confirmed (canvas atom + bar probes done 2026-06-17/18; values match code + Tegel UI canonical + shipped precedent)",
+      "comment": "Tab item border, hover (non-selected). MIXED ROUTING: TRATON color/border/discrete; Scania a11y grey/850(L)/grey/50(D). Shared across standard + folder."
+    },
+    {
+      "name": "component/tabs/border/item/indicator-default",
+      "type": "COLOR",
+      "light": "traton/color/blue/500",
+      "dark": "traton/color/yellow/400",
+      "scania-light": "scania/color/blue/400",
+      "scania-dark": "scania/color/blue/300",
+      "confidence": "Confirmed (canvas atom + bar probes done 2026-06-17/18; values match code + Tegel UI canonical + shipped precedent)",
+      "comment": "Selected-tab marker. Brand primitive (TRATON blue/500 L, yellow/400 D; Scania blue/400 L, blue/300 D). Binds fill-on-rectangle. Shared: standard underline + folder top stripe (same value)."
+    },
+    {
+      "name": "component/tabs/border/item/divider-default",
+      "type": "COLOR",
+      "light": "color/border/discrete",
+      "dark": "color/border/discrete",
+      "scania-light": "color/border/discrete",
+      "scania-dark": "color/border/discrete",
+      "confidence": "Confirmed (canvas atom + bar probes done 2026-06-17/18; values match code + Tegel UI canonical + shipped precedent)",
+      "comment": "Between-tab vertical divider. color/border/discrete. Folder-only (standard tabs have no dividers), so unmarked under item/."
+    },
+    {
+      "name": "component/tabs/border/default",
+      "type": "COLOR",
+      "light": "color/border/discrete",
+      "dark": "color/border/discrete",
+      "scania-light": "color/border/discrete",
+      "scania-dark": "color/border/discrete",
+      "confidence": "Confirmed (canvas atom + bar probes done 2026-06-17/18; values match code + Tegel UI canonical + shipped precedent)",
+      "comment": "Standard tab BAR bottom border. color/border/discrete. Shared by inline + navigation bars."
+    },
+    {
+      "name": "component/tabs/border/folder-default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed — wrapper-bottom border lever, off by default (added 2026-07-02 border restructure).",
+      "comment": "Folder tab BAR wrapper bottom border. Aliases color/border/none (off-by-default lever)."
+    },
+    {
+      "name": "component/tabs/opacity/disabled",
+      "type": "FLOAT",
+      "light": "traton/opacity/25",
+      "dark": "traton/opacity/25",
+      "scania-light": "scania/opacity/25",
+      "scania-dark": "scania/opacity/25",
+      "confidence": "Confirmed (matches cluster-wide opacity-disabled pattern shipped in every cluster with a disabled state)",
+      "comment": "Disabled dim, shared by ALL tabs (standard + folder). Brand-primitive opacity 0.25 (4-mode). System-wide opacity-disabled rule: disabled = default treatment at this opacity."
+    }
+  ]
+}

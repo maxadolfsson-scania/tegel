@@ -1,0 +1,109 @@
+{
+  "_description": "Shared menu-item utility cluster — a leading-dash shared namespace consumed by Header Sub Menu Items, Dropdown options (#11), Side Menu items (#14), and Popover content (#16). Follows -input precedent. Source components currently embedded in Header Figma page: Sub Menu Item Global, Local, App, Cat Global, UserID; Grid Sub Menu; Sub Menu App Launcher List. Naming follows Semantic Bridge Framework v1.3 + convention-naming-shape (property-agnostic descriptors).",
+  "_cluster": "menu-item-consolidation",
+  "_jira": "none — pre-ticket. Recommend inserting between #11 and #14 on roadmap.",
+  "_status": "DRAFT — scope only. Variables array is sketch-level. No Figma push.",
+  "_slug": "-menu-item",
+  "_slug_rationale": "Leading dash signals shared utility namespace (follows -input, -focus, -shadow precedent). '-menu-item' preferred over '-list-item': the pattern is a clickable, state-aware navigation item in a menu surface, not a generic list row. If the design system settles on 'List Item' as the canonical Figma component name, the slug should match. Open decision #1.",
+  "_scope": {
+    "in": [
+      "Variant matrix: text / icon-link (text+leading-icon) / icon-link-meta (text+leading-icon+trailing-meta) / user-row / category-header — five slot configurations present across Header Sub Menu Item * components",
+      "State matrix: default / hover / active / disabled / selected / current — applied per variant where they exist on canvas",
+      "Surface-context variant 'inverse': items sitting on a dark popover or dark nav surface need inverse text/icon refs. Both brands have this context, making it a valid structural surface qualifier per convention-surface-context-variants.",
+      "background/ per item state — fill of the item row (transparent at rest, tinted on hover/active, inverted on selected)",
+      "text/ per item state — primary label text color across states",
+      "icon/ per item state — leading icon color across states",
+      "text/meta per item state — trailing meta text color (keyboard shortcut, count badge label)",
+      "text/category — category-header row label (non-interactive; no state axis beyond -default)",
+      "text/user-label and text/user-sublabel — user-row primary + secondary text (avatar row variant)",
+      "border/separator — thin rule between item sections"
+    ],
+    "out": [
+      "Typography tokens (font-family, font-weight, font-size, line-height) — CDEP-2019 typography track, same park as cluster #8",
+      "Focus ring — handled globally by component/-focus/* per v1.3; no per-item focus token",
+      "Avatar/image slot sizing — belongs to Avatar component tokens, not menu-item",
+      "Sub Menu Popover container surface — cluster #16 Popover owns the surface background, border-radius, shadow; -menu-item owns only the items inside",
+      "Header bar nav-item tokens (component/header/background/nav-item/*) — top-level bar items scoped to cluster #8; -menu-item is the dropdown items only",
+      "Indicator stripe (4px brand-accent underline on header nav-items) — component/header/background/nav-item/indicator-default is cluster #8 territory; re-open only if sub-items are found to carry a similar stripe on canvas",
+      "App Launcher grid layout (Grid Sub Menu) — structural/spacing tokens; park until layout-token track is defined",
+      "Side Menu nesting / expand-collapse indicators — cluster #14 owns those; -menu-item provides item-row tokens that #14 consumes",
+      "Dropdown field trigger — cluster #11 Dropdown owns the trigger; -menu-item owns only the option list items"
+    ]
+  },
+  "_namingConvention": {
+    "namespace": "component/-menu-item/{property}/[surface/][variant/]{state}",
+    "surface_qualifier": "'inverse' used when item renders on a dark surface (dark popover, Scania dark bar). Applies to text/ and icon/ dims. Both brands have this context — valid structural qualifier per convention-surface-context-variants.",
+    "variant_descriptors": "Property-agnostic per convention-naming-shape: 'link' (plain text item), 'icon-link' (text+leading icon), 'icon-link-meta' (text+leading icon+trailing meta), 'user-label', 'user-sublabel', 'category', 'meta', 'separator'. Not emphasis-level words.",
+    "state_suffix": "Interaction states: -default, -hover, -active, -disabled, -selected, -current. '-default' applied on purpose axis only (per convention-state-suffix). 'category' and 'separator' tokens have no interaction state axis beyond -default.",
+    "example_names": [
+      "component/-menu-item/background/link-default",
+      "component/-menu-item/background/link-hover",
+      "component/-menu-item/background/link-active",
+      "component/-menu-item/background/link-selected",
+      "component/-menu-item/background/link-disabled",
+      "component/-menu-item/text/link-default",
+      "component/-menu-item/text/inverse/link-default",
+      "component/-menu-item/icon/icon-link-default",
+      "component/-menu-item/icon/inverse/icon-link-default",
+      "component/-menu-item/text/meta-default",
+      "component/-menu-item/text/inverse/meta-default",
+      "component/-menu-item/text/category-default",
+      "component/-menu-item/text/user-label-default",
+      "component/-menu-item/text/user-sublabel-default",
+      "component/-menu-item/border/separator-default"
+    ]
+  },
+  "_openDecisions": [
+    {
+      "id": 1,
+      "decision": "Component name: '-menu-item' vs '-list-item'",
+      "context": "Slug must match the canonical Figma component name once the shared component exists. 'Menu Item' implies navigation semantics; 'List Item' is more generic. Confirm with designer before spec is finalised. Source: memory/menu-item-consolidation.md."
+    },
+    {
+      "id": 2,
+      "decision": "Surface-context: explicit 'inverse' token variants in -menu-item, or alias-resolution only?",
+      "context": "Header Sub Menu Items on Scania dark bar need inverse text/icon refs (see header.json: scania-light uses color/text/inverse/strong). Option A: -menu-item ships bare + inverse variants; consumers pick correct surface variant in their spec. Option B: consumers alias bare -menu-item tokens and resolve via their own surface logic. Option A is cleaner and follows footer inverse precedent. Decide before drafting. Source: convention-surface-context-variants + header.json."
+    },
+    {
+      "id": 3,
+      "decision": "Does any -menu-item variant carry a visual indicator stripe (accent stripe)?",
+      "context": "Header nav-items have indicator-default (4px stripe, TRATON-L teal / TRATON-D gold / Scania-L blue/400 / Scania-D blue/300). Sub Menu Items may or may not carry a similar element. Accent has historically caused INTERNAL drift — do not assume; verify on canvas before speccing. Source: header.json indicator-default comment + MEMORY accent policy."
+    },
+    {
+      "id": 4,
+      "decision": "Variant depth: are 'icon-link' and 'icon-link-meta' one token set or two?",
+      "context": "If icon color and text color are identical across both variants, a single 'icon-link' token set covers both and trailing-meta only adds text/meta-* tokens. If they diverge (e.g. subdued meta text treatment), they need separate variant qualifiers. Requires Figma canvas verification. Source: menu-item-consolidation.md variant list."
+    },
+    {
+      "id": 5,
+      "decision": "'selected' vs 'current': which states does -menu-item own, and does it carry both?",
+      "context": "Header uses 'current' for system-indicated current page (convention-selected-vs-current). Dropdown option lists use 'selected' for user-toggled active choice (Chip precedent). A shared -menu-item namespace must support both without conflating them — or it defines only one and the consuming cluster adds the other. Confirm canonical state vocabulary per consumer before finalising state axis. Source: convention-selected-vs-current."
+    },
+    {
+      "id": 6,
+      "decision": "Roadmap insertion point and Jira ticket",
+      "context": "No Jira ticket exists yet. Natural insertion is after #11 Dropdown and before #14 Side Menu. Could be a mini-cluster. Recommend creating a ticket and confirming order before starting spec work. Source: cluster-roadmap.md + menu-item-consolidation.md."
+    }
+  ],
+  "_tokenEstimate": "22–32 COLOR variables: background × 5 states × 1 variant set (8–10) + text × 4 roles × 2 surface variants (8–10) + icon × 2 roles × 2 surface variants (4) + border × 1 (1) + user-row text × 2 (2) + category text × 1 (1). Excludes typography (parked) and focus (global). May compress if decision #4 collapses icon-link-meta into icon-link.",
+  "_figmaNodes": {
+    "note": "No dedicated -menu-item page in figma-pages.json — this component does not yet exist as a standalone Figma source. Source components are currently embedded in the Header Figma page. Figma MCP audit deferred until the shared component is created on a design branch.",
+    "sourceComponents_on_header_page": [
+      "Header/Sub Menu Item Global",
+      "Header/Sub Menu Item Local",
+      "Header/Sub Menu Item App",
+      "Header/Sub Menu Item Cat Global",
+      "Header/Sub Menu Item UserID",
+      "Header/Grid Sub Menu",
+      "Header/Sub Menu App Launcher List"
+    ]
+  },
+  "_cascadeNotes": [
+    "Bridge (tokens/scss/component/header.scss) contains NO Sub Menu Item-specific tokens — all sub-menu item rendering currently falls through to header bar-level tokens (color-background-hover, color-icon-strong, etc.). Zero existing token coverage for menu-item-specific states in the bridge. Bridge is DRAFT and not canonical; Figma canvas is the live state to verify against.",
+    "The deleted token --component-header-color-popovers (removed 2026-04-24 as dead code per menu-item-consolidation.md) confirms the popover surface is cluster #16 territory. Do not re-introduce it under -menu-item scope.",
+    "Accent caution (MEMORY policy): any accent-coloured candidate token in menu-item must be traced to a concrete Figma binding before naming. Do not adopt accent naming without a system-wide definition first."
+  ],
+  "_nextStep": "Resolve open decisions #1, #2, #5 with designer. Then audit Header Sub Menu Item * source components on canvas to confirm variant depth (decision #4) and indicator presence (decision #3). Then draft variables array from confirmed matrix.",
+  "component": "-menu-item",
+  "variables": []
+}
