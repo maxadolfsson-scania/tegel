@@ -63,6 +63,23 @@ _User (Max) to confirm which of the above should be filed as active dev bugs vs 
 
 ---
 
+## Textarea
+
+**Status**: Confirmed bug, found 2026-07-05 during spec verification. Task chip spawned for a fix session.
+
+### 1. `vrer()` typo breaks read-only background
+
+- `packages/core/src/components/textarea/textarea-vars.scss:52` reads:
+  ```scss
+  --tds-textarea-read-only-background: vrer(--tds-white);
+  ```
+  `vrer(` is a typo for `var(` — an invalid CSS value, so this custom property silently falls back in its theme block.
+- Related token: `component/textarea/icon/readonly-default` in [textarea.json](../specs/textarea.json) (Scania values verified against this same file; the typo sits two variables away from the verified icon colours).
+
+**Proposed change**: one-character fix to `var(--tds-white)`; sweep `packages/core` for any further `vrer(`/malformed `var(` occurrences while in there.
+
+---
+
 ## Tracking
 
 - Latest union scan: [tokens/audit/20260423-210513-figma-scan/_scan-summary.md](../audit/20260423-210513-figma-scan/_scan-summary.md)
