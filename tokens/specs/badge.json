@@ -1,0 +1,56 @@
+{
+  "_description": "Reverse-engineered from Figma TRATON file (branch ceUobip0KoQIiMSDuoO6Or). Component variables use same direct alias for all 4 modes; Scania brand differentiation handled by semantic layer.",
+  "component": "badge",
+  "variables": [
+    {
+      "name": "component/badge/background/default",
+      "type": "COLOR",
+      "light": "color/system/warning/default",
+      "dark": "color/system/warning/default",
+      "scania-light": "color/system/warning/default",
+      "scania-dark": "color/system/warning/default",
+      "confidence": "Confirmed",
+      "comment": "Semantic ref — resolves per brand."
+    },
+    {
+      "name": "component/badge/text/default",
+      "type": "COLOR",
+      "light": "color/text/base",
+      "dark": "color/text/inverse/base",
+      "scania-light": "color/text/base",
+      "scania-dark": "color/text/inverse/base",
+      "confidence": "Confirmed",
+      "comment": "Dark mode flips to inverse."
+    },
+    {
+      "name": "component/badge/border/radius/none",
+      "type": "FLOAT",
+      "light": "traton/unit/0",
+      "dark": "traton/unit/0",
+      "scania-light": "traton/unit/0",
+      "scania-dark": "traton/unit/0",
+      "confidence": "Confirmed",
+      "comment": "Square variant."
+    },
+    {
+      "name": "component/badge/border/radius/default",
+      "type": "FLOAT",
+      "light": "traton/unit/24",
+      "dark": "traton/unit/24",
+      "scania-light": "traton/unit/24",
+      "scania-dark": "traton/unit/24",
+      "confidence": "Confirmed",
+      "comment": "Rounded variant."
+    },
+    {
+      "name": "component/badge/border/radius/full",
+      "type": "FLOAT",
+      "light": "traton/unit/9999",
+      "dark": "traton/unit/9999",
+      "scania-light": "traton/unit/9999",
+      "scania-dark": "traton/unit/9999",
+      "confidence": "Confirmed",
+      "comment": "Pill/circle variant."
+    }
+  ]
+}

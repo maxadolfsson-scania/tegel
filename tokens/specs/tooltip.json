@@ -1,0 +1,46 @@
+{
+  "_description": "Reverse-engineered from Figma TRATON file (branch ceUobip0KoQIiMSDuoO6Or). Component variables use same direct alias for all 4 modes; Scania brand differentiation handled by semantic layer. NOTE: Figma uses 'border-radius' (hyphenated) not 'border/radius' — deviates from convention.",
+  "component": "tooltip",
+  "variables": [
+    {
+      "name": "component/tooltip/background/default",
+      "type": "COLOR",
+      "light": "color/background/inverse/layer-03",
+      "dark": "color/background/inverse/layer-03",
+      "scania-light": "color/background/inverse/layer-03",
+      "scania-dark": "color/background/inverse/layer-03",
+      "confidence": "Confirmed",
+      "comment": "Inverse surface — tooltip always renders on dark/light flip."
+    },
+    {
+      "name": "component/tooltip/text/default",
+      "type": "COLOR",
+      "light": "color/text/inverse/strong",
+      "dark": "color/text/inverse/strong",
+      "scania-light": "color/text/inverse/strong",
+      "scania-dark": "color/text/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Inverse text on inverse surface."
+    },
+    {
+      "name": "component/tooltip/border-radius/none",
+      "type": "FLOAT",
+      "light": "traton/unit/0",
+      "dark": "traton/unit/0",
+      "scania-light": "traton/unit/0",
+      "scania-dark": "traton/unit/0",
+      "confidence": "Confirmed",
+      "comment": "NOTE: Figma uses 'border-radius' not 'border/radius'. Square variant."
+    },
+    {
+      "name": "component/tooltip/border-radius/default",
+      "type": "FLOAT",
+      "light": "traton/unit/4",
+      "dark": "traton/unit/4",
+      "scania-light": "traton/unit/4",
+      "scania-dark": "traton/unit/4",
+      "confidence": "Confirmed",
+      "comment": "NOTE: Figma uses 'border-radius' not 'border/radius'. Default rounded."
+    }
+  ]
+}

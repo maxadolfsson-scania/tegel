@@ -1,0 +1,106 @@
+{
+  "_description": "Reverse-engineered from Figma TRATON file (branch ceUobip0KoQIiMSDuoO6Or). Component variables use same direct alias for all 4 modes; Scania brand differentiation handled by semantic layer.",
+  "component": "spinner",
+  "variables": [
+    {
+      "name": "component/spinner/background/default",
+      "type": "COLOR",
+      "light": "traton/color/blue/800",
+      "dark": "traton/color/grey/300",
+      "scania-light": "traton/color/blue/800",
+      "scania-dark": "traton/color/grey/300",
+      "confidence": "Confirmed",
+      "comment": "Brand primitive refs — not semantic. Light/dark differ."
+    },
+    {
+      "name": "component/spinner/background/default-inverse",
+      "type": "COLOR",
+      "light": "traton/color/transparent/inverse/950",
+      "dark": "traton/color/transparent/inverse/950",
+      "scania-light": "traton/color/transparent/inverse/950",
+      "scania-dark": "traton/color/transparent/inverse/950",
+      "confidence": "Confirmed",
+      "comment": "Inverse surface variant."
+    },
+    {
+      "name": "component/spinner/size/large",
+      "type": "FLOAT",
+      "light": 84,
+      "dark": 84,
+      "scania-light": 84,
+      "scania-dark": 84,
+      "confidence": "Confirmed",
+      "comment": "Hardcoded float, not alias."
+    },
+    {
+      "name": "component/spinner/size/medium",
+      "type": "FLOAT",
+      "light": 52,
+      "dark": 52,
+      "scania-light": 52,
+      "scania-dark": 52,
+      "confidence": "Confirmed",
+      "comment": "Hardcoded float."
+    },
+    {
+      "name": "component/spinner/size/small",
+      "type": "FLOAT",
+      "light": 24,
+      "dark": 24,
+      "scania-light": 24,
+      "scania-dark": 24,
+      "confidence": "Confirmed",
+      "comment": "Hardcoded float."
+    },
+    {
+      "name": "component/spinner/size/extra-small",
+      "type": "FLOAT",
+      "light": 16,
+      "dark": 16,
+      "scania-light": 16,
+      "scania-dark": 16,
+      "confidence": "Confirmed",
+      "comment": "Hardcoded float."
+    },
+    {
+      "name": "component/spinner/stroke/large",
+      "type": "FLOAT",
+      "light": 8,
+      "dark": 8,
+      "scania-light": 8,
+      "scania-dark": 8,
+      "confidence": "Confirmed",
+      "comment": "Stroke width for large spinner."
+    },
+    {
+      "name": "component/spinner/stroke/medium",
+      "type": "FLOAT",
+      "light": 6,
+      "dark": 6,
+      "scania-light": 6,
+      "scania-dark": 6,
+      "confidence": "Confirmed",
+      "comment": "Stroke width for medium spinner."
+    },
+    {
+      "name": "component/spinner/stroke/small",
+      "type": "FLOAT",
+      "light": 4,
+      "dark": 4,
+      "scania-light": 4,
+      "scania-dark": 4,
+      "confidence": "Confirmed",
+      "comment": "Stroke width for small spinner."
+    },
+    {
+      "name": "component/spinner/stroke/extra-small",
+      "type": "FLOAT",
+      "light": 3,
+      "dark": 3,
+      "scania-light": 3,
+      "scania-dark": 3,
+      "confidence": "Confirmed",
+      "comment": "Stroke width for extra-small spinner."
+    }
+  ]
+}
