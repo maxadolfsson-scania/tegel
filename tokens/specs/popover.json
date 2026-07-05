@@ -1,0 +1,216 @@
+{
+  "_description": "Popover component spec — cluster #16 (CDEP-1970). Container surface (Primary/Secondary mode-variant, stateless) plus menu-item content shape with full per-variant interaction states. 16 tokens: 8 background (2 container + 6 item link), 4 text/link, 2 icon/link, 1 border-radius, 1 opacity-disabled. Container shape follows Block/Message variant-axis-preservation; item shape follows Button precedent for 3-level nesting `{property}/link/{variant}-{state}`.",
+  "_figmaBranch": "https://www.figma.com/design/6osYTOfd4MgDq7LO6BCoUO/branch/9dAIfamPwrGe1gLTOUX723/TRATON-Component-Library?node-id=26693-59843",
+  "_notes": [
+    "Container vs item split: background/primary and background/secondary name the Popover Menu container surfaces (stateless, no -default suffix per Block/Message precedent). background/link/{variant}-{state} names the menu-item interaction with full per-variant split (3-level nesting per Button precedent — component/button/background/standard/primary-default).",
+    "Per-variant item split (design-QA pass, 2026-05-27): items inside Primary popover surface diverge from items inside Secondary popover surface. Resolution: 3-level nesting {property}/link/{variant}-{state} matches Button's role-group naming. Primary items use one set of background/text/icon tokens; Secondary items use a parallel set. Container-context determines which set the item consumes.",
+    "Item at rest is transparent: link/primary-default and link/secondary-default → color/background/none. Items adopt the container surface behind them; hover overlays a contrasting layer (Primary hover currently value-coincident with the Primary container surface — design-accepted, see divergence).",
+    "Text hover companions ship per variant (text/link/primary-hover, text/link/secondary-hover) for matrix-shape parity with background-hover. Icon does not ship hover companions — intentional asymmetry (design-accepted). Convention-variant-axis-preservation revisit pending (backlog).",
+    "Opacity-disabled wrapper pattern (LOCKED): single component/popover/opacity/disabled applied at Popover Menu/Item.Disabled=True root opacity. Carries through to text, icon, and divider in one source-of-truth binding. 4-mode with explicit per-brand primitives per convention-brand-primitive-aliases. Matches Accordion + Checkbox.",
+    "Active state tokens ship as forward-compat (design-accepted): background/link/primary-active and background/link/secondary-active exist with brand-specific primitive aliases. No Active/Pressed variant on the Item State axis today — tokens ship the lever; canvas variant can be added later without re-spec.",
+    "Radius follows Block precedent: border/radius-default. 4-mode with per-brand unit/4 primitives. Canvas-confirmed uniform 4px across all four Popover Menu container variants.",
+    "Divider between items: nested Divider component INSTANCE (Variant=Subtle, surface-adaptive transparency). No popover-local divider token. Separator is its own State variant value (refactor 2026-05-26) — mutually exclusive with Disabled, so wrapper opacity cannot dim the divider.",
+    "Focus owned by global -focus helper. Item carries Focus Visible BOOLEAN + embedded Helper INSTANCE per Button/Chip/Accordion/Checkbox precedent. No popover-local focus token."
+  ],
+  "_divergence": [
+    "Scania-Light blending is intentional: popover surface = color/background/layer-01 in Scania-Light renders pure white, value-coincident with page base. Designer accepts; shadow distinguishes the popover from the page underneath. No token-level mitigation.",
+    "Primary hover background renders value-coincident with Primary container surface (both alias color/background/layer-01). Item hover on Primary popovers has no visible affordance via background. Design-accepted for now; revisit when popover-menu code wires the hover token (link/primary-hover can later redirect to a contrasting overlay primitive matching Secondary's treatment).",
+    "Asymmetric matrix shape: text/link ships per-variant hover companions (primary-hover, secondary-hover, both value-coincident with default today); icon/link does not. Intentional per design-QA — text is the candidate for future per-brand divergence, icon stays canvas-evidence-based. Convention-variant-axis-preservation revisit pending (backlog item)."
+  ],
+  "_resolved": [
+    "Initial 8-token shape replaced by 16-token shape after design-QA: item background/text/icon now split per Primary/Secondary container variant (3-level nesting {property}/link/{variant}-{state}). Naming follows Button precedent.",
+    "Separator extracted from a BOOLEAN nested inside each State variant into its own State variant value (refactor 2026-05-26). Mutually exclusive with Disabled; opacity-wrapper cannot dim the divider.",
+    "Focus dropped from Item State axis; Focus Visible BOOLEAN + embedded Helper INSTANCE matches Button/Chip/Accordion/Checkbox pattern.",
+    "Disabled drift cleared: hardcoded #ffffff fill removed, Placeholder opacity reset, root opacity bound to component/popover/opacity/disabled on both Primary/Disabled and Secondary/Disabled variants.",
+    "4 INTERNAL/component__wip/popover/* placeholders deleted at push (0 consumers; raw-hex sentinels)."
+  ],
+  "component": "popover",
+  "variables": [
+    {
+      "name": "component/popover/background/primary",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "Popover container Primary surface. Stateless — no -default suffix per Block precedent."
+    },
+    {
+      "name": "component/popover/background/secondary",
+      "type": "COLOR",
+      "light": "color/background/layer-02",
+      "dark": "color/background/layer-02",
+      "scania-light": "color/background/layer-02",
+      "scania-dark": "color/background/layer-02",
+      "confidence": "Confirmed",
+      "comment": "Popover container Secondary surface. Stateless — no -default suffix per Block precedent."
+    },
+    {
+      "name": "component/popover/background/link/primary-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": "Menu-item background at rest on Primary popover surface — transparent; container shows through. 3-level nesting per Button precedent."
+    },
+    {
+      "name": "component/popover/background/link/primary-hover",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "Menu-item background on hover on Primary popover surface. Currently value-coincident with the Primary container (both = layer-01) — hover renders without visible affordance; design-accepted, revisit when hover treatment is locked. See _divergence."
+    },
+    {
+      "name": "component/popover/background/link/primary-active",
+      "type": "COLOR",
+      "light": "traton/color/grey/150 (primitive alias)",
+      "dark": "traton/color/blue/900 (primitive alias)",
+      "scania-light": "scania/color/grey/100 (primitive alias)",
+      "scania-dark": "scania/color/grey/850 (primitive alias)",
+      "confidence": "Confirmed",
+      "comment": "Menu-item background on Active/Pressed on Primary popover. Forward-compat — token ships with brand-specific primitive aliases per convention-brand-primitive-aliases. No Active variant on Item canvas today; lever exists for when designer adds the State value."
+    },
+    {
+      "name": "component/popover/background/link/secondary-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": "Menu-item background at rest on Secondary popover surface — transparent; container shows through."
+    },
+    {
+      "name": "component/popover/background/link/secondary-hover",
+      "type": "COLOR",
+      "light": "traton/color/grey/150 (primitive alias)",
+      "dark": "traton/color/blue/900 (primitive alias)",
+      "scania-light": "scania/color/grey/100 (primitive alias)",
+      "scania-dark": "scania/color/grey/850 (primitive alias)",
+      "confidence": "Confirmed",
+      "comment": "Menu-item background on hover on Secondary popover. Contrasting overlay (grey-150 light / blue-900 dark on TRATON; grey-100 / grey-850 on Scania). Brand-specific primitive aliases per convention-brand-primitive-aliases."
+    },
+    {
+      "name": "component/popover/background/link/secondary-active",
+      "type": "COLOR",
+      "light": "traton (active primitive)",
+      "dark": "traton (active primitive)",
+      "scania-light": "scania (active primitive)",
+      "scania-dark": "scania (active primitive)",
+      "confidence": "Confirmed",
+      "comment": "Menu-item background on Active/Pressed on Secondary popover. Forward-compat — brand-specific primitive aliases. No Active variant on Item canvas today."
+    },
+    {
+      "name": "component/popover/text/link/primary-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Menu-item label color at rest on Primary popover. Disabled inherits via wrapper opacity."
+    },
+    {
+      "name": "component/popover/text/link/primary-hover",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Menu-item label color on hover on Primary popover. Value-coincident with primary-default today (matrix-shape lever); aliases color/text/strong. Future per-brand divergence allowed without re-spec."
+    },
+    {
+      "name": "component/popover/text/link/secondary-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Menu-item label color at rest on Secondary popover."
+    },
+    {
+      "name": "component/popover/text/link/secondary-hover",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Menu-item label color on hover on Secondary popover. Value-coincident with secondary-default today (matrix-shape lever)."
+    },
+    {
+      "name": "component/popover/icon/link/primary-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed",
+      "comment": "Menu-item icon color on Primary popover. No hover companion — intentional asymmetry with text/link (icon stays canvas-evidence; text gets per-variant hover lever)."
+    },
+    {
+      "name": "component/popover/icon/link/secondary-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed",
+      "comment": "Menu-item icon color on Secondary popover. No hover companion (see icon/link/primary-default note)."
+    },
+    {
+      "name": "component/popover/border/radius-default",
+      "type": "FLOAT",
+      "light": "traton/unit/4",
+      "dark": "traton/unit/4",
+      "scania-light": "scania/unit/4",
+      "scania-dark": "scania/unit/4",
+      "confidence": "Confirmed",
+      "comment": "Container corner radius. 4px canvas-confirmed. 4-mode with per-brand unit primitives per Block precedent."
+    },
+    {
+      "name": "component/popover/opacity/disabled",
+      "type": "FLOAT",
+      "light": "traton/opacity/25",
+      "dark": "traton/opacity/25",
+      "scania-light": "scania/opacity/25",
+      "scania-dark": "scania/opacity/25",
+      "confidence": "Confirmed",
+      "comment": "25% opacity for disabled menu-item state. Applied at Item.Disabled=True root opacity on both Primary and Secondary Disabled variants. 4-mode with explicit per-brand primitives."
+    }
+  ],
+  "_parked": [
+    {
+      "candidate": "component/popover/icon/link/{primary,secondary}-hover",
+      "reason": "Intentional asymmetry with text/link — icon stays canvas-evidence-based for now. If a brand later needs per-variant icon-hover divergence, add the two companion tokens. Tied to convention-variant-axis-preservation revisit (backlog)."
+    },
+    {
+      "candidate": "component/popover/text/link/{primary,secondary}-active",
+      "reason": "No Active variant on Item canvas; background-active tokens ship forward-compat but text-active doesn't yet. Add if Active state lands canvas-side AND text needs per-state divergence."
+    },
+    {
+      "candidate": "component/popover/border/default",
+      "reason": "Container has stroke: none on all variants. Per convention-phantom-none-tokens (uniformly absent → drop). Container is shadow-bounded."
+    },
+    {
+      "candidate": "component/popover/shadow/elevation",
+      "reason": "Popover consumes the file-level dropdown/expanded effect token. Component does not own its shadow."
+    },
+    {
+      "candidate": "component/popover/background/inverse-default",
+      "reason": "Popover surface lives at variant level, not bar-context-dependent. Inverse split unnecessary."
+    },
+    {
+      "candidate": "component/popover/border/radius-none",
+      "reason": "Block pairs radius-default with radius-none. Popover canvas has no sharp-corner option today."
+    }
+  ]
+}
