@@ -2,6 +2,12 @@
 
 Single entry point for all token-related documentation.
 
+## Foundation (read first)
+
+| Document | Purpose | Status |
+|----------|---------|--------|
+| [Cluster Foundation](CLUSTER_FOUNDATION.md) | Architecture, vocabulary, tooling, workflow — the durable foundation for cluster work | Active |
+
 ## Frameworks & Specifications
 
 | Document | Purpose | Status |
@@ -11,6 +17,13 @@ Single entry point for all token-related documentation.
 | [Bridge Generation Prompt](BRIDGE_GENERATION_PROMPT.md) | Template for Claude-assisted bridge token generation | Active (v2.0) |
 | [Bridge Prompt (original)](TEGEL_TOKENS__SEMANTIC_BRIDGE_FRAMEWORK__PROMPT.md) | Original bridge prompt specification | Archived |
 | [Review Batch 1+2](TEGEL_TOKENS__SEMANTIC_BRIDGE_FRAMEWORK__REVIEW-BATCH-1+2.md) | Component bridge review notes | Reference |
+
+## Figma Handoff
+
+| Document | Purpose | Status |
+|----------|---------|--------|
+| [Figma Quick Start](FIGMA_QUICKSTART.md) | Cheat sheet for Figma MCP tools + REST API script | Active |
+| [Figma Component Variables — Designer Guide](FIGMA_COMPONENT_VARIABLES_GUIDE.md) | Naming convention & workflow for creating component-level variables in Figma | Active |
 
 ## Inventories
 
@@ -33,13 +46,29 @@ Run commands from project root:
 | `npm run audit:tokens:palette:all` | Palette comparison for all brands |
 | `npm run audit:figma:colors` | Fetch Figma color styles + variables |
 | `npm run audit:figma:colors:all` | Fetch from all registered Figma libraries |
+| `npm run audit:figma:branch -- --name "cluster/..."` | Create a Figma branch on library files |
+| `npm run audit:figma:push -- --spec tokens/specs/footer.json` | Preview spec push (dry run, default) |
+| `npm run audit:figma:push -- --spec tokens/specs/footer.json --push` | Push spec variables to Figma |
+| `node tokens/scripts/scan-figma-vs-specs.js --branch <branchKey>` | Scan specs vs Figma main + branch; write reports to `tokens/audit/{ts}-figma-scan/` (REST path — needs `FIGMA_API_KEY`) |
+| `node tokens/scripts/scan-figma-vs-specs.js --main-snapshot ... --branch-snapshot ...` | Same scan, but reads pre-captured MCP Plugin API snapshots from `.figma-scan-cache/` (no REST token) |
+| `node tokens/scripts/merge-mcp-slices.js --side main --cache tokens/audit/.figma-scan-cache --file-key <key>` | Merge MCP-captured slice JSONs into a single snapshot for `scan-figma-vs-specs.js` |
 | `npm run audit:tokens:prune` | Clean old audit runs (keep last 3) |
+
+## Workflow
+
+| Document | Purpose | Status |
+|----------|---------|--------|
+| [Cluster Workflow](CLUSTER_WORKFLOW.md) | Step-by-step process for tackling component clusters | Active |
+| [Cluster Kickoff Template](CLUSTER_KICKOFF_TEMPLATE.md) | Copy-paste prompt template for starting a new cluster session — pre-loads conventions, enforces branch gate, and pins the close-out recipe | Active |
+| [Dev Token Gaps](DEV_TOKEN_GAPS.md) | Running list of spec/Figma ↔ code divergences; bug-report staging for the component team | Active |
+| [Handover Templates](../templates/README.md) | One template per close-out artifact (Decision log, Notion handover, talking points) — drives the documentation pass in the Cluster Workflow | Active |
 
 ## Configuration
 
 | File | Purpose |
 |------|---------|
 | `tokens/audit/figma-libraries.json` | Registry of tracked Figma library files |
+| `tokens/audit/figma-pages.json` | Component → Figma page ID + URL mapping (both libraries) |
 | `tokens/audit/audit-cluster.json` | Priority component slugs for cluster audits |
 | `tokens/audit/audit-ignore.json` | Components excluded from audits |
 | `tokens/audit/overlap-assumptions.json` | Cross-library slug aliases and property equivalences |
