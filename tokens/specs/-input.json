@@ -1,0 +1,334 @@
+{
+  "_description": "Shared input field tokens. Layered structural (shape + per-corner/side) + colour bucket with implicit category (no /color/ prefix). Used by text-field, textarea, dropdown, datepicker.",
+  "_cluster": 6,
+  "_figmaBranch": "Rx4ynvFnhjhX5bAxNdEP7X",
+  "component": "-input",
+  "variables": [
+    {
+      "name": "component/-input/border/radius-default",
+      "type": "FLOAT",
+      "light": "traton/unit/4",
+      "dark": "traton/unit/4",
+      "scania-light": "scania/unit/4",
+      "scania-dark": "scania/unit/4",
+      "confidence": "Proposed",
+      "comment": "SHAPE LAYER — 'default subtle rounding'."
+    },
+    {
+      "name": "component/-input/border/radius-none",
+      "type": "FLOAT",
+      "light": "traton/unit/0",
+      "dark": "traton/unit/0",
+      "scania-light": "scania/unit/0",
+      "scania-dark": "scania/unit/0",
+      "confidence": "Proposed",
+      "comment": "SHAPE LAYER — 'sharp corner'."
+    },
+    {
+      "name": "component/-input/border/radius-top-left",
+      "type": "FLOAT",
+      "light": "component/-input/border/radius-default",
+      "dark": "component/-input/border/radius-default",
+      "scania-light": "component/-input/border/radius-default",
+      "scania-dark": "component/-input/border/radius-default",
+      "confidence": "Proposed",
+      "comment": "PER-CORNER — both brands use default."
+    },
+    {
+      "name": "component/-input/border/radius-top-right",
+      "type": "FLOAT",
+      "light": "component/-input/border/radius-default",
+      "dark": "component/-input/border/radius-default",
+      "scania-light": "component/-input/border/radius-default",
+      "scania-dark": "component/-input/border/radius-default",
+      "confidence": "Proposed",
+      "comment": "PER-CORNER — both brands use default."
+    },
+    {
+      "name": "component/-input/border/radius-bottom-left",
+      "type": "FLOAT",
+      "light": "component/-input/border/radius-default",
+      "dark": "component/-input/border/radius-default",
+      "scania-light": "component/-input/border/radius-none",
+      "scania-dark": "component/-input/border/radius-none",
+      "confidence": "Proposed",
+      "comment": "PER-CORNER — TRATON default, Scania none (underline-bar shape)."
+    },
+    {
+      "name": "component/-input/border/radius-bottom-right",
+      "type": "FLOAT",
+      "light": "component/-input/border/radius-default",
+      "dark": "component/-input/border/radius-default",
+      "scania-light": "component/-input/border/radius-none",
+      "scania-dark": "component/-input/border/radius-none",
+      "confidence": "Proposed",
+      "comment": "PER-CORNER — TRATON default, Scania none."
+    },
+
+    {
+      "name": "component/-input/border/width-default",
+      "type": "FLOAT",
+      "light": "traton/unit/1",
+      "dark": "traton/unit/1",
+      "scania-light": "scania/unit/1",
+      "scania-dark": "scania/unit/1",
+      "confidence": "Proposed",
+      "comment": "SHAPE LAYER — 'default 1px border'."
+    },
+    {
+      "name": "component/-input/border/width-none",
+      "type": "FLOAT",
+      "light": "traton/unit/0",
+      "dark": "traton/unit/0",
+      "scania-light": "scania/unit/0",
+      "scania-dark": "scania/unit/0",
+      "confidence": "Proposed",
+      "comment": "SHAPE LAYER — 'no border'."
+    },
+    {
+      "name": "component/-input/border/width-top",
+      "type": "FLOAT",
+      "light": "component/-input/border/width-default",
+      "dark": "component/-input/border/width-default",
+      "scania-light": "component/-input/border/width-none",
+      "scania-dark": "component/-input/border/width-none",
+      "confidence": "Proposed",
+      "comment": "PER-SIDE — TRATON default, Scania none."
+    },
+    {
+      "name": "component/-input/border/width-right",
+      "type": "FLOAT",
+      "light": "component/-input/border/width-default",
+      "dark": "component/-input/border/width-default",
+      "scania-light": "component/-input/border/width-none",
+      "scania-dark": "component/-input/border/width-none",
+      "confidence": "Proposed",
+      "comment": "PER-SIDE — TRATON default, Scania none."
+    },
+    {
+      "name": "component/-input/border/width-bottom",
+      "type": "FLOAT",
+      "light": "component/-input/border/width-default",
+      "dark": "component/-input/border/width-default",
+      "scania-light": "component/-input/border/width-default",
+      "scania-dark": "component/-input/border/width-default",
+      "confidence": "Proposed",
+      "comment": "PER-SIDE — both brands use default (the underline side for Scania)."
+    },
+    {
+      "name": "component/-input/border/width-left",
+      "type": "FLOAT",
+      "light": "component/-input/border/width-default",
+      "dark": "component/-input/border/width-default",
+      "scania-light": "component/-input/border/width-none",
+      "scania-dark": "component/-input/border/width-none",
+      "confidence": "Proposed",
+      "comment": "PER-SIDE — TRATON default, Scania none."
+    },
+
+    {
+      "name": "component/-input/border/focus-top",
+      "type": "FLOAT",
+      "light": "traton/unit/2",
+      "dark": "traton/unit/2",
+      "scania-light": "scania/unit/2",
+      "scania-dark": "scania/unit/2",
+      "confidence": "Deprecate",
+      "comment": "To be removed — focus handled by -focus helper."
+    },
+    {
+      "name": "component/-input/border/focus-right",
+      "type": "FLOAT",
+      "light": "traton/unit/2",
+      "dark": "traton/unit/2",
+      "scania-light": "scania/unit/2",
+      "scania-dark": "scania/unit/2",
+      "confidence": "Deprecate",
+      "comment": "To be removed — focus handled by -focus helper."
+    },
+    {
+      "name": "component/-input/border/focus-bottom",
+      "type": "FLOAT",
+      "light": "traton/unit/2",
+      "dark": "traton/unit/2",
+      "scania-light": "scania/unit/2",
+      "scania-dark": "scania/unit/2",
+      "confidence": "Deprecate",
+      "comment": "To be removed — focus handled by -focus helper."
+    },
+    {
+      "name": "component/-input/border/focus-left",
+      "type": "FLOAT",
+      "light": "traton/unit/2",
+      "dark": "traton/unit/2",
+      "scania-light": "scania/unit/2",
+      "scania-dark": "scania/unit/2",
+      "confidence": "Deprecate",
+      "comment": "To be removed — focus handled by -focus helper."
+    },
+
+    {
+      "name": "component/-input/background/primary",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Proposed",
+      "comment": "Primary mode background. Base surface context — no state variants (hover/error/etc don't change bg). Matches message/primary naming."
+    },
+    {
+      "name": "component/-input/background/secondary",
+      "type": "COLOR",
+      "light": "color/background/layer-02",
+      "dark": "color/background/layer-02",
+      "scania-light": "color/background/layer-02",
+      "scania-dark": "color/background/layer-02",
+      "confidence": "Proposed",
+      "comment": "Secondary mode background. Base surface context — no state variants. Matches message/secondary naming."
+    },
+{
+      "name": "component/-input/text/value-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Proposed",
+      "comment": "Main input value text."
+    },
+    {
+      "name": "component/-input/text/placeholder-default",
+      "type": "COLOR",
+      "light": "color/text/subtle",
+      "dark": "color/text/subtle",
+      "scania-light": "color/text/subtle",
+      "scania-dark": "color/text/subtle",
+      "confidence": "Proposed",
+      "comment": "Placeholder / empty state."
+    },
+    {
+      "name": "component/-input/text/label-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Proposed",
+      "comment": "Field label (outside and inside positions)."
+    },
+    {
+      "name": "component/-input/text/helper-default",
+      "type": "COLOR",
+      "light": "color/text/defined",
+      "dark": "color/text/defined",
+      "scania-light": "color/text/defined",
+      "scania-dark": "color/text/defined",
+      "confidence": "Proposed",
+      "comment": "Helper text below the field."
+    },
+    {
+      "name": "component/-input/text/error-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Proposed",
+      "comment": "Generic error-state text colour (highlight/danger treatment). Same principle as icon/error-default. Currently bound to helper text in the error variant. Future brands can alias text/label-default to text/error-default to extend the red treatment to labels. The variant on canvas (State=Error) communicates context; the token provides the brand-override anchor."
+    },
+    {
+      "name": "component/-input/text/counter-default",
+      "type": "COLOR",
+      "light": "color/text/defined",
+      "dark": "color/text/defined",
+      "scania-light": "color/text/defined",
+      "scania-dark": "color/text/defined",
+      "confidence": "Proposed",
+      "comment": "Character counter text."
+    },
+
+    {
+      "name": "component/-input/border/default",
+      "type": "COLOR",
+      "light": "color/border/soft",
+      "dark": "color/border/soft",
+      "scania-light": "color/border/soft",
+      "scania-dark": "color/border/soft",
+      "confidence": "Proposed",
+      "comment": "Default border colour."
+    },
+    {
+      "name": "component/-input/border/hover",
+      "type": "COLOR",
+      "light": "color/border/strong",
+      "dark": "color/border/strong",
+      "scania-light": "color/border/strong",
+      "scania-dark": "color/border/strong",
+      "confidence": "Proposed",
+      "comment": "Border colour on hover."
+    },
+    {
+      "name": "component/-input/border/error-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Proposed",
+      "comment": "Border colour when input is in error validation variant, default interaction state. Nested matches chip/button convention."
+    },
+    {
+      "name": "component/-input/border/success-default",
+      "type": "COLOR",
+      "light": "color/border/strong",
+      "dark": "color/border/strong",
+      "scania-light": "color/border/strong",
+      "scania-dark": "color/border/strong",
+      "confidence": "Proposed",
+      "comment": "Border colour when input is in success validation variant, default interaction state."
+    },
+
+    {
+      "name": "component/-input/icon/prefix-default",
+      "type": "COLOR",
+      "light": "color/text/defined",
+      "dark": "color/text/defined",
+      "scania-light": "color/text/defined",
+      "scania-dark": "color/text/defined",
+      "confidence": "Proposed",
+      "comment": "Prefix icon/text (leading). Uses defined level — visible, meaningful, secondary to value. Verify contrast."
+    },
+    {
+      "name": "component/-input/icon/suffix-default",
+      "type": "COLOR",
+      "light": "color/text/defined",
+      "dark": "color/text/defined",
+      "scania-light": "color/text/defined",
+      "scania-dark": "color/text/defined",
+      "confidence": "Proposed",
+      "comment": "Suffix icon/text (trailing). Same level as prefix — unified treatment for all prefix/suffix content."
+    },
+    {
+      "name": "component/-input/icon/error-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Proposed",
+      "comment": "Icon colour when input is in error validation variant, default interaction state. The error indicator icon that appears alongside the field."
+    },
+
+    {
+      "name": "component/-input/opacity/disabled",
+      "type": "FLOAT",
+      "light": "traton/opacity/25",
+      "dark": "traton/opacity/25",
+      "scania-light": "scania/opacity/25",
+      "scania-dark": "scania/opacity/25",
+      "confidence": "Proposed",
+      "comment": "Opacity for disabled state. Applied at component level."
+    }
+  ]
+}
