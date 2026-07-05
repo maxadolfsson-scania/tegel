@@ -1,0 +1,75 @@
+{
+  "component": "card",
+  "variables": [
+    {
+      "name": "component/card/background/primary-default",
+      "type": "COLOR",
+      "light": "traton/color/transparent/invisible/light",
+      "dark": "traton/color/transparent/invisible/dark",
+      "scania-light": "#ffffff",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "TRATON: invisible (no card chrome). Scania light: white, dark: layer-01. Matches bridge SCSS."
+    },
+    {
+      "name": "component/card/background/secondary-default",
+      "type": "COLOR",
+      "light": "traton/color/transparent/invisible/light",
+      "dark": "traton/color/transparent/invisible/dark",
+      "scania-light": "#ffffff",
+      "scania-dark": "color/background/layer-02",
+      "confidence": "Confirmed",
+      "comment": "TRATON: invisible. Scania dark uses layer-02 (one step above primary)."
+    },
+    {
+      "name": "component/card/text/title-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Same semantic ref across all modes. Figma layers already use color/text/strong."
+    },
+    {
+      "name": "component/card/text/subtitle-default",
+      "type": "COLOR",
+      "light": "color/text/subtle",
+      "dark": "color/text/subtle",
+      "scania-light": "color/text/subtle",
+      "scania-dark": "color/text/subtle",
+      "confidence": "Confirmed",
+      "comment": "Same across brands. Figma layers use color/text/subtle."
+    },
+    {
+      "name": "component/card/text/body-default",
+      "type": "COLOR",
+      "light": "color/text/defined",
+      "dark": "color/text/defined",
+      "scania-light": "color/text/defined",
+      "scania-dark": "color/text/defined",
+      "confidence": "Confirmed",
+      "comment": "Same across brands. Figma layers use color/text/defined."
+    },
+    {
+      "name": "component/card/border/radius-default",
+      "type": "FLOAT",
+      "light": 0,
+      "dark": 0,
+      "scania-light": 4,
+      "scania-dark": 4,
+      "confidence": "Confirmed",
+      "comment": "TRATON=0 (no visible card container). Scania=4px. Matches bridge SCSS."
+    },
+    {
+      "name": "component/card/space/padding-default",
+      "type": "FLOAT",
+      "light": 0,
+      "dark": 0,
+      "scania-light": 16,
+      "scania-dark": 16,
+      "confidence": "Confirmed",
+      "comment": "TRATON=0. Scania=16px. Matches bridge SCSS."
+    }
+  ]
+}

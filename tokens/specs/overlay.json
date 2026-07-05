@@ -1,0 +1,25 @@
+{
+  "component": "overlay",
+  "variables": [
+    {
+      "name": "component/overlay/background/default",
+      "type": "COLOR",
+      "light": "#000000",
+      "dark": "#15181d",
+      "scania-light": "#000000",
+      "scania-dark": "#15181d",
+      "confidence": "Confirmed",
+      "comment": "Solid base color for overlay. Light: black. Dark: grey-900. Opacity applied separately via opacity token. Intensity scale (subtle, soft, defined, strong) can be added as needed."
+    },
+    {
+      "name": "component/overlay/opacity/default",
+      "type": "FLOAT",
+      "light": 60,
+      "dark": 84,
+      "scania-light": 60,
+      "scania-dark": 84,
+      "confidence": "Confirmed",
+      "comment": "Standard overlay intensity (modals, etc.). Matches Figma + web component code. Intensity scale (subtle, soft, defined, strong) can be added as needed."
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "component": "modal",
+  "variables": [
+    {
+      "name": "component/modal/background/default",
+      "type": "COLOR",
+      "light": "color/background/layer-02",
+      "dark": "color/background/layer-02",
+      "scania-light": "color/background/layer-02",
+      "scania-dark": "color/background/layer-02",
+      "confidence": "Confirmed",
+      "comment": "Same across brands. Code uses --background-elevation-layer-02. Figma layers already reference color/background/layer-02."
+    },
+    {
+      "name": "component/modal/text/title-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Same across brands. Code uses --foreground-text-strong. Named title (not header) for consistency with Card."
+    },
+    {
+      "name": "component/modal/text/body-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Same across brands. Code uses --foreground-text-strong."
+    },
+    {
+      "name": "component/modal/icon/dismiss-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed",
+      "comment": "Close button icon. Code uses foreground-text-strong for SVG fill; icon/strong is the semantic equivalent."
+    },
+    {
+      "name": "component/modal/border/radius-default",
+      "type": "FLOAT",
+      "light": 4,
+      "dark": 4,
+      "scania-light": 4,
+      "scania-dark": 4,
+      "confidence": "Confirmed",
+      "comment": "Code uses var(--radius-narrow). Same across brands."
+    }
+  ]
+}

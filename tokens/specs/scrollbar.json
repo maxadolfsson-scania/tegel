@@ -1,0 +1,66 @@
+{
+  "component": "scrollbar",
+  "_note": "Figma-as-truth for scrollbar (branch 7XfNHOAtmNdQyxi8Ybiiho). Taxonomy consolidated 2026-04-24: legacy width/radius-* renamed to size/thumb-*; redundant size/width-default dropped. Code-side gaps tracked in tokens/docs/DEV_TOKEN_GAPS.md.",
+  "variables": [
+    {
+      "name": "component/scrollbar/background/track-default",
+      "type": "COLOR",
+      "light": "traton/color/transparent/invisible/light",
+      "dark": "traton/color/transparent/invisible/dark",
+      "scania-light": "scania/color/transparent/invisible/light",
+      "scania-dark": "scania/color/transparent/invisible/dark",
+      "confidence": "Confirmed",
+      "comment": "Track background is transparent. Scania modes use scania/* primitive, TRATON modes use traton/* primitive. Code: --tds-scrollbar-track-color: transparent."
+    },
+    {
+      "name": "component/scrollbar/background/thumb-default",
+      "type": "COLOR",
+      "light": "color/border/subtle",
+      "dark": "color/border/subtle",
+      "scania-light": "color/border/subtle",
+      "scania-dark": "color/border/subtle",
+      "confidence": "Confirmed",
+      "comment": "Designer-reviewed remap 2026-04-24: was color/icon/discrete, now color/border/subtle. Code still consumes a grey primitive directly (var(--tds-grey-400|500)) — see DEV_TOKEN_GAPS.md."
+    },
+    {
+      "name": "component/scrollbar/background/thumb-hover",
+      "type": "COLOR",
+      "light": "color/border/soft",
+      "dark": "color/border/soft",
+      "scania-light": "color/border/soft",
+      "scania-dark": "color/border/soft",
+      "confidence": "Confirmed",
+      "comment": "Designer-reviewed remap 2026-04-24: was color/icon/subtle, now color/border/soft. Code still consumes var(--tds-grey-500|400) directly — see DEV_TOKEN_GAPS.md."
+    },
+    {
+      "name": "component/scrollbar/border/radius-default",
+      "type": "FLOAT",
+      "light": "traton/unit/8",
+      "dark": "traton/unit/8",
+      "scania-light": "scania/unit/8",
+      "scania-dark": "scania/unit/8",
+      "confidence": "Confirmed",
+      "comment": "Corner radius of the thumb shape. TRATON modes alias traton/unit/8; Scania modes alias scania/unit/8. Code hardcodes border-radius: 40px (fully rounded) — see DEV_TOKEN_GAPS.md."
+    },
+    {
+      "name": "component/scrollbar/size/thumb-default",
+      "type": "FLOAT",
+      "light": "traton/unit/4",
+      "dark": "traton/unit/4",
+      "scania-light": "scania/unit/4",
+      "scania-dark": "scania/unit/4",
+      "confidence": "Confirmed",
+      "comment": "Visible thumb thickness at rest (4px). TRATON modes alias traton/unit/4; Scania modes alias scania/unit/4."
+    },
+    {
+      "name": "component/scrollbar/size/thumb-hover",
+      "type": "FLOAT",
+      "light": 6,
+      "dark": 6,
+      "scania-light": 6,
+      "scania-dark": 6,
+      "confidence": "Confirmed",
+      "comment": "Visible thumb thickness on hover (6px). Literal — no traton/unit/6 primitive exists."
+    }
+  ]
+}
