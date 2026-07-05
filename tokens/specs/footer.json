@@ -1,0 +1,85 @@
+{
+  "component": "footer",
+  "variables": [
+    {
+      "name": "component/footer/background/main-default",
+      "type": "COLOR",
+      "light": "traton/color/grey/50",
+      "dark": "traton/color/blue/1000",
+      "scania-light": "scania/color/blue/800",
+      "scania-dark": "scania/color/blue/900",
+      "confidence": "Confirmed",
+      "comment": "Scania uses dark blue footer surface."
+    },
+    {
+      "name": "component/footer/background/top-default",
+      "type": "COLOR",
+      "light": "traton/color/grey/50",
+      "dark": "traton/color/blue/1000",
+      "scania-light": "scania/color/blue/800",
+      "scania-dark": "scania/color/blue/900",
+      "confidence": "Confirmed",
+      "comment": "Scania uses dark blue footer surface."
+    },
+    {
+      "name": "component/footer/border/divider-default",
+      "type": "COLOR",
+      "light": "traton/color/transparent/invisible/light",
+      "dark": "traton/color/transparent/invisible/light",
+      "scania-light": "scania/color/blue/700",
+      "scania-dark": "scania/color/blue/800",
+      "confidence": "Confirmed",
+      "comment": "Scania divider visible on dark blue surface."
+    },
+    {
+      "name": "component/footer/text/link-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/inverse/strong",
+      "scania-dark": "color/text/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Scania uses inverse refs — dark blue footer surface."
+    },
+    {
+      "name": "component/footer/text/inverse/link-default",
+      "type": "COLOR",
+      "light": "color/text/inverse/strong",
+      "dark": "color/text/inverse/strong",
+      "scania-light": "color/text/inverse/strong",
+      "scania-dark": "color/text/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Links on dark/inverse footer surfaces. Same across brands — both resolve to inverse semantic ref."
+    },
+    {
+      "name": "component/footer/text/title-default",
+      "type": "COLOR",
+      "light": "color/text/subtle",
+      "dark": "color/text/subtle",
+      "scania-light": "color/text/inverse/subtle",
+      "scania-dark": "color/text/inverse/subtle",
+      "confidence": "Confirmed",
+      "comment": "Scania uses inverse refs."
+    },
+    {
+      "name": "component/footer/text/copyright-default",
+      "type": "COLOR",
+      "light": "color/text/soft",
+      "dark": "color/text/soft",
+      "scania-light": "color/text/inverse/soft",
+      "scania-dark": "color/text/inverse/soft",
+      "confidence": "Confirmed",
+      "comment": "Scania uses inverse refs."
+    },
+    {
+      "name": "component/footer/icon/social-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/inverse/strong",
+      "scania-dark": "color/icon/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Scania uses inverse refs."
+    }
+  ]
+}

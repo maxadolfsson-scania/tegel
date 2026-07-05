@@ -1,0 +1,175 @@
+{
+  "component": "link",
+  "variables": [
+    {
+      "name": "component/link/text/accent/default",
+      "type": "COLOR",
+      "light": "traton/color/blue/700",
+      "dark": "traton/color/blue/400",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/text/accent/hover",
+      "type": "COLOR",
+      "light": "traton/color/blue/700",
+      "dark": "traton/color/blue/400",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": "Same as default."
+    },
+    {
+      "name": "component/link/text/accent/active",
+      "type": "COLOR",
+      "light": "traton/color/blue/950",
+      "dark": "traton/color/blue/150",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/text/accent/visited",
+      "type": "COLOR",
+      "light": "traton/color/blue/950",
+      "dark": "traton/color/blue/150",
+      "scania-light": "traton/color/blue/150",
+      "scania-dark": "traton/color/blue/150",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/text/standard/default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": "TRATON uses semantic, Scania uses brand primitive."
+    },
+    {
+      "name": "component/link/text/standard/hover",
+      "type": "COLOR",
+      "light": "color/text/defined",
+      "dark": "color/text/defined",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/text/standard/active",
+      "type": "COLOR",
+      "light": "color/text/soft",
+      "dark": "color/text/soft",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/text/standard/visited",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "traton/color/blue/150",
+      "scania-dark": "traton/color/blue/150",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/icon/accent/default",
+      "type": "COLOR",
+      "light": "traton/color/blue/700",
+      "dark": "traton/color/blue/400",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": "Mirrors text/accent values."
+    },
+    {
+      "name": "component/link/icon/accent/hover",
+      "type": "COLOR",
+      "light": "traton/color/blue/700",
+      "dark": "traton/color/blue/400",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/icon/accent/active",
+      "type": "COLOR",
+      "light": "traton/color/blue/950",
+      "dark": "traton/color/blue/150",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/icon/accent/visited",
+      "type": "COLOR",
+      "light": "traton/color/blue/950",
+      "dark": "traton/color/blue/150",
+      "scania-light": "traton/color/blue/150",
+      "scania-dark": "traton/color/blue/150",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/icon/standard/default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": "Mirrors text/standard values."
+    },
+    {
+      "name": "component/link/icon/standard/hover",
+      "type": "COLOR",
+      "light": "color/text/defined",
+      "dark": "color/text/defined",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/icon/standard/active",
+      "type": "COLOR",
+      "light": "color/text/soft",
+      "dark": "color/text/soft",
+      "scania-light": "traton/color/blue/400",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/icon/standard/visited",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "traton/color/blue/150",
+      "scania-dark": "traton/color/blue/150",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/link/opacity/disabled",
+      "type": "FLOAT",
+      "light": "traton/opacity/25",
+      "dark": "traton/opacity/25",
+      "scania-light": "scania/opacity/25",
+      "scania-dark": "scania/opacity/25",
+      "confidence": "Confirmed",
+      "comment": "25% opacity for disabled state. 4-mode explicit — Scania bound to scania/opacity/25 (expanded from 2-mode 2026-07-04 per 4-mode-universal convention; Figma push pending)."
+    }
+  ]
+}

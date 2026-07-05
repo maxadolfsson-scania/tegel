@@ -1,0 +1,45 @@
+{
+  "component": "breadcrumbs",
+  "variables": [
+    {
+      "name": "component/breadcrumbs/text/link-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Same across brands — breadcrumbs sit on neutral surfaces."
+    },
+    {
+      "name": "component/breadcrumbs/text/link-hover",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Same as default."
+    },
+    {
+      "name": "component/breadcrumbs/text/current-default",
+      "type": "COLOR",
+      "light": "color/text/subtle",
+      "dark": "color/text/subtle",
+      "scania-light": "color/text/subtle",
+      "scania-dark": "color/text/subtle",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/breadcrumbs/text/separator-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Separator is a text character (CSS content: '›')."
+    }
+  ]
+}

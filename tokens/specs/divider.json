@@ -1,0 +1,65 @@
+{
+  "component": "divider",
+  "variables": [
+    {
+      "name": "component/divider/border/discrete-default",
+      "type": "COLOR",
+      "light": "color/border/discrete",
+      "dark": "color/border/discrete",
+      "scania-light": "color/border/discrete",
+      "scania-dark": "color/border/discrete",
+      "confidence": "Confirmed",
+      "comment": "Semantic refs — same across brands."
+    },
+    {
+      "name": "component/divider/border/subtle-default",
+      "type": "COLOR",
+      "light": "color/border/subtle",
+      "dark": "color/border/subtle",
+      "scania-light": "color/border/subtle",
+      "scania-dark": "color/border/subtle",
+      "confidence": "Confirmed",
+      "comment": "Default intensity in web component."
+    },
+    {
+      "name": "component/divider/border/soft-default",
+      "type": "COLOR",
+      "light": "color/border/soft",
+      "dark": "color/border/soft",
+      "scania-light": "color/border/soft",
+      "scania-dark": "color/border/soft",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/divider/border/defined-default",
+      "type": "COLOR",
+      "light": "color/border/defined",
+      "dark": "color/border/defined",
+      "scania-light": "color/border/defined",
+      "scania-dark": "color/border/defined",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/divider/border/strong-default",
+      "type": "COLOR",
+      "light": "color/border/strong",
+      "dark": "color/border/strong",
+      "scania-light": "color/border/strong",
+      "scania-dark": "color/border/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/divider/border/expressive-default",
+      "type": "COLOR",
+      "light": "#C0FFEE",
+      "dark": "#EEFF0C",
+      "scania-light": "scania/color/blue/700",
+      "scania-dark": "scania/color/blue/800",
+      "confidence": "Confirmed",
+      "comment": "TRATON: placeholders flagging brand treatment needed. Scania: dark-blue from code (divider-background-dark-blue)."
+    }
+  ]
+}
