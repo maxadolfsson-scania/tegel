@@ -1,0 +1,196 @@
+{
+  "_description": "Reverse-engineered from Figma TRATON file (branch ceUobip0KoQIiMSDuoO6Or). Component variables use same direct alias for all 4 modes; Scania brand differentiation handled by semantic layer. WARNING: TRATON collection references scania/* primitives — cross-brand issue needs resolution.",
+  "component": "tag",
+  "variables": [
+    {
+      "name": "component/tag/background/error-default",
+      "type": "COLOR",
+      "light": "scania/color/red/100",
+      "dark": "scania/color/red/200",
+      "scania-light": "scania/color/red/100",
+      "scania-dark": "scania/color/red/200",
+      "confidence": "Confirmed",
+      "comment": "WARNING: TRATON collection refs scania/* primitive. Needs traton/* equivalent."
+    },
+    {
+      "name": "component/tag/background/featured-default",
+      "type": "COLOR",
+      "light": "scania/color/blue/100",
+      "dark": "scania/color/blue/100",
+      "scania-light": "scania/color/blue/100",
+      "scania-dark": "scania/color/blue/100",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Cross-brand ref. Same value L/D."
+    },
+    {
+      "name": "component/tag/background/information-default",
+      "type": "COLOR",
+      "light": "scania/color/blue/200",
+      "dark": "scania/color/blue/200",
+      "scania-light": "scania/color/blue/200",
+      "scania-dark": "scania/color/blue/200",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Cross-brand ref."
+    },
+    {
+      "name": "component/tag/background/neutral-default",
+      "type": "COLOR",
+      "light": "scania/color/grey/150",
+      "dark": "scania/color/grey/200",
+      "scania-light": "scania/color/grey/150",
+      "scania-dark": "scania/color/grey/200",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Cross-brand ref."
+    },
+    {
+      "name": "component/tag/background/success-default",
+      "type": "COLOR",
+      "light": "scania/color/green/100",
+      "dark": "scania/color/green/200",
+      "scania-light": "scania/color/green/100",
+      "scania-dark": "scania/color/green/200",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Cross-brand ref."
+    },
+    {
+      "name": "component/tag/background/warning-default",
+      "type": "COLOR",
+      "light": "scania/color/yellow/50",
+      "dark": "scania/color/yellow/100",
+      "scania-light": "scania/color/yellow/50",
+      "scania-dark": "scania/color/yellow/100",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Cross-brand ref."
+    },
+    {
+      "name": "component/tag/text/error-default",
+      "type": "COLOR",
+      "light": "scania/color/red/700",
+      "dark": "scania/color/red/800",
+      "scania-light": "scania/color/red/700",
+      "scania-dark": "scania/color/red/800",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Cross-brand ref."
+    },
+    {
+      "name": "component/tag/text/featured-default",
+      "type": "COLOR",
+      "light": "scania/color/blue/700",
+      "dark": "scania/color/blue/800",
+      "scania-light": "scania/color/blue/700",
+      "scania-dark": "scania/color/blue/800",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Cross-brand ref."
+    },
+    {
+      "name": "component/tag/text/information-default",
+      "type": "COLOR",
+      "light": "scania/color/blue/800",
+      "dark": "scania/color/blue/800",
+      "scania-light": "scania/color/blue/800",
+      "scania-dark": "scania/color/blue/800",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Cross-brand ref."
+    },
+    {
+      "name": "component/tag/text/neutral-default",
+      "type": "COLOR",
+      "light": "scania/color/grey/800",
+      "dark": "scania/color/grey/800",
+      "scania-light": "scania/color/grey/800",
+      "scania-dark": "scania/color/grey/800",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Cross-brand ref."
+    },
+    {
+      "name": "component/tag/text/success-default",
+      "type": "COLOR",
+      "light": "scania/color/green/700",
+      "dark": "scania/color/green/800",
+      "scania-light": "scania/color/green/700",
+      "scania-dark": "scania/color/green/800",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Cross-brand ref."
+    },
+    {
+      "name": "component/tag/text/warning-default",
+      "type": "COLOR",
+      "light": "scania/color/yellow/700",
+      "dark": "scania/color/yellow/800",
+      "scania-light": "scania/color/yellow/700",
+      "scania-dark": "scania/color/yellow/800",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Cross-brand ref."
+    },
+    {
+      "name": "component/tag/icon/error-default",
+      "type": "COLOR",
+      "light": "component/tag/text/error-default",
+      "dark": "component/tag/text/error-default",
+      "scania-light": "component/tag/text/error-default",
+      "scania-dark": "component/tag/text/error-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text color — icon matches text."
+    },
+    {
+      "name": "component/tag/icon/featured-default",
+      "type": "COLOR",
+      "light": "component/tag/text/featured-default",
+      "dark": "component/tag/text/featured-default",
+      "scania-light": "component/tag/text/featured-default",
+      "scania-dark": "component/tag/text/featured-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text color."
+    },
+    {
+      "name": "component/tag/icon/information-default",
+      "type": "COLOR",
+      "light": "component/tag/text/information-default",
+      "dark": "component/tag/text/information-default",
+      "scania-light": "component/tag/text/information-default",
+      "scania-dark": "component/tag/text/information-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text color."
+    },
+    {
+      "name": "component/tag/icon/neutral-default",
+      "type": "COLOR",
+      "light": "component/tag/text/neutral-default",
+      "dark": "component/tag/text/neutral-default",
+      "scania-light": "component/tag/text/neutral-default",
+      "scania-dark": "component/tag/text/neutral-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text color."
+    },
+    {
+      "name": "component/tag/icon/success-default",
+      "type": "COLOR",
+      "light": "component/tag/text/success-default",
+      "dark": "component/tag/text/success-default",
+      "scania-light": "component/tag/text/success-default",
+      "scania-dark": "component/tag/text/success-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text color."
+    },
+    {
+      "name": "component/tag/icon/warning-default",
+      "type": "COLOR",
+      "light": "component/tag/text/warning-default",
+      "dark": "component/tag/text/warning-default",
+      "scania-light": "component/tag/text/warning-default",
+      "scania-dark": "component/tag/text/warning-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text color."
+    },
+    {
+      "name": "component/tag/border-radius/default",
+      "type": "FLOAT",
+      "light": "traton/unit/2",
+      "dark": "traton/unit/2",
+      "scania-light": "traton/unit/2",
+      "scania-dark": "traton/unit/2",
+      "confidence": "Confirmed",
+      "comment": "NOTE: Figma uses 'border-radius' not 'border/radius'."
+    }
+  ]
+}

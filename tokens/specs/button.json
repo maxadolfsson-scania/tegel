@@ -1,0 +1,756 @@
+{
+  "_description": "Reverse-engineered from Figma TRATON file (branch ceUobip0KoQIiMSDuoO6Or). Component variables use same direct alias for all 4 modes; Scania brand differentiation handled by semantic layer. INTERNAL/color__wip refs violate INTERNAL token policy — need promotion to proper semantic tokens.",
+  "component": "button",
+  "variables": [
+    {
+      "name": "component/button/background/standard/primary-default",
+      "type": "COLOR",
+      "light": "traton/color/blue/800",
+      "dark": "traton/color/grey/300",
+      "scania-light": "traton/color/blue/800",
+      "scania-dark": "traton/color/grey/300",
+      "confidence": "Confirmed",
+      "comment": "Brand primitives. INTERNAL ref removed 2026-04-10."
+    },
+    {
+      "name": "component/button/background/standard/primary-hover",
+      "type": "COLOR",
+      "light": "traton/color/blue/850",
+      "dark": "traton/color/grey/200",
+      "scania-light": "traton/color/blue/850",
+      "scania-dark": "traton/color/grey/200",
+      "confidence": "Confirmed",
+      "comment": "Brand primitives. INTERNAL ref removed 2026-04-10."
+    },
+    {
+      "name": "component/button/background/standard/primary-active",
+      "type": "COLOR",
+      "light": "traton/color/blue/900",
+      "dark": "traton/color/grey/400",
+      "scania-light": "traton/color/blue/900",
+      "scania-dark": "traton/color/grey/400",
+      "confidence": "Confirmed",
+      "comment": "Brand primitives. INTERNAL ref removed 2026-04-10."
+    },
+    {
+      "name": "component/button/background/standard/secondary-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": "Transparent background."
+    },
+    {
+      "name": "component/button/background/standard/secondary-hover",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/background/standard/secondary-active",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/background/standard/tertiary-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/background/standard/tertiary-hover",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/background/standard/tertiary-active",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/background/danger/primary-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Confirmed",
+      "comment": "Semantic ref."
+    },
+    {
+      "name": "component/button/background/danger/primary-hover",
+      "type": "COLOR",
+      "light": "traton/color/red/400",
+      "dark": "traton/color/red/400",
+      "scania-light": "traton/color/red/400",
+      "scania-dark": "traton/color/red/400",
+      "confidence": "Confirmed",
+      "comment": "Brand primitive — no semantic hover variant for danger exists yet."
+    },
+    {
+      "name": "component/button/background/danger/primary-active",
+      "type": "COLOR",
+      "light": "traton/color/red/500",
+      "dark": "traton/color/red/500",
+      "scania-light": "traton/color/red/500",
+      "scania-dark": "traton/color/red/500",
+      "confidence": "Confirmed",
+      "comment": "Brand primitive."
+    },
+    {
+      "name": "component/button/background/danger/secondary-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/background/danger/secondary-hover",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/background/danger/secondary-active",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/background/danger/tertiary-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/background/danger/tertiary-hover",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/background/danger/tertiary-active",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/radius/default",
+      "type": "FLOAT",
+      "light": "traton/unit/56",
+      "dark": "traton/unit/56",
+      "scania-light": "traton/unit/56",
+      "scania-dark": "traton/unit/56",
+      "confidence": "Confirmed",
+      "comment": "Pill-shaped button."
+    },
+    {
+      "name": "component/button/border/standard/primary-default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/standard/primary-hover",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/standard/primary-active",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/standard/secondary-default",
+      "type": "COLOR",
+      "light": "color/border/soft",
+      "dark": "color/border/soft",
+      "scania-light": "color/border/soft",
+      "scania-dark": "color/border/soft",
+      "confidence": "Confirmed",
+      "comment": "Secondary button has visible border."
+    },
+    {
+      "name": "component/button/border/standard/secondary-hover",
+      "type": "COLOR",
+      "light": "color/border/subtle",
+      "dark": "color/border/subtle",
+      "scania-light": "color/border/subtle",
+      "scania-dark": "color/border/subtle",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/standard/secondary-active",
+      "type": "COLOR",
+      "light": "color/border/strong",
+      "dark": "color/border/strong",
+      "scania-light": "color/border/strong",
+      "scania-dark": "color/border/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/standard/tertiary-default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/standard/tertiary-hover",
+      "type": "COLOR",
+      "light": "color/border/subtle",
+      "dark": "color/border/subtle",
+      "scania-light": "color/border/subtle",
+      "scania-dark": "color/border/subtle",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/standard/tertiary-active",
+      "type": "COLOR",
+      "light": "color/border/strong",
+      "dark": "color/border/strong",
+      "scania-light": "color/border/strong",
+      "scania-dark": "color/border/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/danger/primary-default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/danger/primary-hover",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/danger/primary-active",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/danger/secondary-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Confirmed",
+      "comment": "Danger secondary has red border."
+    },
+    {
+      "name": "component/button/border/danger/secondary-hover",
+      "type": "COLOR",
+      "light": "traton/color/red/400",
+      "dark": "traton/color/red/400",
+      "scania-light": "traton/color/red/400",
+      "scania-dark": "traton/color/red/400",
+      "confidence": "Confirmed",
+      "comment": "Brand primitive."
+    },
+    {
+      "name": "component/button/border/danger/secondary-active",
+      "type": "COLOR",
+      "light": "traton/color/red/500",
+      "dark": "traton/color/red/500",
+      "scania-light": "traton/color/red/500",
+      "scania-dark": "traton/color/red/500",
+      "confidence": "Confirmed",
+      "comment": "Brand primitive."
+    },
+    {
+      "name": "component/button/border/danger/tertiary-default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/border/danger/tertiary-hover",
+      "type": "COLOR",
+      "light": "traton/color/red/400",
+      "dark": "traton/color/red/400",
+      "scania-light": "traton/color/red/400",
+      "scania-dark": "traton/color/red/400",
+      "confidence": "Confirmed",
+      "comment": "Brand primitive."
+    },
+    {
+      "name": "component/button/border/danger/tertiary-active",
+      "type": "COLOR",
+      "light": "traton/color/red/500",
+      "dark": "traton/color/red/500",
+      "scania-light": "traton/color/red/500",
+      "scania-dark": "traton/color/red/500",
+      "confidence": "Confirmed",
+      "comment": "Brand primitive."
+    },
+    {
+      "name": "component/button/focus-ring/radius-default",
+      "type": "FLOAT",
+      "light": "component/-focus/ring/radius/full",
+      "dark": "component/-focus/ring/radius/full",
+      "scania-light": "component/-focus/ring/radius/full",
+      "scania-dark": "component/-focus/ring/radius/full",
+      "confidence": "Confirmed",
+      "comment": "Refs shared -focus utility group."
+    },
+    {
+      "name": "component/button/text/standard/primary-default",
+      "type": "COLOR",
+      "light": "traton/color/base/white",
+      "dark": "traton/color/base/black",
+      "scania-light": "traton/color/base/white",
+      "scania-dark": "traton/color/base/black",
+      "confidence": "Confirmed",
+      "comment": "Brand primitives — white on light, black on dark."
+    },
+    {
+      "name": "component/button/text/standard/primary-hover",
+      "type": "COLOR",
+      "light": "component/button/text/standard/primary-default",
+      "dark": "component/button/text/standard/primary-default",
+      "scania-light": "component/button/text/standard/primary-default",
+      "scania-dark": "component/button/text/standard/primary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to default."
+    },
+    {
+      "name": "component/button/text/standard/primary-active",
+      "type": "COLOR",
+      "light": "component/button/text/standard/primary-default",
+      "dark": "component/button/text/standard/primary-default",
+      "scania-light": "component/button/text/standard/primary-default",
+      "scania-dark": "component/button/text/standard/primary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to default."
+    },
+    {
+      "name": "component/button/text/standard/secondary-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Semantic ref."
+    },
+    {
+      "name": "component/button/text/standard/secondary-hover",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/text/standard/secondary-active",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/text/standard/tertiary-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/text/standard/tertiary-hover",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/text/standard/tertiary-active",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/text/danger/primary-default",
+      "type": "COLOR",
+      "light": "traton/color/base/white",
+      "dark": "traton/color/base/white",
+      "scania-light": "traton/color/base/white",
+      "scania-dark": "traton/color/base/white",
+      "confidence": "Confirmed",
+      "comment": "White text on red background, both modes."
+    },
+    {
+      "name": "component/button/text/danger/primary-hover",
+      "type": "COLOR",
+      "light": "component/button/text/danger/primary-default",
+      "dark": "component/button/text/danger/primary-default",
+      "scania-light": "component/button/text/danger/primary-default",
+      "scania-dark": "component/button/text/danger/primary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/text/danger/primary-active",
+      "type": "COLOR",
+      "light": "component/button/text/danger/primary-default",
+      "dark": "component/button/text/danger/primary-default",
+      "scania-light": "component/button/text/danger/primary-default",
+      "scania-dark": "component/button/text/danger/primary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/text/danger/secondary-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Confirmed",
+      "comment": "Semantic ref."
+    },
+    {
+      "name": "component/button/text/danger/secondary-hover",
+      "type": "COLOR",
+      "light": "component/button/text/danger/secondary-default",
+      "dark": "component/button/text/danger/secondary-default",
+      "scania-light": "component/button/text/danger/secondary-default",
+      "scania-dark": "component/button/text/danger/secondary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/text/danger/secondary-active",
+      "type": "COLOR",
+      "light": "component/button/text/danger/secondary-default",
+      "dark": "component/button/text/danger/secondary-default",
+      "scania-light": "component/button/text/danger/secondary-default",
+      "scania-dark": "component/button/text/danger/secondary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/text/danger/tertiary-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Confirmed",
+      "comment": "Semantic ref."
+    },
+    {
+      "name": "component/button/text/danger/tertiary-hover",
+      "type": "COLOR",
+      "light": "component/button/text/danger/tertiary-default",
+      "dark": "component/button/text/danger/tertiary-default",
+      "scania-light": "component/button/text/danger/tertiary-default",
+      "scania-dark": "component/button/text/danger/tertiary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/text/danger/tertiary-active",
+      "type": "COLOR",
+      "light": "component/button/text/danger/tertiary-default",
+      "dark": "component/button/text/danger/tertiary-default",
+      "scania-light": "component/button/text/danger/tertiary-default",
+      "scania-dark": "component/button/text/danger/tertiary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/icon/standard/primary-default",
+      "type": "COLOR",
+      "light": "traton/color/base/white",
+      "dark": "traton/color/base/black",
+      "scania-light": "traton/color/base/white",
+      "scania-dark": "traton/color/base/black",
+      "confidence": "Confirmed",
+      "comment": "Matches text color."
+    },
+    {
+      "name": "component/button/icon/standard/primary-hover",
+      "type": "COLOR",
+      "light": "component/button/text/standard/primary-default",
+      "dark": "component/button/text/standard/primary-default",
+      "scania-light": "component/button/text/standard/primary-default",
+      "scania-dark": "component/button/text/standard/primary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text."
+    },
+    {
+      "name": "component/button/icon/standard/primary-active",
+      "type": "COLOR",
+      "light": "component/button/text/standard/primary-default",
+      "dark": "component/button/text/standard/primary-default",
+      "scania-light": "component/button/text/standard/primary-default",
+      "scania-dark": "component/button/text/standard/primary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text."
+    },
+    {
+      "name": "component/button/icon/standard/secondary-default",
+      "type": "COLOR",
+      "light": "traton/color/base/black",
+      "dark": "traton/color/base/white",
+      "scania-light": "traton/color/base/black",
+      "scania-dark": "traton/color/base/white",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/icon/standard/secondary-hover",
+      "type": "COLOR",
+      "light": "component/button/icon/standard/secondary-default",
+      "dark": "component/button/icon/standard/secondary-default",
+      "scania-light": "component/button/icon/standard/secondary-default",
+      "scania-dark": "component/button/icon/standard/secondary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/icon/standard/secondary-active",
+      "type": "COLOR",
+      "light": "component/button/icon/standard/secondary-default",
+      "dark": "component/button/icon/standard/secondary-default",
+      "scania-light": "component/button/icon/standard/secondary-default",
+      "scania-dark": "component/button/icon/standard/secondary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/icon/standard/tertiary-default",
+      "type": "COLOR",
+      "light": "traton/color/base/black",
+      "dark": "traton/color/base/white",
+      "scania-light": "traton/color/base/black",
+      "scania-dark": "traton/color/base/white",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/button/icon/standard/tertiary-hover",
+      "type": "COLOR",
+      "light": "component/button/icon/standard/tertiary-default",
+      "dark": "component/button/icon/standard/tertiary-default",
+      "scania-light": "component/button/icon/standard/tertiary-default",
+      "scania-dark": "component/button/icon/standard/tertiary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/icon/standard/tertiary-active",
+      "type": "COLOR",
+      "light": "component/button/icon/standard/tertiary-default",
+      "dark": "component/button/icon/standard/tertiary-default",
+      "scania-light": "component/button/icon/standard/tertiary-default",
+      "scania-dark": "component/button/icon/standard/tertiary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/icon/danger/primary-default",
+      "type": "COLOR",
+      "light": "traton/color/base/white",
+      "dark": "scania/color/base/white",
+      "scania-light": "traton/color/base/white",
+      "scania-dark": "scania/color/base/white",
+      "confidence": "Confirmed",
+      "comment": "WARNING: Dark mode refs scania/color/base/white — cross-brand in TRATON collection."
+    },
+    {
+      "name": "component/button/icon/danger/primary-hover",
+      "type": "COLOR",
+      "light": "component/button/icon/danger/primary-default",
+      "dark": "component/button/icon/danger/primary-default",
+      "scania-light": "component/button/icon/danger/primary-default",
+      "scania-dark": "component/button/icon/danger/primary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/icon/danger/primary-active",
+      "type": "COLOR",
+      "light": "component/button/icon/danger/primary-default",
+      "dark": "component/button/icon/danger/primary-default",
+      "scania-light": "component/button/icon/danger/primary-default",
+      "scania-dark": "component/button/icon/danger/primary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/button/icon/danger/secondary-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Confirmed",
+      "comment": "Semantic ref."
+    },
+    {
+      "name": "component/button/icon/danger/secondary-hover",
+      "type": "COLOR",
+      "light": "component/button/text/danger/secondary-default",
+      "dark": "component/button/text/danger/secondary-default",
+      "scania-light": "component/button/text/danger/secondary-default",
+      "scania-dark": "component/button/text/danger/secondary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text."
+    },
+    {
+      "name": "component/button/icon/danger/secondary-active",
+      "type": "COLOR",
+      "light": "component/button/text/danger/secondary-default",
+      "dark": "component/button/text/danger/secondary-default",
+      "scania-light": "component/button/text/danger/secondary-default",
+      "scania-dark": "component/button/text/danger/secondary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text."
+    },
+    {
+      "name": "component/button/icon/danger/tertiary-default",
+      "type": "COLOR",
+      "light": "color/system/danger/default",
+      "dark": "color/system/danger/default",
+      "scania-light": "color/system/danger/default",
+      "scania-dark": "color/system/danger/default",
+      "confidence": "Confirmed",
+      "comment": "Semantic ref."
+    },
+    {
+      "name": "component/button/icon/danger/tertiary-hover",
+      "type": "COLOR",
+      "light": "component/button/text/danger/tertiary-default",
+      "dark": "component/button/text/danger/tertiary-default",
+      "scania-light": "component/button/text/danger/tertiary-default",
+      "scania-dark": "component/button/text/danger/tertiary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text."
+    },
+    {
+      "name": "component/button/icon/danger/tertiary-active",
+      "type": "COLOR",
+      "light": "component/button/text/danger/tertiary-default",
+      "dark": "component/button/text/danger/tertiary-default",
+      "scania-light": "component/button/text/danger/tertiary-default",
+      "scania-dark": "component/button/text/danger/tertiary-default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to text."
+    },
+    {
+      "name": "component/button/opacity/disabled",
+      "type": "FLOAT",
+      "light": "traton/opacity/25",
+      "dark": "traton/opacity/25",
+      "scania-light": "scania/opacity/25",
+      "scania-dark": "scania/opacity/25",
+      "confidence": "Confirmed",
+      "comment": "25% opacity for disabled state. 4-mode explicit — Scania bound to scania/opacity/25 (expanded from 2-mode 2026-07-04 per 4-mode-universal convention; Figma push pending)."
+    }
+  ]
+}

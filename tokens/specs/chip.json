@@ -1,0 +1,276 @@
+{
+  "_description": "Reverse-engineered from Figma TRATON file (branch ceUobip0KoQIiMSDuoO6Or). Component variables use same direct alias for all 4 modes; Scania brand differentiation handled by semantic layer.",
+  "component": "chip",
+  "variables": [
+    {
+      "name": "component/chip/background/default",
+      "type": "COLOR",
+      "light": "traton/color/grey/200",
+      "dark": "traton/color/blue/800",
+      "scania-light": "traton/color/grey/200",
+      "scania-dark": "traton/color/blue/800",
+      "confidence": "Confirmed",
+      "comment": "Brand primitives — not semantic."
+    },
+    {
+      "name": "component/chip/background/hover",
+      "type": "COLOR",
+      "light": "traton/color/grey/400",
+      "dark": "traton/color/blue/600",
+      "scania-light": "traton/color/grey/400",
+      "scania-dark": "traton/color/blue/600",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/background/selected/default",
+      "type": "COLOR",
+      "light": "traton/color/grey/300",
+      "dark": "traton/color/blue/400",
+      "scania-light": "traton/color/grey/300",
+      "scania-dark": "traton/color/blue/400",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/background/selected/hover",
+      "type": "COLOR",
+      "light": "traton/color/grey/400",
+      "dark": "traton/color/blue/300",
+      "scania-light": "traton/color/grey/400",
+      "scania-dark": "traton/color/blue/300",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/border/default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": "Semantic ref — no visible border."
+    },
+    {
+      "name": "component/chip/border/hover",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/border/active",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/border/selected-default",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/border/selected-hover",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/border/selected-active",
+      "type": "COLOR",
+      "light": "color/border/none",
+      "dark": "color/border/none",
+      "scania-light": "color/border/none",
+      "scania-dark": "color/border/none",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/border/radius/none",
+      "type": "FLOAT",
+      "light": "traton/unit/0",
+      "dark": "traton/unit/0",
+      "scania-light": "traton/unit/0",
+      "scania-dark": "traton/unit/0",
+      "confidence": "Confirmed",
+      "comment": "Square variant."
+    },
+    {
+      "name": "component/chip/border/radius/default",
+      "type": "FLOAT",
+      "light": "traton/unit/2",
+      "dark": "traton/unit/2",
+      "scania-light": "traton/unit/2",
+      "scania-dark": "traton/unit/2",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/border/radius/full",
+      "type": "FLOAT",
+      "light": "traton/unit/24",
+      "dark": "traton/unit/24",
+      "scania-light": "traton/unit/24",
+      "scania-dark": "traton/unit/24",
+      "confidence": "Confirmed",
+      "comment": "Pill variant."
+    },
+    {
+      "name": "component/chip/focus-ring/radius-default",
+      "type": "FLOAT",
+      "light": "component/-focus/ring/radius/medium",
+      "dark": "component/-focus/ring/radius/medium",
+      "scania-light": "component/-focus/ring/radius/medium",
+      "scania-dark": "component/-focus/ring/radius/medium",
+      "confidence": "Confirmed",
+      "comment": "Refs shared -focus utility group."
+    },
+    {
+      "name": "component/chip/text/default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Semantic ref."
+    },
+    {
+      "name": "component/chip/text/hover",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/text/active",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/text/selected/default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/inverse/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Dark mode flips to inverse when selected."
+    },
+    {
+      "name": "component/chip/text/selected/hover",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/inverse/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/text/selected/active",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/inverse/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": ""
+    },
+    {
+      "name": "component/chip/icon/default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed",
+      "comment": "Semantic ref."
+    },
+    {
+      "name": "component/chip/icon/hover",
+      "type": "COLOR",
+      "light": "component/chip/icon/default",
+      "dark": "component/chip/icon/default",
+      "scania-light": "component/chip/icon/default",
+      "scania-dark": "component/chip/icon/default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to default."
+    },
+    {
+      "name": "component/chip/icon/active",
+      "type": "COLOR",
+      "light": "component/chip/icon/default",
+      "dark": "component/chip/icon/default",
+      "scania-light": "component/chip/icon/default",
+      "scania-dark": "component/chip/icon/default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref to default."
+    },
+    {
+      "name": "component/chip/icon/selected/default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/inverse/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Dark mode flips to inverse when selected."
+    },
+    {
+      "name": "component/chip/icon/selected/hover",
+      "type": "COLOR",
+      "light": "component/chip/icon/selected/default",
+      "dark": "component/chip/icon/selected/default",
+      "scania-light": "component/chip/icon/selected/default",
+      "scania-dark": "component/chip/icon/selected/default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/chip/icon/selected/active",
+      "type": "COLOR",
+      "light": "component/chip/icon/selected/default",
+      "dark": "component/chip/icon/selected/default",
+      "scania-light": "component/chip/icon/selected/default",
+      "scania-dark": "component/chip/icon/selected/default",
+      "confidence": "Confirmed",
+      "comment": "Self-ref."
+    },
+    {
+      "name": "component/chip/opacity/disabled",
+      "type": "FLOAT",
+      "light": "traton/opacity/25",
+      "dark": "traton/opacity/25",
+      "scania-light": "scania/opacity/25",
+      "scania-dark": "scania/opacity/25",
+      "confidence": "Confirmed",
+      "comment": "25% opacity for disabled state. 4-mode explicit — Scania bound to scania/opacity/25 (expanded from 2-mode 2026-07-04 per 4-mode-universal convention; Figma push pending)."
+    }
+  ]
+}
