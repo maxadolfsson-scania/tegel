@@ -1,0 +1,313 @@
+{
+  "_description": "Cluster #14 Side Menu — REV 8 2026-07-05 (QA round #14/c). 14 color tokens + 4 dimension tokens (border/radius-default + focus-ring/radius-{primary,secondary,tertiary} 8/7/5; item-radius resolved KEEP 8) + ~30 parked under INTERNAL spacing/typography/radius. Rev 7 captures the canvas-rebind + value-correction pass on 2026-06-11 to 2026-06-15: cross-brand audit against Tegel UI canonical (Scania source-of-truth) corrected link-active values (TRATON grey/150 + blue/900, Scania grey/150 + grey/800), switched subtitle-default from color/text/subtle to color/text/soft (Header precedent over Card, per Tegel canonical `transparent/X/500 (soft)`), rewired link-default to alias drawer surface via component/side-menu/background/default (surface-on-surface pattern, see convention-surface-on-surface), renamed border/indicator-default → border/item/indicator-default with 3-part scope (parallels Header), and locked the cross-cluster fill-on-rect binding pattern for `border/*` indicator/stripe tokens (Side Menu + Header + Message + Toast). 291 canvas binding rebinds executed across 5 source COMPONENT_SETs + wrappers; #48 Sub Page name resolved (state-aware text/item/link-default + current-default). Focus-ring tokens (radius + inset) DEFERRED — coupled with TRATON item-radius decision (8 vs 4); resolution pending QA designer sync. Hover indicator overlay token gap + Selected+Hover/Pressed companion tokens parked for QA. Locked decisions: side-menu local naming, alias semantics / brand primitives only (no consuming other components' tokens), 4-mode universal, Focus via Helper/Focus Visible INSTANCE (35 Default variants), Mobile overlay scrim consumes cluster #4 Overlay via real INSTANCE.",
+  "_cluster": 14,
+  "_jira": "CDEP-1968",
+  "_figmaBranch": "c5xO7saapMnXyl2j5UgzhD",
+  "_status": "REV 8 (2026-07-05, QA reviewer round #14/c) — spec↔branch parity restored: 4 dimension tokens now documented (branch = 18 tokens: 14 color + 4 dimension). Item-radius decision RESOLVED KEEP 8 → border/radius-default + focus-ring/radius-{primary,secondary,tertiary} (8/7/5) shipped; focus-ring RADIUS no longer DEFERRED (INSET still not tokenized). Radius is BRAND-DIVERGENT (Scania values panel-confirmed 2026-07-05, getter blind to Scania): TRATON rounded — item traton/unit/8, ring 8/7/5; Scania sharp-cornered stacked no-gap layout — item scania/unit/0, ring component/-focus/ring/radius/none. Each brand uses its OWN unit primitive (no cross-brand ref); the earlier getter-based 'traton/unit/8 across all modes' reading was the vestigial 26148 modes, corrected here. Other QA parked items: indicator hue teal/gold confirmed intentional; hover/pressed indicator overlay SKIPPED; current+hover STAYS STATIC (no companion tokens); drawer-TRATON solid-vs-transparent PARKED to reviewer + brand designer. Standing watch: 82 icon-color bindings are fragile overrides inside icon/shared/* instances — re-run the property-match sweep after the real-icon swap pass (not yet done as of 2026-07-05; bindings verified intact this round). Verification method: see memory convention-reviewer-check-verification.",
+  "_figmaNodes": {
+    "tegel": "26693:59845",
+    "traton": "26693:59845",
+    "note": "Side Menu page on TRATON Component Library. Cluster work routes through branch fileKey c5xO7saapMnXyl2j5UgzhD. Sources (post-restructure 2026-06-15): Side Menu/Sub Menu Item (40121:14010, 12 variants — reduced from 36 via #50 Icon visibility BOOLEAN-ification), Side Menu/Sub Menu Item UserID (40198:18865, 12 variants — reduced from 18), Side Menu/Sub Menu Nested Item (40121:14254, 24 variants — reduced from 36, renamed from Sub Sub Menu Item), Side Menu/Sub Menu Item Collapsed (40121:14219, 7 variants — reduced from 10), Side Menu/Sub Menu/Action (40198:18774, 6 variants — Dismiss + Collapse merged set), Side Menu/Sub Menu Nested Type (40121:14311 wrapper, 3 variants). Composition wrapper: Side Menu (40121:14320, 6 variants) — axes Breakpoint (Desktop/Mobile, default Desktop) × Icons × Collapsible × Collapsed × Overlay (all True/False). Side Menu/Mobile (was 40404:11255) deleted; Mobile compositions now accessed via Breakpoint=Mobile per Header/Footer Breakpoint pattern."
+  },
+  "_codeStructure": {
+    "note": "Side Menu in code is 10 sub-components (Stencil web components on Scania core; CSS-only partials on tegel-lite TRATON).",
+    "core": [
+      "packages/core/src/components/side-menu (root)",
+      "side-menu-close-button",
+      "side-menu-collapse-button",
+      "side-menu-dropdown",
+      "side-menu-dropdown-list",
+      "side-menu-dropdown-list-item",
+      "side-menu-item",
+      "side-menu-overlay",
+      "side-menu-user",
+      "side-menu-user-image"
+    ],
+    "tegel-lite": [
+      "packages/core/src/tegel-lite/components/tl-side-menu — tl-side-menu.scss, _item.scss, _dropdown.scss, _user.scss, _tl-side-menu-vars.scss"
+    ]
+  },
+  "_resolvedDecisions": {
+    "OD-1": "LOCKED 2026-05-26 — ship side-menu local item-row tokens; do not consume Header's menu-item/* family. Cross-reference for shape parity, not structural sharing.",
+    "OD-2": "LOCKED 2026-05-26 — ship component/side-menu/background/default local (Modal precedent for single stateless surface).",
+    "OD-3": "LOCKED 2026-05-26 — ship side-menu local user-block text tokens. Adopted system-wide title/subtitle pattern: text/title-default + text/subtitle-default (Card / Modal / Header / Footer / Toast precedent). Local variables, not consumed from Header.",
+    "OD-4": "CLOSED 2026-05-26 — nested rendering already modeled as Open=True variant axis on Sub Menu Item; not a BOOLEAN candidate. Block's nested-BOOLEAN pattern is for alternation (nested-even/odd), which Side Menu doesn't have. No token shape change.",
+    "OD-5": "LOCKED 2026-05-26 — 4px current-page stripe ships as component/side-menu/border/indicator-default (cluster #8 indicator-namespace precedent, Message/Toast 4px stripe pattern). Not 'marker-default' as originally drafted.",
+    "OD-6": "CLOSED 2026-05-26 — Side Menu/Item/Dismiss + Side Menu/Sub Menu Item Collapse are item-shaped full-width rows, not standard Button shapes. They consume the same item-row family (now side-menu local per OD-1), not cluster #2 Button.",
+    "OD-7": "LOCKED 2026-05-26 — Mobile Overlay=True scrim is a real Overlay component INSTANCE on canvas (designer swap done 2026-05-26). No side-menu-local overlay tokens.",
+    "OD-8": "CLOSED 2026-05-26 — color/divider → border/divider-default rename done (ID 3126:32460 preserved, 164 bindings intact). Scania bindings already alias color/border/discrete per Variables panel UI; the earlier 'bug' reading was Plugin-API getter-blindness, not real drift.",
+    "OD-30": "LOCKED 2026-05-26, REVISED 2026-06-15 Path A — Helper/Focus Visible INSTANCE embedded on every Default-state variant across 5 interactive Sources. Post-restructure Default-variant counts: Sub Menu Item 3, Sub Menu Nested Item 6, Sub Menu Item UserID 3, Sub Menu Item Collapsed 2, Sub Menu/Action 2 = **16 total** (rev 6 said 35; canvas restructure on 2026-06-15 reduced variants overall and merged Item/Dismiss + Sub Menu Item Collapse into Sub Menu/Action). Focus Visible BOOLEAN exposed at wrapper level per Source. Side Menu/Sub Menu Nested Type skipped (no State axis). All 16 helper INSTANCEs verified present 2026-06-15 via Plugin API walk.",
+    "OD-9": "LOCKED 2026-06-11 — `border/indicator-default` token renamed to `border/item/indicator-default` (added /item scope; 3-part shape parallels Header's `border/menu-item/indicator-default`). Cross-cluster pattern LOCKED: `border/*` indicator/stripe tokens bind as **fill-on-RECTANGLE** across Side Menu + Header + Message + Toast. There is no `border-width` token paired with these color tokens, so true stroke binding would be under-specified (Figma layer's implicit stroke-width would silently determine geometry). Fill-on-RECTANGLE makes the rectangle's own geometry the stripe, fully specified. 16-layer canvas flip executed (stroke → fill across all Selected RECTANGLEs).",
+    "OD-10": "LOCKED 2026-06-11 — `background/item/link-default` aliases `component/side-menu/background/default` (chained local, surface-on-surface pattern; see convention-surface-on-surface). Items inherit drawer color across all 4 modes (visually invisible at a glance, architecturally a real fill paint). Matches Tegel UI canonical (Scania item Default = drawer color, not transparent). Replaces 2026-06-11 the earlier color/background/none × 4 modes value. Cross-cluster reform candidate for Header + Popover at-rest item tokens.",
+    "OD-11": "LOCKED 2026-06-15 — Sub Page name TEXT layers (inside Sub Menu Nested Item source) rebind state-aware to `text/item/link-default` (Default/Hover/Pressed) and `text/item/current-default` (Selected). Pattern: row-background family determines row-text family. Previously bound to direct `color/text/defined` (18 layers) + `color/text/strong` (6 Selected layers) — pre-existing semantic drift, now resolved. 24 source-level rebinds; nested-instance copies inside Sub Menu Item + Sub Menu Item UserID variants inherit via source.",
+    "OD-12": "LOCKED 2026-06-15 — `text/subtitle-default` switched from `color/text/subtle` (rev 6, Card precedent) to `color/text/soft` (Header precedent). Resolved by Tegel UI canonical evidence: Sub Menu Item UserID 'Company name' field binds `transparent/light/500 (soft)` (Scania-Light) + `transparent/dark/300 (soft)` (Scania-Dark) — the `(soft)` label signals soft semantic, not subtle. Card precedent overridden by Tegel UI source-of-truth for Scania.",
+    "OD-13": "LOCKED 2026-06-15 — `Side Menu/Sub Sub Menu Item` COMPONENT_SET renamed to `Side Menu/Sub Menu Nested Item` (id 40121:14254 preserved; all bindings + 36 variants intact). Resolves the awkward double-`Sub` naming. Keeps `Side Menu/` slash prefix for Assets panel grouping (parallel sibling to Sub Menu Item). Designer-canvas action via Plugin API name= setter; component identity stable; instance propagation automatic. Tegel UI Library counterpart (Sub Sub Menu Item Light + Dark) NOT renamed in this cluster (Scania source-of-truth on a separate file; coordinate separately if desired).",
+    "OD-14": "LOCKED 2026-06-15 — Designer post-rev-7 canvas restructure (executed by user after spec rev 7 was finalized). Three changes landed together: (a) **#50 Path A executed** — Sub Menu Item icon visibility moved from explicit Icon=True/False variants to BOOLEAN component properties (`Icon (prefix)`, `Notification`, `Sub menu text` added as BOOLEAN props). Variant count reduced 36 → 12. (b) **Side Menu/Mobile merged into Side Menu wrapper** — the standalone Side Menu/Mobile COMPONENT_SET (40404:11255) deleted; Mobile compositions absorbed into the main Side Menu wrapper (40121:14320). (c) **Variant reductions across other sources** — Sub Menu Nested Item 36→24, Sub Menu Item UserID 18→12, Sub Menu Sub Menu Item Collapsed 10→7. Side Menu/Sub Menu Nested Type + Sub Menu/Action unchanged. Total Default-state variants with Helper/Focus Visible INSTANCE: 35 → 16 (all 16 verified present). 23 pre-existing instance-level overrides on Side Menu/Mobile's nested icon vectors (stuck on `color/icon/strong` despite source rebind) cleared via Plugin API value-match writes before the merger. Post-restructure sweep found only 6 remaining stuck vectors, all in Frame 13 preview frames (out of cluster scope per cluster-scope rule).",
+    "OD-15": "LOCKED 2026-06-15 — Side Menu wrapper axis migration to Breakpoint pattern (designer-executed follow-up to OD-14 merger). Replaces the muddled `Icons=Mobile, Collapsible=False/True` axis-value approach (intermediate state after Mobile merger) with a proper 5-axis matrix: **Breakpoint** (Desktop/Mobile, default Desktop) × **Icons** (True/False) × **Collapsible** (True/False) × **Collapsed** (True/False) × **Overlay** (True/False). 6 variants materialized: 4 Desktop combinations + 2 Mobile (Mobile/Collapsible=False/Overlay=False + Mobile/Collapsible=True/Overlay=True for scrim case). Pattern parity: matches Header + Footer Breakpoint axis convention. No Figma UI warnings post-migration.",
+    "OD-16": "LOCKED 2026-06-17 — Source COMPONENT_SET naming aligned with QA-agreed convention (carried over from Header rename discussion). All item-row sources now share `Side Menu/Sub Menu` as the family prefix; positional modifier `Nested` marks the nested family. Renames executed via Plugin API name= setter (IDs + bindings + variants preserved): (a) `Side Menu/Nested Sub Menu Item` → `Side Menu/Sub Menu Nested Item` (rewrites OD-13's earlier rename direction; cleaner because `Sub Menu Item` stays as recognisable base + `Nested` reads as positional adjective rather than awkward double-Sub repetition); (b) `Side Menu/Item UserID` → `Side Menu/Sub Menu Item UserID` (adds family prefix consistency); (c) `Side Menu/Item Collapsed` → `Side Menu/Sub Menu Item Collapsed` (same); (d) `Side Menu/Type` → `Side Menu/Sub Menu Nested Type` (clarifies that `Type` is the wrapper for the nested family, not a generic Side Menu type wrapper). `Side Menu/Sub Menu Item` (top-level base) and `Side Menu/Sub Menu/Action` (action category, distinct slash separator) unchanged. Net pattern: `Side Menu/Sub Menu {modifier} {kind}` for sources; `Side Menu/Sub Menu/Action` keeps slash separator for the action category. Tegel UI Library counterparts NOT renamed in this cluster (separate file, Scania source-of-truth — coordinate separately if desired)."
+  },
+  "_notes": [
+    "Naming shape follows convention-naming-shape (LOCKED) — {property}/[context/]{descriptor} with property-agnostic 2-part descriptors. Item-row family uses nested item/ context with link-default / link-hover / link-active / current-default descriptors (mirrors Header's nav-item/link-* shape, locally scoped under item/). Avoids 3-part leaf names per project precedent. border/item/indicator-default uses 3-part scope to parallel Header's border/menu-item/indicator-default (added 2026-06-11).",
+    "Drawer surface = component/side-menu/background/default (Modal precedent for single stateless surface). No -default escape from suffix-rule needed here — Modal ships with the same shape and Side Menu drawer is similarly the component's main canvas.",
+    "Item-row at-rest background uses surface-on-surface pattern (LOCKED 2026-06-11, see convention-surface-on-surface). background/item/link-default aliases the cluster's own background/default token — items inherit drawer color across all 4 modes. Visually value-coincident with drawer (invisible at a glance), architecturally a real fill paint. Matches Tegel UI canonical (Scania item Default = drawer color, not transparent). Cross-cluster reform candidate: Header + Popover at-rest item tokens currently use color/background/none and would benefit from the same rewire.",
+    "User-block text uses the system-wide title-default / subtitle-default pattern (Card / Modal / Header / Footer / Toast). subtitle-default = color/text/soft (Header precedent, OD-12) — overrides initial Card precedent of color/text/subtle per Tegel UI canonical evidence (Sub Menu Item UserID 'Company name' field binds soft semantic, not subtle).",
+    "Item-row family shared across all interactive Sources (Sub Menu Item, Sub Menu Nested Item, Sub Menu Item UserID, Sub Menu Item Collapsed, Sub Menu/Action). Per-Source structural distinction (padding, indentation, font-size for sub-pages) lives in layout + parked spacing/typography tokens.",
+    "Background ships 4 state tokens (link-default / link-hover / link-active / current-default). text + icon ship link-default + current-default only — per convention-variant-axis-preservation, surface-resident properties follow canvas evidence; no speculative hover/active companions unless canvas shows divergence.",
+    "No stacked tokens (rev 6 LOCKED, carried to rev 7): when an item is current AND hover, runtime overlay handles the compound state. Important caveat: current-default + link-hover currently both alias color/background/layer-01 (value-coincident). Compound Selected+Hover renders as Selected — hover feedback gets visually suppressed on current-page items. Documented as the Selected+Hover companion tokens parked decision (see _handoverFlags) — designer + dev may revisit if hover-feedback-on-current is needed.",
+    "Focus via Helper/Focus Visible INSTANCE pattern (Accordion/Button/Chip/Checkbox precedent). 35 Default variants embed the helper. Focus-ring RADIUS tokens RESOLVED 2026-07-05 (kept 8 → 8/7/5 stepping shipped as border/radius-default + focus-ring/radius-{primary,secondary,tertiary}); only INSET remains untokenized. Historical rationale — was coupled with the TRATON item-radius decision (currently 8 per radius/radius-default, possibly intended 4 per the helper's built-in 5/4/2 stepping anatomy). QA designer sync planned to resolve both jointly. For now: all 35 helper INSTANCEs set to single static configuration (Inset=True, Radius=True) — visible-but-not-perfectly-aligned in either brand. Canvas-fidelity for the focus state accepted as approximation; demo/code remains source of truth for actual brand-divergent behavior. See _divergence + _handoverFlags.",
+    "Mobile Overlay=True scrim is a real cluster #4 Overlay component INSTANCE (canvas swap done 2026-05-26, verified via Plugin API). No side-menu-local overlay tokens.",
+    "border/divider-default carries ~164 per-row stroke bindings on Sub Menu Item Inner content. Per-row rendering exists in code (Scania core Stencil via slot:not([name])::slotted(*); tegel-lite via .tl-side-menu__upper-list > *). Verified rendering: per-row dividers visible in Scania (color/border/discrete), invisible in TRATON (transparent primitive).",
+    "border/item/indicator-default (renamed 2026-06-11) applies to 4px left-edge stripe on Selected=True item variants. Cross-cluster pattern LOCKED: binds as FILL on the Selected RECTANGLE across Side Menu + Header + Message + Toast (border/* namespace captures decorative-border semantics, not strict property-match). Reason: no paired border-width token exists; fill-on-RECTANGLE makes rectangle geometry the stripe, fully spec'd.",
+    "Container components don't get text/* (convention-surface-only-no-text-token) — drawer is a container; text bindings live in items + user block, not on background/default.",
+    "Methodology lesson from this cluster (2026-06-11): Plugin API instance fill clears match-source-value cases lead to lazy revalidation (override marker self-clears on next Figma re-evaluation); distinct-value writes keep the marker. resetOverrides() is all-or-nothing. Designer UI per-property reset is the immediate equivalent of source-matching writes. Pre-handover audit must re-probe after delay before flagging instances for designer follow-up. See figma-plugin-api-override-reset-limitation.md (revised) + feedback-ask-about-designer-actions.md."
+  ],
+  "_divergence": [
+    "Focus-ring RADIUS tokens RESOLVED 2026-07-05 (QA round #14/c) — item radius kept at 8; shipped as border/radius-default + focus-ring/radius-{primary,secondary,tertiary} (8/7/5), i.e. option (a) below. Focus-ring INSET still not tokenized (helper single static config). Historical deferral context follows. Coupling: the focus-ring token design is dependent on the TRATON item-radius decision (currently radius/radius-default=8; Helper/Focus Visible's built-in stepping 5/4/2 suggests TRATON items may have been intended at 4). Until the item-radius is locked, any focus-ring token risks visual mis-alignment. Path resolution options for the QA designer sync: (a) item-radius stays 8 → coin 3 side-menu local FLOAT tokens for per-layer 8/7/6 stepping per brand; (b) item-radius moves to 4 → coin 1 BOOLEAN token to toggle helper's Radius variant per brand (helper renders 5/4/2 naturally); (c) hybrid solution. Canvas state today: all 35 helper INSTANCEs at single static config (Inset=True, Radius=True) — visible focus ring in both brand modes, not perfectly aligned with either brand's intent.",
+    "Focus-ring FAMILY (offset, width, spacing) — the Helper/Focus Visible component exposes only Radius + Inset as variant axes. Offset / width / spacing are not tokenizable via this helper today. If brand-divergent ring anatomy needs to extend beyond Radius+Inset (e.g. TRATON wants a wider focus stroke than Scania), that requires either richer helper variants from the design-system team or per-Source canvas customization on each consumer. Not a Side Menu cluster concern.",
+    "Item current-default and item link-hover render the same value (color/background/layer-01). Spec rev 6 documented this as 'May be intentional or drift; designer decision required.' Rev 7 resolution (OD-12 territory): runtime overlay composition was the original plan, but with value-coincidence the compound Selected+Hover state renders identically to Selected. See _handoverFlags entry for Selected+Hover/Pressed companion tokens. Either accept (no Hover feedback on current-page items), or coin current-hover / current-pressed companion tokens with values distinct from link-hover/link-active. Designer + dev call at QA sync.",
+    "Per-state text/icon companions intentionally omitted from first draft. If walkthrough surfaces canvas evidence of per-state text/icon divergence (e.g. current-page text in brand-blue), add companion tokens then."
+  ],
+  "_parked": [
+    {
+      "candidate": "component/side-menu/text/items/* (6 typography tokens)",
+      "reason": "Out of cluster #14 color-only scope. Parked to typography track CDEP-2019. v1.3 rename text/ → type/ deferred; items → item descriptor cleanup deferred."
+    },
+    {
+      "candidate": "component/side-menu/space/* (~20 spacing tokens)",
+      "reason": "Out of cluster #14 color-only scope. Parked to spacing track. v1.3 rename space/ → size/ deferred. selected-marker-* → current-marker-* descriptor rename deferred (alignment with convention-selected-vs-current)."
+    },
+    {
+      "candidate": "component/side-menu/radius/radius-default (988 bindings, load-bearing — the ITEM corner radius)",
+      "reason": "RESOLVED 2026-07-05 (QA round #14/c): renamed to component/side-menu/border/radius-default (v1.3 border/ property segment; Block/Modal/Popover/Card precedent) — radius/radius-default no longer present on branch, item radius kept at 8. See the border/radius-default entry in variables[]. Distinct from the focus-ring/radius-{primary,secondary,tertiary} tokens which address the focus ring, not the item corner."
+    },
+    {
+      "candidate": "component/side-menu/size/icon + size/icon-close",
+      "reason": "FLOAT size tokens — out of color-only scope. Parked to spacing track. -default suffix missing per convention-state-suffix; add at rename."
+    },
+    {
+      "candidate": "component/side-menu/space/top-level/horizontal-gap-padding (DEAD)",
+      "reason": "Zero bindings in cluster scope. Deprecate candidate. Verify no out-of-cluster instance bindings before formal delete."
+    },
+    {
+      "candidate": "component/side-menu/text/items/text-transform (DEAD)",
+      "reason": "Zero bindings. String literal 'none'. Deprecate candidate; verify out-of-cluster instances before delete."
+    }
+  ],
+  "_handoverFlags": [
+    "TRATON ↔ Tegel UI Library state parity: Item Close has Default + Hover + Pressed in Tegel UI Library (Scania source-of-truth) + Scania core Stencil code; only Default + Pressed in TRATON file + tegel-lite. Each brand internally consistent; brands diverge. Designer call: harmonize or accept divergence.",
+    "Item/Dismiss missing Hover + Focus path: Focus solved by Path A Focus Visible helper. Hover variant gap remains — couples with TRATON ↔ Tegel UI parity decision.",
+    "Canvas-vs-code architectural alignment (Path B): in code, side-menu-collapse-button + side-menu-user are wrapper-less / display-only; focus + state styling captured by parent tds-side-menu-item. Canvas treats them as standalone interactive Sources. Path A (LOCKED) keeps canvas-faithful; Path B would restructure to slot-content-only Sources + single shared Side Menu/Item Source. Post-cluster designer review.",
+    "Engineering follow-up #35: tegel-lite _dropdown.scss:93-96 uses :focus instead of :focus-visible — a11y discrimination missing.",
+    "Engineering follow-up #51 (multi-brand migration on Scania core): packages/core/src/components/side-menu/side-menu-vars.scss currently uses Scania-specific `--tds-*` primitives directly (single-brand legacy pattern). Spec rev 7's new component/side-menu/* tokens (4-mode brand-aware) are the migration target. Phase 6 dev work: replace `--tds-grey-*` / `--tds-blue-*` direct refs with `--component-side-menu-*` tokens that consume brand-aware semantics — same pattern tegel-lite already uses via `--color-*` vars. The token pipeline's job (this cluster + cross-cluster) is to provide the brand-aware token surface; dev work implements consumption on both code paths (Scania core + tegel-lite). NOT a 'palette gap' (brands have independent primitives by design, asymmetric shade-IDs are expected). This is the architectural transition itself. Likely systemic across `*-vars.scss` files — flagged here for side-menu; same pattern present in header-vars.scss (cluster #8) and others.",
+    "Focus-ring RADIUS RESOLVED 2026-07-05 (QA round #14/c): TRATON item radius kept at 8; focus-ring shipped as border/radius-default + focus-ring/radius-{primary,secondary,tertiary} (8/7/5 stepping), option (a). Focus-ring INSET not tokenized (helper single static config). Canvas state today: 35 helper INSTANCEs at single static config (Inset=True, Radius=True) — visible focus in both brands but not perfectly aligned with either brand's true intent. NB: radius IS shape (not spacing) — the audit's parking under spacing track is a grey area that this discussion may revisit.",
+    "30 parked-track conformance flags from audit (typography rename text/ → type/; spacing rename selected-marker → current-marker; profile vs user vocabulary; 2 deprecate candidates) — addressed in typography + spacing tracks, not cluster #14.",
+    "Hover indicator overlay token gap (PARKED for QA): Scania core side-menu-item.scss implements a 4px ::before left stripe in :hover (--tds-side-menu-item-hover-indicator), :active (--tds-side-menu-item-pressed-indicator), AND :selected (border-left). TRATON tegel-lite _item.scss ships stripe ONLY for &--selected; hover and active only shift bg color. Brand-divergent code shape. Tegel UI Figma 'Hover indicator' layer corresponds to the Scania ::before. If tokenized: 2 new brand-divergent 4-mode tokens (border/item/indicator-hover + indicator-pressed) — TRATON modes resolve to transparent/invisible; Scania modes resolve to grey/350 + grey/400 (Hover) and grey/850 + grey/50 (Pressed) per Tegel UI canonical. Canvas verification needed before tokenizing: does branch's Sub Menu Item Hover/Pressed variants have the 'Hover indicator' layer? Designer + dev call at QA sync.",
+    "Selected+Hover/Pressed companion tokens (PARKED for QA): both brands render Selected+Hover as Selected today (no distinct treatment). Scania SCSS cascade: &-selected:not(&-active) declared AFTER :hover → Selected wins on Hover. TRATON SCSS: explicit &--selected { &:hover { background: var(--side-menu-item-state-selected-hover, var(--side-menu-item-state-selected)) } } — future divergence hook with fallback. No UX gap today (Selected stripe carries state cue); current-default + link-hover value-coincidence means runtime overlay composition is visually invisible. Designer call: accept current behavior OR plan future divergence + spec the current-hover / current-pressed companion tokens now (with values distinct from link-hover/link-active).",
+    "TRATON indicator hue family (inherited from Header cluster #8): border/item/indicator-default renders teal in TRATON-Light (traton/color/blue/500) and gold in TRATON-Dark (traton/color/yellow/400) — different hue families across modes within the same brand. Confirm designer intent at branch handoff. Scania L→D steps blue/400 → blue/300 (uniform within brand).",
+    "Cross-cluster surface-on-surface retrofit candidates (LOCKED 2026-06-11 here; backlog elsewhere): Header (cluster #8) menu-item/link-default + nav-item/link-default, Popover (cluster #16) background/link/{primary,secondary}-default — currently bound to color/background/none. Side Menu's new surface-on-surface pattern (link-default aliases drawer surface) is a cleaner shape. Low priority; align when those clusters are next touched.",
+    "Wrapper-instance emoji-token cleanup (verified 2026-06-15): two Side Menu wrapper variants previously carried a fill override bound to component/🔴🔵 side menu/states/default (emoji-prefixed legacy token outside cluster scope) on their child Sub Menu/Action + Sub Menu Item Collapsed INSTANCEs. Surgical Plugin API clear executed; override markers self-cleared via Figma lazy revalidation (Sub Menu/Action partial — fills/boundVariables/layoutPositioning cleared, height/width preserved as intentional wrapper sizing) and via user manual Reset all changes (Sub Menu Item Collapsed fully cleared). Architecturally clean post-handover; no further action needed.",
+    "Figma override-tracking nuance (methodology, captured 2026-06-15): Plugin API instance.fills = source_matching_value → marker clears via lazy revalidation. distinct_value → marker persists. resetOverrides() nukes all. Designer UI per-property reset is immediate equivalent of source-matching writes. Pre-handover audit must re-probe after delay before flagging instances for designer follow-up. See figma-plugin-api-override-reset-limitation.md."
+  ],
+  "_focusHelperWorklist": {
+    "pattern": "Each interactive Source's Default-state variants embed a Helper/Focus Visible INSTANCE. Focus Visible BOOLEAN exposed at wrapper level. Accordion/Button/Chip/Checkbox precedent.",
+    "needed_total": 16,
+    "verified_present_2026_06_15": true,
+    "sources": {
+      "Side Menu/Sub Menu Item": "3 Default variants (post-restructure; was 12 in rev 6)",
+      "Side Menu/Sub Menu Nested Item": "6 Default variants (post-restructure; was 12 in rev 6)",
+      "Side Menu/Sub Menu Item UserID": "3 Default variants (post-restructure; was 6 in rev 6)",
+      "Side Menu/Sub Menu Item Collapsed": "2 Default variants (post-restructure; was 3 in rev 6)",
+      "Side Menu/Sub Menu/Action": "2 Default variants — merged set (Dismiss + Collapse); rev 6 had separate Sub Menu Item Collapse + Item/Dismiss with 1 each"
+    },
+    "skip": "Side Menu/Sub Menu Nested Type — no State axis (layout wrapper only)."
+  },
+  "_dependsOn": [
+    "Header cluster #8 — for menu-item/* shape REFERENCE only (not consumption per OD-1). Header is In Progress on its own branch 2zP6sIJbTxI6USqaYmbLd7; the Side Menu branch carries pre-cluster-#8 snapshot of Header tokens. Header naming patterns inform Side Menu shape via tokens/specs/header.json.",
+    "Shared -focus utility group — RELEASED. Cluster #14 ships 3 focus-ring RADIUS tokens as of QA round #14/c (2026-07-05): border/radius-default + focus-ring/radius-{primary,secondary,tertiary} (8/7/5; item radius resolved KEEP 8). No shared -focus utility additions (side-menu-local). Helper/Focus Visible INSTANCE (24532:4646) embedded in 35 Default variants with single static configuration (Inset=True, Radius=True). No -focus utility additions this cluster.",
+    "Button cluster #2 — RELEASED. Not consumed (Close + Collapse are item-rows, not Buttons per OD-6).",
+    "Overlay cluster #4 — In Review. Consumed via real component INSTANCE on Mobile Overlay=True (canvas, not token-side per OD-7)."
+  ],
+  "component": "side-menu",
+  "variables": [
+    {
+      "name": "component/side-menu/background/default",
+      "type": "COLOR",
+      "light": "color/background/base",
+      "dark": "color/background/base",
+      "scania-light": "color/background/base",
+      "scania-dark": "color/background/base",
+      "confidence": "Confirmed (canvas probe 2026-05-26) — but TRATON-modes-handover-flag",
+      "comment": "Drawer surface — the component's main canvas. Applied to Side Menu (40121:14320) + Side Menu/Mobile (40404:11255) variant roots. Single stateless surface (Modal precedent: component/modal/background/default). Aliases color/background/base — semantic resolves per brand × mode. Scania bindings UI-VERIFY-NEEDED via Variables panel (Plugin API getter-blindness on extended-collection writes). ⚠ HANDOVER FLAG: TRATON modes may actually want color/background/none (transparent — drawer adopts page-level surface rather than rendering its own elevated layer). Canvas probe today shows color/background/base; QA designer to confirm whether base or none is correct for TRATON brand intent."
+    },
+    {
+      "name": "component/side-menu/background/item/link-default",
+      "type": "COLOR",
+      "light": "component/side-menu/background/default",
+      "dark": "component/side-menu/background/default",
+      "scania-light": "component/side-menu/background/default",
+      "scania-dark": "component/side-menu/background/default",
+      "confidence": "Confirmed (Tegel UI canonical + architectural fill-paint requirement)",
+      "comment": "Item row at-rest surface. Aliases the cluster's own drawer surface token (`component/side-menu/background/default`), so items inherit drawer-color in every brand × mode. Resolves to: TRATON-L cream (traton/color/grey/50), TRATON-D deep blue (traton/color/blue/1000), Scania-L white, Scania-D grey/950 — Scania values match Tegel UI Library Sub Menu Item Default-state canonical exactly. Replaces 2026-06-11 the earlier `color/background/none` (literal transparent) value. Reason for change: literal-transparent left items without an actual fill paint, which read as 'missing fill / poor communication' in Scania visual review even though drawer-show-through rendered correctly. Binding to the drawer token gives items a real fill paint (visually equivalent — same color as drawer in all modes), provides reliable click-target geometry, and keeps the cluster's surface token graph coherent (items track drawer changes automatically). Applied to Default-state variants on Sub Menu Item, Sub Menu Nested Item, Sub Menu Item UserID, Sub Menu Item Collapsed, Sub Menu/Action (Dismiss + Collapse types)."
+    },
+    {
+      "name": "component/side-menu/background/item/link-hover",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed (canvas probe 2026-05-26)",
+      "comment": "Item row on hover. Contrasting overlay on drawer surface (drawer = background/base; hover = layer-01 = next elevation step). Same alias across 4 modes — semantic handles brand resolution. Scania bindings UI-VERIFY-NEEDED."
+    },
+    {
+      "name": "component/side-menu/background/item/link-active",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "traton/color/blue/900",
+      "scania-light": "scania/color/blue/700",
+      "scania-dark": "scania/color/blue/800",
+      "confidence": "Confirmed (mirrors Header sub-link-active)",
+      "comment": "Item row on active/pressed. Mirrors Header's component/header/background/menu-item/sub-link-active values exactly — that token was created 2026-05-26 in cluster #8 with explicit awareness it would land in cluster #14 (Sub Menu Nested Item, Mobile Nav drawer 'cluster #14 territory' per Header's comment). Mixed-style aliasing: semantic on TRATON-Light, direct brand primitives on the other three modes. Replaces canvas-today INTERNAL/color__wip/UNSORTED/background/surface/100 (anti-pattern per convention-internal-tokens). QA-designer can adjust bindings if proposed values don't fit the intended pressed treatment — active state is least-priority for cluster #14 a11y treatment per user 2026-05-26."
+    },
+    {
+      "name": "component/side-menu/background/item/current-default",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed (Header current-default precedent)",
+      "comment": "aria-current='page' item background at rest. Aliases color/background/layer-01 — value-coincident with item/link-hover at creation, intentionally separate token so the two concepts (current page marker vs hover overlay) can diverge in the future (Header background/menu-item/current-default precedent — exact same shape). No current-hover / current-active companions ship today: runtime overlay composes the compound case (same item current AND hovered) by layering item/link-hover on top. Cross-item case (one item hovered, another current) is naturally non-conflicting — different items, different states, side-by-side. Future-divergence headroom: coin current-hover only if canvas reveals a specific compound visual that link-hover overlay can't render."
+    },
+    {
+      "name": "component/side-menu/border/divider-default",
+      "type": "COLOR",
+      "light": "traton/color/transparent/invisible/light",
+      "dark": "traton/color/transparent/invisible/dark",
+      "scania-light": "color/border/discrete",
+      "scania-dark": "color/border/discrete",
+      "confidence": "Confirmed (Variables panel UI verified 2026-05-26)",
+      "comment": "Per-row bottom border on item rows. 164 bindings on Sub Menu Item > Inner content [strokes]. Brand-divergent by design: TRATON renders invisible (transparent primitive); Scania renders visible discrete border. Cross-brand mode-split shape per convention-brand-mode-split-single-token. Renamed from color/divider 2026-05-26 (ID 3126:32460 preserved)."
+    },
+    {
+      "name": "component/side-menu/border/item/indicator-default",
+      "type": "COLOR",
+      "light": "traton/color/blue/500",
+      "dark": "traton/color/yellow/400",
+      "scania-light": "scania/color/blue/400",
+      "scania-dark": "scania/color/blue/300",
+      "confidence": "Confirmed (mirrors Header indicator-default; cross-cluster fill-on-rect lock)",
+      "comment": "4px left-edge stripe rendering current-page indicator on Selected=True item variants. 3-part shape `border/{scope}/indicator-default` parallels Header's `border/menu-item/indicator-default`. **Canvas binding: FILL on the Selected RECTANGLE, NOT stroke.** Cross-cluster pattern (LOCKED): `border/*` indicator/stripe tokens bind as fill-on-rect across Header + Message + Toast + Side Menu. Reasoning: there is no paired `border-width` token in spec, so a true stroke binding would be under-specified (Figma layer's implicit stroke-width would silently determine geometry); fill-on-RECTANGLE makes the rectangle's own geometry the stripe, fully specified. Renamed 2026-06-11 from `border/indicator-default` to add `/item` scope. 16-layer canvas flip 2026-06-11: stroke binding removed across all Selected RECTANGLEs (Sub Menu Item Collapsed 1 + Sub Menu Item UserID 3 + Sub Menu Item 6 + Sub Menu Nested Item 6); fill binding added where missing. Direct brand-primitive aliasing per convention-brand-primitive-aliases (4-mode, explicit per-brand). Replaces canvas-original INTERNAL/color__wip/border/accent/focus. ⚠ FLAG FOR DESIGNER (inherited from Header): TRATON Light renders teal (traton/color/blue/500) while TRATON Dark renders gold (traton/color/yellow/400) — different hue families across modes within the same brand. Confirm intent at branch handoff."
+    },
+    {
+      "name": "component/side-menu/text/item/link-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed (cluster precedent — Modal, Card, Popover all use color/text/strong)",
+      "comment": "Item label color at rest. Same semantic across all 4 modes. Applied to TEXT nodes on item Source variants. No hover/active companions in first draft — text follows canvas evidence per convention-variant-axis-preservation."
+    },
+    {
+      "name": "component/side-menu/text/item/current-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed (canvas probe 2026-05-26)",
+      "comment": "aria-current='page' item label color. Value-coincident with item/link-default — canvas evidence shows no per-state text color divergence. Ships separately for matrix-shape lever (future per-brand divergence allowed without re-spec)."
+    },
+    {
+      "name": "component/side-menu/text/title-default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed (Card / Modal / Header / Footer / Toast precedent)",
+      "comment": "User block name/title on Sub Menu Item UserID. Adopts the system-wide title-default vocabulary established by card / modal / header / footer / toast. Aliased to color/text/strong (semantic handles brand × mode resolution)."
+    },
+    {
+      "name": "component/side-menu/text/subtitle-default",
+      "type": "COLOR",
+      "light": "color/text/soft",
+      "dark": "color/text/soft",
+      "scania-light": "color/text/soft",
+      "scania-dark": "color/text/soft",
+      "confidence": "Confirmed (Tegel UI canonical 2026-06-15 — Header precedent)",
+      "comment": "User block role/email subtitle on Sub Menu Item UserID. Aliases color/text/soft (Header precedent for subtitle role). Switched 2026-06-15 from color/text/subtle (rev 6 Card precedent) to color/text/soft (rev 7) per Tegel UI canonical evidence: Sub Menu Item UserID 'Company name' field binds `transparent/light/500 (soft)` (Scania-Light) + `transparent/dark/300 (soft)` (Scania-Dark) — the `(soft)` label signals soft semantic, not subtle. See OD-12. Brand resolution handled by the semantic; same alias across all 4 modes."
+    },
+    {
+      "name": "component/side-menu/icon/item/link-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed (cluster precedent — Popover icon/link/primary-default)",
+      "comment": "Item leading icon + chevron at-rest color. Same semantic across all 4 modes. Applied to ICON nodes on item Source variants. No hover/active companions in first draft — icon follows canvas evidence."
+    },
+    {
+      "name": "component/side-menu/icon/item/current-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed (canvas probe 2026-05-26)",
+      "comment": "aria-current='page' item icon color (leading icon + chevron). Value-coincident with icon/item/link-default — canvas evidence shows no per-state icon color divergence. Ships separately for matrix-shape lever."
+    },
+    {
+      "name": "component/side-menu/icon/dismiss-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed (Modal icon/dismiss-default precedent)",
+      "comment": "Dismiss button (X) icon color on Item/Dismiss. Mirrors Modal icon/dismiss-default exactly."
+    },
+    {
+      "name": "component/side-menu/border/radius-default",
+      "type": "FLOAT",
+      "light": "traton/unit/8",
+      "dark": "traton/unit/8",
+      "scania-light": "scania/unit/0",
+      "scania-dark": "scania/unit/0",
+      "confidence": "Confirmed (Scania values from Variables panel 2026-07-05; getter is blind to Scania modes)",
+      "comment": "Item corner radius — BRAND-DIVERGENT. TRATON: traton/unit/8 (=8, rounded items). Scania: scania/unit/0 (=0, sharp corners — Scania Side Menu is a stacked, no-gap layout). Each brand uses its OWN unit primitive (no cross-brand ref). RESOLVED at QA sync: TRATON keeps 8. The v1.3-conformant successor to the parked component/side-menu/radius/radius-default (border/ property segment; Block/Modal/Popover/Card precedent) — radius/radius-default no longer present on the branch. Anchors the focus-ring: focus-ring/radius-primary matches the item corner per brand."
+    },
+    {
+      "name": "component/side-menu/focus-ring/radius-primary",
+      "type": "FLOAT",
+      "light": "traton/unit/8",
+      "dark": "traton/unit/8",
+      "scania-light": "component/-focus/ring/radius/none",
+      "scania-dark": "component/-focus/ring/radius/none",
+      "confidence": "Confirmed (Scania values from Variables panel 2026-07-05; getter is blind to Scania modes)",
+      "comment": "Outer focus-ring radius — BRAND-DIVERGENT. TRATON: traton/unit/8 (=8) so the ring hugs the rounded 8px item corner; Layer 1 of the 8/7/5 stepping (Helper/Focus Visible anatomy). Scania: component/-focus/ring/radius/none (=0) — Scania items are sharp-cornered (stacked no-gap), so the ring is square via the shared -focus utility. Resolves the rev-7 DEFERRED focus-ring radius tokens via option (a). INTENTIONAL asymmetry (accepted by Max 2026-07-05): TRATON primary aliases the traton/unit/8 primitive while secondary/tertiary are hard-coded literals (7/5) — do not 'normalise' to all-alias or all-literal."
+    },
+    {
+      "name": "component/side-menu/focus-ring/radius-secondary",
+      "type": "FLOAT",
+      "light": 7,
+      "dark": 7,
+      "scania-light": "component/-focus/ring/radius/none",
+      "scania-dark": "component/-focus/ring/radius/none",
+      "confidence": "Confirmed (Scania values from Variables panel 2026-07-05; getter is blind to Scania modes)",
+      "comment": "Middle focus-ring radius — BRAND-DIVERGENT. TRATON: 7 (literal), Layer 2 of the 8/7/5 stepping. Scania: component/-focus/ring/radius/none (=0, sharp corners)."
+    },
+    {
+      "name": "component/side-menu/focus-ring/radius-tertiary",
+      "type": "FLOAT",
+      "light": 5,
+      "dark": 5,
+      "scania-light": "component/-focus/ring/radius/none",
+      "scania-dark": "component/-focus/ring/radius/none",
+      "confidence": "Confirmed (Scania values from Variables panel 2026-07-05; getter is blind to Scania modes)",
+      "comment": "Inner focus-ring radius — BRAND-DIVERGENT. TRATON: 5 (literal), Layer 3 of the 8/7/5 stepping. Scania: component/-focus/ring/radius/none (=0, sharp corners)."
+    }
+  ]
+}
