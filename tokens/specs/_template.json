@@ -1,0 +1,45 @@
+{
+  "_description": "Component spec template for push-spec-to-figma.js",
+  "_valueFormats": {
+    "variableAlias": "String — name of existing variable (e.g., 'color/text/strong')",
+    "hexColor": "String — '#rrggbb' or '#rrggbbaa' (e.g., '#0e1013')",
+    "float": "Number — unitless value (e.g., 4, 0.38, 999)"
+  },
+  "_collections": {
+    "traton": "VariableCollectionId:3:2 — modes: Light (68:0), Dark (572:1)",
+    "scania": "See Figma for collection ID — same mode IDs"
+  },
+  "component": "example",
+  "variables": [
+    {
+      "name": "component/example/background/default",
+      "type": "COLOR",
+      "light": "color/background/base",
+      "dark": "color/background/base",
+      "scania-light": "color/background/base",
+      "scania-dark": "color/background/base",
+      "confidence": "Confirmed",
+      "comment": "Same across brands"
+    },
+    {
+      "name": "component/example/text/default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/inverse/strong",
+      "scania-dark": "color/text/inverse/strong",
+      "confidence": "Confirmed",
+      "comment": "Scania uses inverse refs due to dark surface"
+    },
+    {
+      "name": "component/example/border/radius-default",
+      "type": "FLOAT",
+      "light": 4,
+      "dark": 4,
+      "scania-light": 4,
+      "scania-dark": 4,
+      "confidence": "Confirmed",
+      "comment": "Unitless. Flat border/radius-{variant} shape (convention-border-radius-naming; matches shipped Block/Card/Modal/Popover) — NOT the nested border/radius/{variant}."
+    }
+  ]
+}

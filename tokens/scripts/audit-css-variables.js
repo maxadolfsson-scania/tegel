@@ -132,7 +132,10 @@ function auditCssVariables() {
   console.log(`Found ${webComponentFiles.length} web component var files`);
 
   for (const file of webComponentFiles) {
-    const componentName = file.match(/components\/([^/]+)\//)?.[1] || 'unknown';
+    // Derive slug from the var file basename (e.g. `inline-tabs-vars.scss` -> `inline-tabs`).
+    // This handles nested-directory components (e.g. components/tabs/inline-tabs/) where the
+    // previous first-directory-segment regex would have collapsed all variants to the parent dir.
+    const componentName = file.match(/([^/]+)-vars\.scss$/)?.[1] || 'unknown';
     const data = extractVariables(file);
     results.webComponents.push({
       component: componentName,
@@ -147,11 +150,13 @@ function auditCssVariables() {
   console.log(`Found ${tegelLiteFiles.length} tegel-lite var files`);
 
   for (const file of tegelLiteFiles) {
-    const componentName = file.match(/components\/([^/]+)\//)?.[1] || 'unknown';
-    const data = extractVariables(file);
+    // Derive slug from file basename; strip the optional leading `_` (Sass partial prefix) and the
+    // `tl-` brand prefix so the slug matches the corresponding web component (e.g.
+    // `_tl-folder-tabs-vars.scss` -> `folder-tabs`).
+    const componentName = file.match(/([^/]+)-vars\.scss$/)?.[1] || 'unknown';
     results.tegelLite.push({
-      component: componentName.replace('tl-', ''),
-      ...data
+      component: componentName.replace(/^_/, '').replace(/^tl-/, ''),
+      ...extractVariables(file)
     });
   }
 

@@ -24,33 +24,54 @@ const AUDIT_BASE_DIR = join(ROOT_DIR, 'tokens', 'audit');
 
 // Allowed property groups (property-first position after component name)
 const VALID_PROPERTIES = new Set([
-  'background', 'text', 'border', 'icon',
+  'background', 'text', 'border', 'icon', 'opacity',
+]);
+
+// Dimension properties — valid for specific components (e.g. spinner)
+const DIMENSION_PROPERTIES = new Set([
+  'size', 'stroke',
 ]);
 
 // Ambiguous property names that should be replaced with specific ones
 const AMBIGUOUS_PROPERTIES = new Set([
-  'color', 'foreground', 'fill', 'stroke',
+  'color', 'foreground', 'fill',
 ]);
 
 // Allowed state suffixes
 const VALID_STATES = new Set(['default', 'hover', 'active']);
 
 // Forbidden implementation detail words (Rule 1: Semantic Over Appearance)
+// Note: 'expressive' was moved to KNOWN_PURPOSES — it's a structural mode
+// in Header (functional vs expressive) and Divider (brand-colored variant).
 const FORBIDDEN_APPEARANCE = new Set([
-  'filled', 'outlined', 'ghost', 'gradient', 'expressive', 'decorative',
+  'filled', 'outlined', 'ghost', 'gradient', 'decorative',
   'flat', 'raised', 'elevated', 'floating', 'contained',
 ]);
 
 // Known purpose values (Rule 8)
 const KNOWN_PURPOSES = new Set([
-  'success', 'warning', 'error', 'info', 'neutral',
-  'danger', 'primary', 'secondary', // commonly used
+  'success', 'warning', 'error', 'info', 'information', 'neutral', 'featured',
+  'danger', 'standard', 'expressive', 'functional',
 ]);
 
-// Special tokens with their own rules
+// Known option values
+const KNOWN_OPTIONS = new Set([
+  'primary', 'secondary', 'tertiary', 'selected',
+]);
+
+// Border-radius variant suffixes (FLOAT tokens, not color)
+const BORDER_RADIUS_VARIANTS = new Set(['none', 'default', 'full']);
+
+// Special token patterns — handled separately from normal validation
 const SPECIAL_PATTERNS = {
-  disabledOpacity: /^--component-[\w]+-disabled-opacity$/,
-  borderRadius: /^--component-[\w]+-border-radius$/,
+  // component/{comp}/opacity/disabled → --component-{comp}-opacity-disabled
+  disabledOpacity: /^--component-[\w]+-opacity-disabled$/,
+  // component/{comp}/border/radius/{variant} → --component-{comp}-border-radius-{variant}
+  borderRadius: /^--component-[\w]+-border-radius-(none|default|full)$/,
+  // component/{comp}/size/{size} or /stroke/{size} → --component-{comp}-size-{size}
+  dimension: /^--component-[\w]+-(size|stroke)-(extra-small|small|medium|large)$/,
+  // Inverse modifier — property/{inverse}-{option}-{state} or property/{state}-inverse
+  inverseToken: /^--component-[\w]+-(background|text|icon)-[\w]+-inverse$/,
 };
 
 /* ------------------------------------------------------------------ */
@@ -100,12 +121,18 @@ function validateVariable(varName) {
   const violations = [];
   const parsed = parseTokenName(varName);
 
-  // Special tokens — validate format only
+  // Special tokens — validate format only, these have their own structure
   if (SPECIAL_PATTERNS.disabledOpacity.test(varName)) {
-    return violations; // valid special token
+    return violations; // component/{comp}/opacity/disabled
   }
   if (SPECIAL_PATTERNS.borderRadius.test(varName)) {
-    return violations; // valid special token
+    return violations; // component/{comp}/border/radius/{none|default|full}
+  }
+  if (SPECIAL_PATTERNS.dimension.test(varName)) {
+    return violations; // component/{comp}/size|stroke/{size} (spinner etc.)
+  }
+  if (SPECIAL_PATTERNS.inverseToken.test(varName)) {
+    return violations; // component/{comp}/{property}/{state}-inverse
   }
 
   const segs = parsed.segments;
@@ -132,28 +159,29 @@ function validateVariable(varName) {
     });
   }
 
-  // Rule: disabled must only be disabled-opacity (Rule 5)
+  // Rule: disabled must only be opacity-disabled (Rule 5)
   if (segs.includes('disabled') && !SPECIAL_PATTERNS.disabledOpacity.test(varName)) {
     violations.push({
       rule: 'disabled-opacity-only',
-      detail: 'Disabled styling must use opacity only (--component-{comp}-disabled-opacity)',
+      detail: 'Disabled styling must use opacity only (--component-{comp}-opacity-disabled)',
     });
   }
 
   // Rule: property-first grouping (Rule 2)
   const firstSeg = segs[0];
   const hasValidProperty = VALID_PROPERTIES.has(firstSeg);
+  const hasDimensionProperty = DIMENSION_PROPERTIES.has(firstSeg);
   const hasAmbiguousProperty = AMBIGUOUS_PROPERTIES.has(firstSeg);
 
   if (hasAmbiguousProperty) {
     violations.push({
       rule: 'ambiguous-property',
-      detail: `'${firstSeg}' is ambiguous; use 'background', 'text', 'border', or 'icon'`,
+      detail: `'${firstSeg}' is ambiguous; use 'background', 'text', 'border', 'icon', or 'opacity'`,
     });
-  } else if (!hasValidProperty && !KNOWN_PURPOSES.has(firstSeg) && firstSeg !== 'disabled') {
-    // Check if it might be a purpose before property (valid pattern: property-purpose-state)
-    // or if property is entirely missing
-    const hasPropertyAnywhere = segs.some((s) => VALID_PROPERTIES.has(s));
+  } else if (hasDimensionProperty) {
+    // Dimension properties are valid for specific components — no violation
+  } else if (!hasValidProperty && !KNOWN_PURPOSES.has(firstSeg) && !KNOWN_OPTIONS.has(firstSeg) && firstSeg !== 'disabled') {
+    const hasPropertyAnywhere = segs.some((s) => VALID_PROPERTIES.has(s) || DIMENSION_PROPERTIES.has(s));
     if (hasPropertyAnywhere) {
       violations.push({
         rule: 'property-not-first',
@@ -162,24 +190,19 @@ function validateVariable(varName) {
     } else if (!AMBIGUOUS_PROPERTIES.has(firstSeg)) {
       violations.push({
         rule: 'missing-property',
-        detail: `Expected property (background/text/border/icon) after component name; got '${firstSeg}'`,
+        detail: `Expected property (background/text/border/icon/opacity) after component name; got '${firstSeg}'`,
       });
     }
   }
 
   // Rule: explicit state suffix (Rule 3)
+  // Border-radius variants and dimension values are exempt from state suffix
   const lastSeg = segs[segs.length - 1];
   const hasExplicitState = VALID_STATES.has(lastSeg);
-  // Check if any segment is a state but not in last position
-  for (let i = 0; i < segs.length - 1; i++) {
-    if (VALID_STATES.has(segs[i]) && segs[i] !== 'default') {
-      // States like "hover" in middle positions could be valid in compound tokens
-      // Only flag if it's clearly a state word not at the end
-    }
-  }
+  const isBorderRadiusVariant = BORDER_RADIUS_VARIANTS.has(lastSeg) && segs.includes('radius');
+  const isDimensionValue = hasDimensionProperty;
 
-  if (!hasExplicitState) {
-    // Not necessarily a violation for compound tokens, but flag as warning
+  if (!hasExplicitState && !isBorderRadiusVariant && !isDimensionValue) {
     violations.push({
       rule: 'missing-state-suffix',
       detail: `No explicit state suffix (-default/-hover/-active); last segment is '${lastSeg}'`,
@@ -227,7 +250,7 @@ function validateTaxonomyNaming() {
   const components = [];
   let totalVariables = 0;
   let totalValid = 0;
-  const propertyGrouping = { background: 0, text: 0, border: 0, icon: 0, other: 0 };
+  const propertyGrouping = { background: 0, text: 0, border: 0, icon: 0, opacity: 0, size: 0, stroke: 0, other: 0 };
   const ruleBreakdown = {};
 
   for (const file of files.sort()) {
@@ -259,7 +282,7 @@ function validateTaxonomyNaming() {
       // Track property grouping
       const parsed = parseTokenName(varName);
       const firstSeg = parsed.segments[0];
-      if (VALID_PROPERTIES.has(firstSeg)) {
+      if (VALID_PROPERTIES.has(firstSeg) || DIMENSION_PROPERTIES.has(firstSeg)) {
         propertyGrouping[firstSeg]++;
       } else {
         propertyGrouping.other++;
@@ -307,9 +330,10 @@ function validateTaxonomyNaming() {
 
 function generateMarkdown(data) {
   let md = `# Taxonomy Naming Validation\n\n`;
+  md += `> Rules: Semantic Bridge Framework v1.3 + Figma Component Variables Guide\n\n`;
   md += `Generated: ${data.generated}\n`;
   md += `Total variables: ${data.totalVariables}\n`;
-  md += `Valid: ${data.valid}\n`;
+  md += `Valid: ${data.valid} (${data.totalVariables ? Math.round(data.valid / data.totalVariables * 100) : 0}%)\n`;
   md += `Violations: ${data.totalViolations}\n\n`;
 
   md += `## Rule Breakdown\n\n`;
