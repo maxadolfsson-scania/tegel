@@ -1,0 +1,217 @@
+{
+  "_description": "Dropdown component tokens — option list container + per-context option-row state matrix + dropdown-specific icons and divider. Field interior consumes -input fully (no dropdown-local field tokens). 4-mode universal (TRATON Light + Dark + Scania Light + Scania Dark) on every token per convention-4-mode-universal.",
+  "_cluster": "11a",
+  "_jira": "CDEP-1965",
+  "_status": "Draft — ready for spec-validator. Designer canvas tasks queued for INTERNAL promotion + Secondary-selected split + tick-icon raw-fill cleanup + Header Text Focus/Typing coverage.",
+  "_figmaBranch": "gPG2XdsVec0cqKjLX3VHYL",
+  "_figmaFile": "6osYTOfd4MgDq7LO6BCoUO",
+  "_figmaPage": {
+    "tegel": "26537:59509",
+    "traton": "26537:59509"
+  },
+  "_figmaSourceComponentSets": {
+    "Dropdown/Header": "33822:146185",
+    "Dropdown/List Item": "33822:144518"
+  },
+  "_scope": {
+    "in": [
+      "Option list container surface — Primary + Secondary contexts (background/primary, background/secondary).",
+      "Option-row backgrounds — per-context (Primary/Secondary) × per-state (Default/Hover/Selected). Default at-rest aliases container surface (surface-on-surface).",
+      "Option text — default + selected (selected ships value-coincident with default; future-lever).",
+      "Dropdown chevron icon (field trailing) — single token, covers Open=False (chevron_down) and Open=True (chevron_up); shape swap, no color change.",
+      "Per-option tick icon on Selected variants.",
+      "Per-option Nested-type chevron (the `>` indicator on Type=Nested item rows).",
+      "Per-option bottom-border divider (stroke on each item-row root)."
+    ],
+    "out": [
+      "Field interior — fully adopt component/-input/* (see _fieldInteriorAdoption).",
+      "Focus ring — global -focus helper.",
+      "Typography / sizing — CDEP-2019 typography track.",
+      "Multi-select pill rendering in field — Scania core (dropdown.tsx) renders comma-separated labels, not pills; tegel-lite same. No chip-style tokens needed.",
+      "Date picker — separate scope (CDEP-1965 split; 11b)."
+    ]
+  },
+  "_fieldInteriorAdoption": {
+    "field/root-background-primary": "component/-input/background/primary",
+    "field/root-background-secondary": "component/-input/background/secondary",
+    "field/border-default": "component/-input/border/default",
+    "field/border-hover": "component/-input/border/hover",
+    "field/border-error": "component/-input/border/error-default",
+    "field/border-success": "component/-input/border/success-default",
+    "field/border-radius-*": "component/-input/border/radius-*",
+    "field/border-width-*": "component/-input/border/width-*",
+    "field/text-value": "component/-input/text/value-default",
+    "field/text-placeholder": "component/-input/text/placeholder-default",
+    "field/text-label": "component/-input/text/label-default",
+    "field/text-helper": "component/-input/text/helper-default",
+    "field/text-error": "component/-input/text/error-default",
+    "field/icon-prefix": "component/-input/icon/prefix-default",
+    "field/icon-suffix": "component/-input/icon/suffix-default",
+    "field/icon-error": "component/-input/icon/error-default",
+    "field/opacity-disabled": "component/-input/opacity/disabled"
+  },
+  "_crossClusterDependencies": {
+    "-input (cluster #6)": "MERGED — field interior fully consumed. See _fieldInteriorAdoption.",
+    "popover (cluster #16)": "Naming precedent only (leaf-level background/{variant} for container surface). Dropdown does NOT consume Popover tokens; option list is its own COMPONENT_SET.",
+    "checkbox (cluster #13)": "Multiselect option rows render Checkbox INSTANCE. No dropdown-local pill or checkbox-style tokens needed.",
+    "-focus (helper)": "Item focus rendered as box-shadow ring using color/foreground/border/accent-focus; not dropdown-local."
+  },
+  "_divergence": {
+    "header-text-focus-typing": "Dropdown Header has State=Text Focus + State=Typing variants used in filter mode (field has keyboard focus while text input is active / user actively typing). These states are NOT covered by component/-input today. Spec ships without dropdown-local additions; designer/architecture call needed: extend -input to cover Text Focus / Typing, OR coin dropdown-local field-state tokens. Surfaced at handover.",
+    "item-selected-canvas-mismatch": "Canvas today binds both Primary and Secondary Selected variants to the same INTERNAL/color__wip/UNSORTED/background/surface/300 placeholder. Bridge SCSS values diverge per context on TRATON Light/Dark + Scania Dark. Spec ships per-context-split (item/primary-selected + item/secondary-selected); designer canvas task to (a) promote the INTERNAL placeholder, (b) rebind Secondary Selected variants to the new secondary token.",
+    "item-tick-icon-raw-fill": "Tick icon outer INSTANCE on Selected variants currently has raw #ffffff fill (not bound to any variable). Inner VECTORs (Traton + Scania) are correctly bound to color/icon/strong. Pre-existing canvas drift. Designer handover: clear the outer raw fill (or bind to component/dropdown/icon/item/checkmark-default if a wrapper-level binding is intentional).",
+    "hover-internal-promotion": "TRATON-Light values of component/dropdown/hover and component/dropdown/secondary/hover currently chain through INTERNAL/color__wip/UNSORTED/background/surface/100 (resolves to traton/color/grey/150). Spec ships with the INTERNAL chain replaced by a direct primitive alias; promotion happens at the rename step."
+  },
+  "_designerHandover": [
+    "Rename existing variable component/dropdown/hover → component/dropdown/background/item/primary-hover. Plugin API name-only; IDs + bindings preserved.",
+    "Rename existing variable component/dropdown/secondary/hover → component/dropdown/background/item/secondary-hover. Same name-only rename.",
+    "Promote INTERNAL/color__wip/UNSORTED/background/surface/300: rename to component/dropdown/background/item/primary-selected. Add new variable component/dropdown/background/item/secondary-selected (4-mode, per-context divergence values per bridge SCSS).",
+    "Rebind canvas: Secondary Selected variants on Dropdown/List Item COMPONENT_SET (33822:144546 et al.) from the renamed primary-selected token to the new secondary-selected token. Plugin API source-only writes.",
+    "Clear raw #ffffff outer fill on `icon/shared/tick` INSTANCE on Selected variants of Dropdown/List Item. Inner VECTOR bindings on color/icon/strong are correct.",
+    "Header State=Text Focus + State=Typing coverage gap — call: extend -input or coin dropdown-local.",
+    "Promote TRATON-Light hover chain: drop INTERNAL/color__wip/UNSORTED/background/surface/100 indirection; alias directly to traton/color/grey/150 (or its established semantic equivalent)."
+  ],
+  "component": "dropdown",
+  "variables": [
+    {
+      "name": "component/dropdown/background/primary",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Proposed",
+      "comment": "Option list container — Primary surface. Leaf-level per Popover precedent (component/popover/background/primary)."
+    },
+    {
+      "name": "component/dropdown/background/secondary",
+      "type": "COLOR",
+      "light": "color/background/layer-02",
+      "dark": "color/background/layer-02",
+      "scania-light": "color/background/layer-02",
+      "scania-dark": "color/background/layer-02",
+      "confidence": "Proposed",
+      "comment": "Option list container — Secondary surface."
+    },
+    {
+      "name": "component/dropdown/background/item/primary-default",
+      "type": "COLOR",
+      "light": "component/dropdown/background/primary",
+      "dark": "component/dropdown/background/primary",
+      "scania-light": "component/dropdown/background/primary",
+      "scania-dark": "component/dropdown/background/primary",
+      "confidence": "Proposed",
+      "comment": "Item at-rest on Primary container. Surface-on-surface per convention-surface-on-surface — value-coincident with container, real fill paint guarantees click-target geometry."
+    },
+    {
+      "name": "component/dropdown/background/item/secondary-default",
+      "type": "COLOR",
+      "light": "component/dropdown/background/secondary",
+      "dark": "component/dropdown/background/secondary",
+      "scania-light": "component/dropdown/background/secondary",
+      "scania-dark": "component/dropdown/background/secondary",
+      "confidence": "Proposed",
+      "comment": "Item at-rest on Secondary container. Surface-on-surface."
+    },
+    {
+      "name": "component/dropdown/background/item/primary-hover",
+      "type": "COLOR",
+      "light": "traton/color/grey/150",
+      "dark": "color/background/layer-02",
+      "scania-light": "scania/color/grey/150",
+      "scania-dark": "color/background/layer-02",
+      "confidence": "Proposed",
+      "comment": "Rename from existing component/dropdown/hover (VariableID:14121:114024). Light primitives unwrap INTERNAL/surface/100 indirection. Verify Scania-L primitive against bridge #edeff3 at push (Plugin API getter is blind to Scania modes — UI Variables panel canonical)."
+    },
+    {
+      "name": "component/dropdown/background/item/secondary-hover",
+      "type": "COLOR",
+      "light": "traton/color/grey/150",
+      "dark": "color/background/layer-03",
+      "scania-light": "scania/color/grey/150",
+      "scania-dark": "color/background/layer-03",
+      "confidence": "Proposed",
+      "comment": "Rename from existing component/dropdown/secondary/hover (VariableID:14121:114020). Light modes value-coincident with primary-hover (bridge intent); Dark modes step deeper (layer-03) for secondary-context contrast against layer-02 surface."
+    },
+    {
+      "name": "component/dropdown/background/item/primary-selected",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "scania/color/grey/150",
+      "scania-dark": "color/background/layer-02",
+      "confidence": "Proposed",
+      "comment": "Promotion target for INTERNAL/color__wip/UNSORTED/background/surface/300 on Primary Selected variants. Values per bridge SCSS intent. Designer canvas task: rebind Primary Selected variants from INTERNAL placeholder to this token."
+    },
+    {
+      "name": "component/dropdown/background/item/secondary-selected",
+      "type": "COLOR",
+      "light": "color/background/layer-02",
+      "dark": "color/background/layer-02",
+      "scania-light": "scania/color/grey/150",
+      "scania-dark": "color/background/layer-03",
+      "confidence": "Proposed",
+      "comment": "NEW token — splits Selected per context (canvas today collapses to one INTERNAL token; bridge SCSS encodes per-context divergence on TRATON L/D + Scania D). Designer canvas task: rebind Secondary Selected variants from the promoted primary-selected to this secondary token."
+    },
+    {
+      "name": "component/dropdown/text/item/default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Proposed",
+      "comment": "Option text at rest. Canvas-confirmed across all probed variants (Default + Hover + Selected text all bind to color/text/strong)."
+    },
+    {
+      "name": "component/dropdown/text/item/selected",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Proposed",
+      "comment": "Option text when Selected. Value-coincident with default today; ships as separate token to reserve future lever (e.g. selected emphasis treatment)."
+    },
+    {
+      "name": "component/dropdown/icon/chevron-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Proposed",
+      "comment": "Field trailing chevron. Open=False renders icon/shared/chevron_down; Open=True renders icon/shared/chevron_up. Color identical across both; one token covers both shapes (canvas-confirmed)."
+    },
+    {
+      "name": "component/dropdown/icon/item/checkmark-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Proposed",
+      "comment": "Single-select tick on Selected variants. Inner VECTORs (Traton + Scania) bound to color/icon/strong today. Outer INSTANCE has raw #ffffff fill — pre-existing canvas drift (see _divergence)."
+    },
+    {
+      "name": "component/dropdown/icon/item/nested-default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Proposed",
+      "comment": "`>` chevron on Type=Nested item rows. Value-coincident with chevron-default today; separate token to express the different intent (\"opens sub-menu\" vs \"field open/close affordance\")."
+    },
+    {
+      "name": "component/dropdown/border/item/divider-default",
+      "type": "COLOR",
+      "light": "color/border/discrete",
+      "dark": "color/border/discrete",
+      "scania-light": "color/border/discrete",
+      "scania-dark": "color/border/discrete",
+      "confidence": "Proposed",
+      "comment": "Per-option bottom-border. Lives on each item-row's root stroke (canvas-confirmed: variant root stroke bound to color/border/discrete directly today)."
+    }
+  ]
+}

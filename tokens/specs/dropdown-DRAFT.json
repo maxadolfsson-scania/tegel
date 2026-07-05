@@ -1,0 +1,118 @@
+{
+  "_description": "DRAFT scope spec — Cluster #11 Dropdown (CDEP-1965). Stub only — no variables finalised. Dropdown = field interior (adopt -input) + option list (pending -menu-item or dropdown-local). Dropdown-specific tokens cover chevron, option-list container surface, and option-item interaction states.",
+  "_cluster": 11,
+  "_jira": "CDEP-1965",
+  "_status": "DRAFT — scope stub",
+  "_figmaPage": {
+    "tegel": "26537:59509",
+    "traton": "26537:59509"
+  },
+  "_scope": {
+    "in": [
+      "Field interior — fully adopt component/-input/* (bg primary/secondary, border, text/value/placeholder/label/helper/error, icon/prefix/suffix, opacity/disabled, border/radius-*, border/width-*)",
+      "Dropdown-specific chevron icon — color, default + open state (dropdown/icon/chevron-*)",
+      "Option list container — background (primary + secondary contexts), border (dropdown/background/list-*, dropdown/border/list-*)",
+      "Option list item — background × 4 states (default, hover, active, selected, disabled)",
+      "Option list item — text color default and selected",
+      "Option list item — icon color (leading icon, checkmark/selection indicator)",
+      "Error and success validation on field — inherit from -input; add dropdown-local only if divergent",
+      "Secondary surface context on both field and list-items (bridges --component-dropdown-secondary-*)"
+    ],
+    "out": [
+      "Date picker calendar grid — separate spec within CDEP-1965; park here, draft separately",
+      "Date picker filter chip / multi-select within calendar — with calendar grid spec",
+      "Focus ring — global -focus helper; not component-local",
+      "Typography / font size tokens — CDEP-2019 typography track",
+      "Multi-select chip rendering inside field — pending OD-2 canvas verification",
+      "Sub Menu Items re-used on Dropdown canvas — out of scope; owned by menu-item-consolidation track",
+      "Popover surface container — cluster #16 Popover owns the floating surface if Dropdown options are a Popover instance",
+      "Shadow on option list — defer to global shadow system; dropdown-local override only if confirmed divergent"
+    ]
+  },
+  "_compositionMap": {
+    "field/root-background-primary": "component/-input/background/primary",
+    "field/root-background-secondary": "component/-input/background/secondary",
+    "field/border-default": "component/-input/border/default",
+    "field/border-hover": "component/-input/border/hover",
+    "field/border-error": "component/-input/border/error-default",
+    "field/border-success": "component/-input/border/success-default",
+    "field/border-radius-*": "component/-input/border/radius-*",
+    "field/border-width-*": "component/-input/border/width-*",
+    "field/text-value": "component/-input/text/value-default",
+    "field/text-placeholder": "component/-input/text/placeholder-default",
+    "field/text-label": "component/-input/text/label-default",
+    "field/text-helper": "component/-input/text/helper-default",
+    "field/text-error": "component/-input/text/error-default",
+    "field/icon-prefix": "component/-input/icon/prefix-default",
+    "field/opacity-disabled": "component/-input/opacity/disabled",
+    "field/chevron-icon": "component/dropdown/icon/chevron-default [NEW — dropdown-local]",
+    "field/chevron-icon-open": "component/dropdown/icon/chevron-open [NEW — may collapse if value identical to chevron-default]",
+    "option-list/background-primary": "component/dropdown/background/list-primary [NEW] — or consumed from -menu-item when it lands",
+    "option-list/background-secondary": "component/dropdown/background/list-secondary [NEW] — same condition",
+    "option-list/border": "component/dropdown/border/list-default [NEW]",
+    "option-item/background-default": "component/dropdown/background/item-default [NEW] — migrate to -menu-item",
+    "option-item/background-hover": "component/dropdown/background/item-hover [NEW — bridges --component-dropdown-list-item-hover]",
+    "option-item/background-active": "component/dropdown/background/item-active [NEW]",
+    "option-item/background-selected": "component/dropdown/background/item-selected [NEW]",
+    "option-item/background-disabled": "component/-input/opacity/disabled [opacity on item] — or -menu-item",
+    "option-item/text-default": "component/dropdown/text/item-default [NEW] — migrate to -menu-item",
+    "option-item/text-selected": "component/dropdown/text/item-selected [NEW]",
+    "option-item/icon-leading": "component/dropdown/icon/item-default [NEW]",
+    "option-item/icon-checkmark": "component/dropdown/icon/item-selected [NEW]"
+  },
+  "_crossClusterDependencies": {
+    "-input (cluster #6)": "MERGED — adopt fully for field interior. text-field.json confirms zero component-specific tokens pattern is viable.",
+    "-menu-item (unmapped)": "NOT DRAFTED — option list items are structurally identical to Header Sub Menu Items and Side Menu items. Do NOT define permanent dropdown-local item tokens until -menu-item cluster timing is confirmed. Stub as dropdown-local with explicit migration note.",
+    "chip (cluster #2)": "MERGED — multi-select Dropdown may render selected values as Chip instances. Canvas verification needed (OD-2).",
+    "popover (cluster #16)": "PLANNED — option list floating surface may be a Popover instance. Popover (#16) is later in roadmap than Dropdown (#11); dropdown-local placeholder tokens are needed now."
+  },
+  "_openDecisions": [
+    {
+      "id": "OD-1",
+      "decision": "Option list items — dropdown-local tokens vs adopt future component/-menu-item/*",
+      "context": "Dropdown option items share the same pattern as Header Sub Menu Items and Side Menu items (menu-item-consolidation.md). Defining dropdown-local item tokens now risks creating duplicates that must be migrated. Recommended: stub as dropdown-local placeholders with explicit migration path; do not treat them as permanent.",
+      "source": "memory (menu-item-consolidation.md)"
+    },
+    {
+      "id": "OD-2",
+      "decision": "Multi-select chip rendering — consume Chip cluster #2 tokens or define dropdown-internal pill style?",
+      "context": "Multi-select Dropdowns render selected values as removable pills inside the field trigger. If pills are Chip instances, Chip tokens apply automatically and no new tokens are needed. If Dropdown renders its own pill layer, dropdown-local tokens are required. Resolve by canvas inspection.",
+      "source": "figma (canvas inspection pending)"
+    },
+    {
+      "id": "OD-3",
+      "decision": "Chevron/caret — one token across all states or split default/open?",
+      "context": "Bridge has no chevron token at all. Chevron rotates on open but may not change color. If color is identical in default and open states, one token suffices. Resolve from Figma canvas.",
+      "source": "bridge (gap) + figma"
+    },
+    {
+      "id": "OD-4",
+      "decision": "Option list container surface — dropdown-local or consume Popover (#16)?",
+      "context": "If the option list is a Popover instance on canvas, Popover cluster #16 owns the surface tokens and dropdown-local list-container tokens would be redundant. Timing risk: Popover is later in roadmap. Resolve at canvas inspection; use dropdown-local placeholders in the interim.",
+      "source": "cluster-roadmap.md + figma"
+    },
+    {
+      "id": "OD-5",
+      "decision": "Bridge hover vs focus — distinct tokens or unify?",
+      "context": "Bridge exposes both hover and focus variants. In Scania they are identical (#edeff3). In TRATON dark they differ: hover=layer-02, focus=layer-01. This implies focus is keyboard-specific, not a visual duplicate of hover. Designer to confirm: expose as separate tokens or unify under hover?",
+      "source": "bridge draft (tokens/scss/component/dropdown.scss)"
+    },
+    {
+      "id": "OD-6",
+      "decision": "Secondary surface context on option list items — real use case or bridge artefact?",
+      "context": "Bridge exposes --component-dropdown-list-item-secondary-hover/focus. Consistent with -input primary/secondary surface pattern. Confirm whether Dropdown option items genuinely need a secondary surface context variant (e.g. when the Dropdown sits on a layer-02 surface), or whether this is historical bridge over-specification.",
+      "source": "bridge (draft) + convention-surface-context-variants.md"
+    }
+  ],
+  "_tokenEstimate": {
+    "field-interior": "0 net-new (fully consumed from -input)",
+    "dropdown-local-chevron": "2-3 vars (icon/chevron-default, possibly icon/chevron-open, icon/chevron-disabled)",
+    "dropdown-local-list-container": "2-4 vars (background/list-primary, background/list-secondary, border/list-default, shadow TBD)",
+    "dropdown-local-option-items": "6-10 vars (background × 4 states + text × 2 + icon × 2) — collapses to 0 if -menu-item lands first",
+    "total-range-without-menu-item": "10-17 dropdown-local variables",
+    "total-range-with-menu-item": "4-7 dropdown-local variables (chevron + list container only)",
+    "date-picker": "separate spec; not counted here"
+  },
+  "component": "dropdown",
+  "variables": []
+}
