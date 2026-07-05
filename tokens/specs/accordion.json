@@ -1,0 +1,173 @@
+{
+  "_description": "Accordion component spec — cluster #10b (CDEP-1949). Interactive component with Primary/Secondary mode-variant axis and Default/Hover/Active/Focus/Disabled state model. 13 tokens: 6 background, 4 border, 1 text, 1 icon, 1 opacity. Background and border split fully per variant × state per the variant-axis-preservation convention; text and icon collapse to a single canvas-honest token each.",
+  "_figmaBranch": "https://www.figma.com/design/6osYTOfd4MgDq7LO6BCoUO/branch/oP5qZaxKDt2s95U7ljjd9R/TRATON-Component-Library?node-id=37498-4517",
+  "_notes": [
+    "Variant axis preservation: Primary/Secondary is a surface decision, so background and border tokens are split per variant × state regardless of current canvas equivalence. Each variant carries an independent brand lever from day one.",
+    "Default state is transparent for both variants (canvas-confirmed: no fill on Default/Focus/Disabled variants). Tokens still exist so brands can opt into a non-transparent rest treatment without restructuring.",
+    "Border is currently bound on the embedded Divider INSTANCE children to component/divider/border/discrete-default. Accordion owns its own border token (aliased to the divider token) to preserve the variant lever and let accordion diverge in future.",
+    "Disabled is handled by applying opacity/disabled at the variant parent frame; child-level bindings (text/icon/border) stay on their resting-state values. The current canvas binding of color/text/disabled on Disabled=True is a divergence to be corrected by the designer (see _divergence).",
+    "Focus is owned by the global -focus helper, not accordion. No accordion focus-border token exists. Current INTERNAL/color__wip/border/accent/focus binding on canvas is a divergence to be corrected (see _divergence).",
+    "Helper/Focus Visible INSTANCE placement: sits as the LAST child of each accordion variant (top of stacking order, on top of borders and shadow treatments). Intentional accordion convention — differs from Button/Chip which place the helper as the FIRST child. Keep last-child placement consistent across all accordion variants that carry the helper (Default/Disabled=False only)."
+  ],
+  "_divergence": [
+    "Pressed background was previously bound to INTERNAL/color__wip/UNSORTED/background/surface/100 on canvas. Initial spec attempt promoted to color/background/layer-02, which broke the visual treatment in Light modes (layer-02 renders LIGHTER than layer-01 in Light, opposite of pressed-depth intent). Final resolution: primary-active and secondary-active alias brand primitives directly per mode (TRATON: grey/150 + blue/900; Scania: grey/100 + grey/850). Resolves identically to original INTERNAL. Canvas rebinds completed via Plugin API.",
+    "Canvas currently models Focus as a State variant with a custom stroke bound to INTERNAL/color__wip/border/accent/focus on the COMPONENT node. Established precedent (Button, Chip) is: NO Focus State variant; instead a `Focus visible` BOOLEAN component property drives a `Helper/Focus Visible` INSTANCE (source COMPONENT_SET 24532:4647) sitting as first child of every variant, visible:false by default. Designer handover: remove Focus from accordion's State axis (collapses 4 → 3: Default/Hover/Pressed), add the Focus visible BOOLEAN property, embed the Helper/Focus Visible INSTANCE in every variant, wire .visible to the property, and remove the INTERNAL focus stroke binding on the COMPONENT node. No accordion-owned focus token is needed — the helper carries component/-focus/ring/* bindings.",
+    "Canvas currently binds Disabled=True header label to color/text/disabled. Per cluster convention, child-level bindings follow resting state and opacity/disabled is applied at the variant parent frame. Designer handover: rebind Disabled=True child fills/strokes to resting-state variables (text → color/text/strong, icon → color/icon/strong, border → component/divider/border/discrete-default) and apply opacity/disabled at the variant parent.",
+    "Hover background canvas split: Primary → color/background/layer-01, Secondary → color/background/base. This is canvas-faithful and aligns with the variant-axis-preservation convention — the split is intentional and reflects each variant's surface role (Primary is layer-aware; Secondary sits closer to base)."
+  ],
+  "component": "accordion",
+  "variables": [
+    {
+      "name": "component/accordion/background/primary-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": "Transparent at rest — Primary variant adopts the surface behind. Token exists to give brands a non-transparent rest treatment lever."
+    },
+    {
+      "name": "component/accordion/background/primary-hover",
+      "type": "COLOR",
+      "light": "color/background/layer-01",
+      "dark": "color/background/layer-01",
+      "scania-light": "color/background/layer-01",
+      "scania-dark": "color/background/layer-01",
+      "confidence": "Confirmed",
+      "comment": "Canvas-confirmed binding. Primary hover lifts onto layer-01."
+    },
+    {
+      "name": "component/accordion/background/primary-active",
+      "type": "COLOR",
+      "light": "traton/color/grey/150",
+      "dark": "traton/color/blue/900",
+      "scania-light": "scania/color/grey/100",
+      "scania-dark": "scania/color/grey/850",
+      "confidence": "Confirmed",
+      "comment": "4-mode with explicit per-brand primitive bindings (no semantic layer in chain — none of color/background/* matched the original visual treatment from INTERNAL/color__wip/UNSORTED/background/surface/100). Resolves identically to the original INTERNAL across all four brand×mode combinations. Matches the brand-namespaced-primitive-aliases convention. Candidate for promotion to a future color/background/pressed (or similar) system semantic when one lands."
+    },
+    {
+      "name": "component/accordion/background/secondary-default",
+      "type": "COLOR",
+      "light": "color/background/none",
+      "dark": "color/background/none",
+      "scania-light": "color/background/none",
+      "scania-dark": "color/background/none",
+      "confidence": "Confirmed",
+      "comment": "Transparent at rest — Secondary variant currently adopts the surface behind. Token exists so a brand can opt Secondary into an expressive or functional resting treatment."
+    },
+    {
+      "name": "component/accordion/background/secondary-hover",
+      "type": "COLOR",
+      "light": "color/background/base",
+      "dark": "color/background/base",
+      "scania-light": "color/background/base",
+      "scania-dark": "color/background/base",
+      "confidence": "Confirmed",
+      "comment": "Canvas-confirmed binding. Secondary hover lands on base — a different rest-state from Primary, reflecting the variant axis."
+    },
+    {
+      "name": "component/accordion/background/secondary-active",
+      "type": "COLOR",
+      "light": "traton/color/grey/150",
+      "dark": "traton/color/blue/900",
+      "scania-light": "scania/color/grey/100",
+      "scania-dark": "scania/color/grey/850",
+      "confidence": "Confirmed",
+      "comment": "Same per-brand primitive chain as primary-active — both pressed/active states converge on identical values today, but the variant-split lever is preserved (a brand can diverge secondary later by re-binding this variable independently)."
+    },
+    {
+      "name": "component/accordion/border/primary-default",
+      "type": "COLOR",
+      "light": "component/divider/border/discrete-default",
+      "dark": "component/divider/border/discrete-default",
+      "scania-light": "component/divider/border/discrete-default",
+      "scania-dark": "component/divider/border/discrete-default",
+      "confidence": "Confirmed",
+      "comment": "Cross-component alias to the divider cluster's discrete-default token. Accordion owns its own handle so a brand can diverge from the divider treatment without forking divider itself."
+    },
+    {
+      "name": "component/accordion/border/primary-hover",
+      "type": "COLOR",
+      "light": "component/divider/border/discrete-default",
+      "dark": "component/divider/border/discrete-default",
+      "scania-light": "component/divider/border/discrete-default",
+      "scania-dark": "component/divider/border/discrete-default",
+      "confidence": "Confirmed",
+      "comment": "Same target as primary-default on canvas; structural split kept so a brand can introduce a hover-state border treatment without re-spec."
+    },
+    {
+      "name": "component/accordion/border/secondary-default",
+      "type": "COLOR",
+      "light": "component/divider/border/discrete-default",
+      "dark": "component/divider/border/discrete-default",
+      "scania-light": "component/divider/border/discrete-default",
+      "scania-dark": "component/divider/border/discrete-default",
+      "confidence": "Confirmed",
+      "comment": "Cross-component alias to divider's discrete-default. Variant split kept per the variant-axis-preservation convention."
+    },
+    {
+      "name": "component/accordion/border/secondary-hover",
+      "type": "COLOR",
+      "light": "component/divider/border/discrete-default",
+      "dark": "component/divider/border/discrete-default",
+      "scania-light": "component/divider/border/discrete-default",
+      "scania-dark": "component/divider/border/discrete-default",
+      "confidence": "Confirmed",
+      "comment": "Same target as secondary-default on canvas; lever preserved for future divergence."
+    },
+    {
+      "name": "component/accordion/text/default",
+      "type": "COLOR",
+      "light": "color/text/strong",
+      "dark": "color/text/strong",
+      "scania-light": "color/text/strong",
+      "scania-dark": "color/text/strong",
+      "confidence": "Confirmed",
+      "comment": "Header label color. Canvas binds uniformly across all variants and active states; no per-variant or per-state split needed. Disabled state inherits via opacity/disabled on the parent frame, not a separate text color."
+    },
+    {
+      "name": "component/accordion/icon/default",
+      "type": "COLOR",
+      "light": "color/icon/strong",
+      "dark": "color/icon/strong",
+      "scania-light": "color/icon/strong",
+      "scania-dark": "color/icon/strong",
+      "confidence": "Confirmed",
+      "comment": "Chevron color. Canvas-verified uniform across 36 variants (Primary/Secondary × 4 states × End/Start × Expanded T/F). Single token sufficient."
+    },
+    {
+      "name": "component/accordion/opacity/disabled",
+      "type": "FLOAT",
+      "light": "traton/opacity/25",
+      "dark": "traton/opacity/25",
+      "scania-light": "scania/opacity/25",
+      "scania-dark": "scania/opacity/25",
+      "confidence": "Confirmed",
+      "comment": "25% opacity for disabled state, applied at the variant parent frame. 4-mode with explicit Scania binding to scania/opacity/25 — brands have fully independent primitives, so opacity/disabled cannot rely on cross-brand inheritance. Diverges from chip/link/button/-input shipped specs which used 2-mode-with-inheritance; that pattern is structurally incorrect but produces equivalent rendered values (both primitives = 25%), so retrofit is not visually urgent."
+    }
+  ],
+  "_parked": [
+    {
+      "candidate": "component/accordion/border/{primary,secondary}-active",
+      "reason": "Canvas does not bind a distinct active-state stroke (the stroke is replaced by the COMPONENT-node focus outline on Focus only). Add if a brand later wants a pressed-state border treatment."
+    },
+    {
+      "candidate": "component/accordion/text/{primary,secondary}-default",
+      "reason": "Canvas binds text uniformly across both variants to color/text/strong. Per variant-axis-preservation convention, text follows canvas evidence — split only if a future brand introduces an expressive Secondary panel that requires inverse text. Re-spec at that point."
+    },
+    {
+      "candidate": "component/accordion/icon/{primary,secondary}-default",
+      "reason": "Same reasoning as text/*. Canvas-verified uniform binding; revisit only if per-variant divergence emerges."
+    },
+    {
+      "candidate": "component/accordion/border/width-default",
+      "reason": "1px separator is hardcoded as a layout constant. v1.3 excludes dimension tokens from the bridge surface by default. Revisit when foundation dimension tokens land."
+    },
+    {
+      "candidate": "component/accordion/border/focus",
+      "reason": "Focus border is owned by the global -focus helper, not accordion. Accordion does not carry a component-level focus token. The current INTERNAL/color__wip/border/accent/focus canvas binding is a divergence to be corrected (see _divergence)."
+    }
+  ]
+}
