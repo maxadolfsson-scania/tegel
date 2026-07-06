@@ -3,7 +3,7 @@
   "_cluster": 15,
   "_jira": "CDEP-1969",
   "_figmaBranch": "xwed5ZyNB6Wt0H1rhtMQhC",
-  "_status": "DRAFT rev 6 — flatten text + border to descriptor-in-leaf 2026-07-04 (option B, Max-locked). 7 ID-stable renames: text/item/{default,current-default,folder-default} → text/{same}; border/item/{default,hover} → border/{item-default,item-hover}; border/item/{divider-default,indicator-default} → border/{divider-default,indicator-default}. `background` keeps the interior `item/` scope (forced — its bar surface `background/primary` would collide with item fills + the mode-variant×state leaves need it). Chip shipped precedent for the flat form (`border/selected-default`); removes bare-state-under-scope. Count + values unchanged (20). rev 5: property-first restructure 34→20 (reversed the variant-first nesting + _framework_extension lock). See _notes + _framework_extension.",
+  "_status": "SHIPPED-to-branch; close-out complete 2026-07-06 (branch xwed5ZyNB6Wt0H1rhtMQhC NOT yet merged to main). rev 8, 22 tokens, property-first, all 4-mode. Item-level colours nest under `item/` in background/border/text (Decisions 1+2, superseding the rev-6 flatten); bar/wrapper tokens stay flat; `background/item/` carries a further mode-variant scope (primary/secondary) — the system's first depth-6 (§2a framework upgrade). +2 scroll tokens promoted off INTERNAL (`background/scroll-default` + `icon/scroll-default`). Re-validation gate green: spec-validator PASS; inline architecture-verifier + variable-audit at 22 (0 INTERNAL, all names correct). Decision_log Review (Max-finalized) + FigJam SHIPPED row done. Designer handoff: folder hover top-border + Padding=T/F axis. See _notes.",
   "_framework_extension": {
     "extension_name": "Multi-sibling-component family namespace",
     "locked_2026_06_18": true,
@@ -20,6 +20,7 @@
   },
   "_figmaNodes": {
     "_phase_1_capture": "Captured 2026-06-17 by tokens-tegel-ui-prober pattern (manual probe; agent file at .claude/agents/tokens-tegel-ui-prober.md available for future clusters). Both files use Tabs page id 26756:59842 (coincidental match).",
+    "_reconciled_2026_07_06": "Atom names, variant counts, states_drawn, and the atom-sharing descriptors below were reconciled to shipped canvas reality (verified via get_metadata on branch xwed5ZyNB6Wt0H1rhtMQhC). Key corrections vs the Phase-1 capture: 10544:33259 is the FOLDER atom Tabs/Folder/Item (NOT a shared Inline+Folder atom — that was a Phase-1 error corrected by cluster decision #3); 10544:31469 is Tabs/Item, the shared underline atom for Inline + Navigation. Native Focus state variants were removed on both atoms (Path A focus done); states are now Default/Hover only. Navigation bar axis Viewport→Breakpoint (done 2026-07-04). Scroll Style axis values Inline/Folder→Standard/Folder (done 2026-07-05).",
     "TRATON_branch": {
       "fileKey": "xwed5ZyNB6Wt0H1rhtMQhC (branchKey)",
       "page_id": "26756:59842",
@@ -42,56 +43,51 @@
           "id": "39520:6900",
           "variant_axes": [
             "Mode variant",
-            "Viewport"
+            "Breakpoint"
           ],
           "variant_count": 4
         }
       },
       "atomic_sources_in_Subcomponents_section_3799_79080": {
-        "Tab Inline (shared atom for Inline + Folder)": {
+        "Tabs/Folder/Item (Folder atom)": {
           "id": "10544:33259",
           "variant_axes": [
-            "Mode",
             "Mode variant",
             "State",
             "Selected",
             "Vertical dividers",
             "Disabled"
           ],
-          "variant_count": 20,
+          "variant_count": 16,
           "states_drawn": [
             "Default",
-            "Hover",
-            "Focus"
+            "Hover"
           ]
         },
-        "Tab Full Page (Navigation atom)": {
+        "Tabs/Item (shared atom for Inline + Navigation)": {
           "id": "10544:31469",
           "variant_axes": [
-            "Mode",
             "State",
             "Height",
             "Selected",
             "Disabled"
           ],
-          "variant_count": 10,
+          "variant_count": 8,
           "states_drawn": [
             "Default",
-            "Hover",
-            "Focus"
+            "Hover"
           ]
         },
         "Scroll (scroll-arrow sub-component)": {
           "id": "14231:54064",
           "variant_axes": [
-            "Mode",
             "Mode variant",
             "Direction",
-            "Style"
+            "Style [Standard/Folder]"
           ],
           "variant_count": 8,
           "states_drawn": [
-            "Default only"
+            "Default only (native); Helper/Focus Visible embedded 8/8"
           ]
         }
       },
@@ -158,7 +154,7 @@
         "Padding (True/False) on Inline + Navigation Tabs": "Tegel UI exposes padding-on/off as a variant. TRATON branch has no Padding axis. **Designer-handoff item**: add axis parity or close as Scania-only feature."
       },
       "state_coverage_on_Tegel_UI_only": {
-        "Hover state variants (Tab Inline + Tab Full Page + Tab Scroll)": "**REAL GAP** on TRATON branch. Hover is per-component visual, not a global utility. Designers on the TRATON branch cannot inspect the hover state directly — they'd need to imagine it. Designer-handoff item: add Hover variants to TRATON atomic sources.",
+        "Hover state variants (Tabs/Folder/Item + Tabs/Item)": "**RESOLVED 2026-07-04** — both atoms now carry State=Hover on the TRATON branch (verified via canvas metadata; states are Default/Hover). The earlier gap (hover undrawn on the multi-brand canvas) is closed.",
         "Focus state variants": "**NOT a gap** — handled via Helper/Focus Visible INSTANCE pattern (Path A, LOCKED — Checkbox / Radio Button / Side Menu precedent). TRATON branch embeds the helper in Default-state variants instead of drawing separate Focus variants. See `_focusHelperWorklist` below for the embed plan for this cluster."
       }
     },
@@ -218,8 +214,8 @@
     }
   ],
   "_handoverFlags": [
-    "**Hover state variants missing on TRATON branch atomic sources** (Tab Inline + Tab Full Page). Tegel UI Library draws Hover side-by-side with Default; TRATON branch is Light-only Default. Designers on the TRATON branch cannot inspect hover visuals. Designer task: add Hover state variants to the 2 atomic sources, following the Tegel UI pattern (same per-state visual treatment). Code already wires hover via `--tds-{variant}-tabs-tab-color-hover` + `--tds-{variant}-tabs-tab-indicator-background-hover` — the visuals exist, they're just undrawn on the multi-brand canvas. (Scroll dropped from this flag — migrating to Button per separate handoff item.)",
-    "**Migrate Tab Inline + Tab Full Page atoms to Path A focus pattern** (LOCKED convention). Both atoms have native explicit Focus state variants drawn today (legacy pattern). Designer task: remove Focus state variants from both atoms; embed Helper/Focus Visible INSTANCE inside Default-state variants per Side Menu / Checkbox / Radio Button precedent. See `_focusHelperWorklist` for the 18-helper embed plan. Same restructure that cluster #14 Side Menu did across its 35 Default variants.",
+    "**[DONE 2026-07-04] Hover state variants present on TRATON branch atomic sources** (Tabs/Folder/Item + Tabs/Item). Verified 2026-07-04 via canvas metadata: both atoms carry State=Hover (states are Default/Hover). The earlier flag (hover undrawn on the multi-brand canvas) is resolved. Code wires hover via `--tds-{variant}-tabs-tab-color-hover` + `--tds-{variant}-tabs-tab-indicator-background-hover`. (Scroll dropped from this flag — Scroll→Button migration is PARKED 2026-07-04; the local Tabs/Scroll Indicator is kept, with 2 scroll tokens promoted off INTERNAL instead.)",
+    "**[DONE 2026-07-04] Path A focus migration complete on Tabs/Folder/Item + Tabs/Item.** Canvas metadata confirms 0 native Focus state variants on either atom; Helper/Focus Visible INSTANCE embedded on the ENABLED Default variants (incl Selected) per Side Menu / Checkbox / Radio Button precedent. Decision (Max + Side Menu precedent): Selected qualifies (focusable → helper); Disabled does NOT (opacity-dimmed via `opacity/disabled`, not focusable). Scroll Indicator carries Helper/Focus Visible on all 8 variants (verified 8/8, 2026-07-05).",
     "Padding variant axis missing on TRATON branch (Inline + Navigation Tabs); Tegel UI has `Padding=True/False` (confirmed 2026-07-04, maps to code numeric `leftPadding`). DECIDED 2026-07-04: add Padding=T/F to TRATON Inline+Nav bars as a STRUCTURAL-parity task — LAYOUT, out of the colour-token cluster, deferred; does NOT block close-out.",
     "Three-layer divergence documentation (per convention-three-layer-naming-parity): code prop / Figma variant axis = `Selected` (kept for API stability); token L3 = `current-*` (matches Header / Side Menu / Breadcrumbs shipped semantic). Document on Decision_log canvas at handoff so QA designer reading variant axis vs token name sees they refer to the same concept.",
     "Folder Tabs canvas uses TOP-stripe for selected indicator (border-top binding); Inline + Navigation use BOTTOM-stripe (border-bottom). Token names converge to `indicator-default` regardless of geometric placement. Confirm at design review.",
@@ -227,13 +223,13 @@
     "Cross-brand palette systemic gap (`--tds-grey-958` etc.) inherited from Header cluster #8 unresolved backlog. Same Phase 6 task — Tabs adds to the surface area but doesn't introduce the problem."
   ],
   "_focusHelperWorklist": {
-    "pattern": "Each atomic source's Default-state variants embed a Helper/Focus Visible INSTANCE. Path A (LOCKED) — Checkbox / Radio Button / Side Menu precedent. Focus Visible BOOLEAN exposed at wrapper level. No focus-ring tokens shipped in this spec (focus ring is owned by the shared helper component). NOTE: Tab Inline + Tab Full Page atoms today carry native Focus state variants (legacy) — those get REMOVED as part of this work; helper INSTANCEs replace them. See _handoverFlags for the canvas restructure detail.",
-    "needed_total": 18,
+    "pattern": "[DONE 2026-07-04 — verified via canvas metadata] Each atomic source's ENABLED Default-state variants embed a Helper/Focus Visible INSTANCE. Path A (LOCKED) — Checkbox / Radio Button / Side Menu precedent. Focus Visible BOOLEAN exposed at wrapper level. No focus-ring tokens shipped in this spec (focus ring is owned by the shared helper component). Both atoms (Tabs/Folder/Item, Tabs/Item) now carry only Default/Hover states — the legacy native Focus variants were removed and replaced by helper INSTANCEs. Decision: Selected qualifies (focusable); Disabled excluded (opacity-dimmed, not focusable).",
+    "helpers_embedded": 12,
     "sources": {
-      "Tab Inline atom (10544:33259)": "12 Default-state variants — Mode variant (Primary/Secondary) × Selected (T/F) × Vertical dividers (T/F) × Disabled (T/F = false at non-disabled set; helper still embedded on Disabled=True variants per Side Menu precedent — runtime disabled prop suppresses focus visually).",
-      "Tab Full Page atom (10544:31469)": "6 Default-state variants — Height (Default/Condensed) × Selected (T/F) × Disabled (T/F)."
+      "Tabs/Folder/Item atom (10544:33259)": "8 of 12 Default-state variants received the helper (enabled only) — Mode variant (Primary/Secondary) × Selected (T/F) × Vertical dividers (T/F) at Disabled=False. The 4 Disabled=True variants are excluded (opacity-dimmed via opacity/disabled, not focusable).",
+      "Tabs/Item atom (10544:31469)": "4 of 6 Default-state variants received the helper (enabled only) — Height (Standard/Condensed) × Selected (T/F) at Disabled=False. The 2 Disabled=True variants are excluded."
     },
-    "skip": "Variants where State=Hover or State=Focus already exists (those ARE the focused state; helper is redundant). Tab Inline + Tab Full Page Hover/Focus variants don't need helpers. Scroll sub-component skipped entirely — migrating to Button onlyIcon=true (Button has its own focus helper handling)."
+    "skip": "Variants where State=Hover exists don't need a helper (no native Focus variants remain on either atom). Disabled=True variants excluded (opacity-dimmed via opacity/disabled, not focusable) — 4 on Tabs/Folder/Item, 2 on Tabs/Item. Scroll sub-component: Scroll→Button migration is PARKED 2026-07-04; the local Tabs/Scroll Indicator is kept and carries its own Helper/Focus Visible (8/8 verified 2026-07-05)."
   },
   "_dependsOn": [
     "Header cluster #8 (RELEASED) — indicator-default Header precedent (4-mode direct brand-primitive aliasing for stripe) reused exactly.",
