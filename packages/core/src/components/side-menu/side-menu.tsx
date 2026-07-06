@@ -42,14 +42,14 @@ export class TdsSideMenu {
   @Element() host!: HTMLTdsSideMenuElement;
 
   /** Applicable only for mobile. If the Side Menu is open or not. */
-  @Prop({ mutable: true }) open: boolean = false;
+  @Prop({ reflect: true, mutable: true }) open: boolean = false;
 
   /** Applicable only for desktop. If the Side Menu should always be shown. */
-  @Prop() persistent: boolean = false;
+  @Prop({ reflect: true }) persistent: boolean = false;
 
   /** If the Side Menu is collapsed. Only a persistent desktop menu can be collapsed.
    * NOTE: Only use this if you have prevented the automatic collapsing with preventDefault on the tdsCollapse event. */
-  @Prop({ mutable: true }) collapsed: boolean = false;
+  @Prop({ reflect: true, mutable: true }) collapsed: boolean = false;
 
   @State() isMobile: boolean = false;
 
@@ -83,12 +83,15 @@ export class TdsSideMenu {
     }
   }
 
+  componentWillLoad() {
+    this.isCollapsed = this.collapsed;
+    this.initialCollapsedState = this.collapsed;
+  }
+
   connectedCallback() {
     this.matchesLgBreakpointMq = window.matchMedia(`(min-width: ${GRID_LG_BREAKPOINT}px)`);
     this.matchesLgBreakpointMq.addEventListener('change', this.handleMatchesLgBreakpointChange);
     this.isMobile = !this.matchesLgBreakpointMq.matches;
-    this.isCollapsed = this.collapsed;
-    this.initialCollapsedState = this.collapsed;
   }
 
   componentDidLoad() {
@@ -268,7 +271,7 @@ export class TdsSideMenu {
         >
           <slot name="overlay"></slot>
           <aside class={`menu`}>
-            <div role="navigation">
+            <nav>
               <slot name="close-button"></slot>
               <div class="tds-side-menu-wrapper">
                 <ul class={`tds-side-menu-list tds-side-menu-list-upper`}>
@@ -283,7 +286,7 @@ export class TdsSideMenu {
                 </ul>
               </div>
               <slot name="sticky-end"></slot>
-            </div>
+            </nav>
           </aside>
         </div>
       </Host>

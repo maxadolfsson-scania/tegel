@@ -7,10 +7,17 @@ import { Component, Prop, Host, h } from '@stencil/core';
 })
 export class Divider {
   /** Orientation of the Divider, horizontal if not specified. */
-  @Prop() orientation: 'horizontal' | 'vertical' = 'horizontal';
+  @Prop({ reflect: true }) orientation: 'horizontal' | 'vertical' = 'horizontal';
 
-  /** Variant of the Divider, subtle if not specified. */
-  @Prop() variant: 'discrete' | 'subtle' | 'soft' | 'defined' | 'dark-blue' = 'subtle';
+  /** Variant of the Divider, subtle if not specified. `dark-blue` is a deprecated alias for `expressive`. */
+  @Prop({ reflect: true }) variant:
+    | 'discrete'
+    | 'subtle'
+    | 'soft'
+    | 'defined'
+    | 'strong'
+    | 'expressive'
+    | 'dark-blue' = 'subtle';
 
   render() {
     return (
@@ -27,7 +34,9 @@ export class Divider {
             'subtle': this.variant === 'subtle',
             'soft': this.variant === 'soft',
             'defined': this.variant === 'defined',
-            'dark-blue': this.variant === 'dark-blue',
+            'strong': this.variant === 'strong',
+            // `expressive` is the canonical name; `dark-blue` is kept as a deprecated alias.
+            'expressive': this.variant === 'expressive' || this.variant === 'dark-blue',
           }}
         />
       </Host>

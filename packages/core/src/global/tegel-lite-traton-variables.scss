@@ -1,0 +1,15 @@
+// Tegel Lite Traton variables
+// Includes base Traton variables + icon tokens
+
+@use 'traton-variables' as *;
+
+/* Traton primitive icon tokens */
+@use '../../../../tokens/scss/traton/traton-icons-primitive' with (
+  $local-assets: './assets'
+);
+
+/* Traton icon tokens */
+@use '../../../../tokens/scss/traton/traton-icons' as *;
+
+/* Cross-brand placeholder fallbacks — generated alongside icon.scss */
+@use '../../../../tokens/scss/component/icon-fallbacks' as *;

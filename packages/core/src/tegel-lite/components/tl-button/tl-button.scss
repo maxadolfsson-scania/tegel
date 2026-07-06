@@ -1,5 +1,6 @@
 @use './tl-button-vars' as *; // Import global variables
 @use '../../../mixins/box-sizing' as *;
+@use '../../../mixins/focus-state' as *;
 @use '../../../../../../typography/mixins/type-styles' as *;
 
 /* Base button styles */
@@ -19,8 +20,7 @@
   cursor: pointer;
 
   &:focus-visible {
-    outline: var(--button-outline-width) solid var(--color-foreground-border-accent-focus);
-    outline-offset: calc(var(--button-outline-width) * -1);
+    @include tds-focus-state;
   }
 
   /* Variants */
@@ -29,29 +29,29 @@
     color: var(--button-primary-color);
     border-color: var(--button-primary-border-color);
 
+    .tl-icon {
+      color: var(--button-primary-icon-color);
+    }
+
     &:hover:not(:disabled) {
       background-color: var(--button-primary-background-hover);
     }
 
     &:disabled {
-      background-color: var(--button-primary-background-disabled);
-      color: var(--button-primary-color-disabled);
-      border-color: var(--button-primary-border-color-disabled);
       cursor: not-allowed;
-      opacity: 0.6;
+      opacity: var(--button-opacity-disabled);
     }
 
     &:focus-visible:not(:disabled) {
       background: var(--button-primary-background-focus);
       border-color: var(--button-primary-border-color-focus);
       color: var(--button-primary-color-focus);
-      outline-color: var(--button-primary-outline-color-focus);
     }
 
     &:active:not(:disabled) {
       &:focus-visible {
         outline: none;
-        outline-offset: none;
+        box-shadow: none;
       }
 
       background-color: var(--button-primary-background-active);
@@ -64,28 +64,29 @@
     color: var(--button-secondary-color);
     border-color: var(--button-secondary-border-color);
 
+    .tl-icon {
+      color: var(--button-secondary-icon-color);
+    }
+
     &:hover:not(:disabled) {
       border-color: var(--button-secondary-border-color-hover);
     }
 
     &:disabled {
-      background-color: var(--button-secondary-background-disabled);
-      color: var(--button-secondary-color-disabled);
-      border-color: var(--button-secondary-border-color-disabled);
       cursor: not-allowed;
-      opacity: 0.6;
+      opacity: var(--button-opacity-disabled);
     }
 
     &:focus-visible:not(:disabled) {
       background: var(--button-secondary-background-focus);
       border-color: var(--button-secondary-border-color-focus);
       color: var(--button-secondary-color-focus);
-      outline-color: var(--button-secondary-outline-color-focus);
     }
 
     &:active:not(:disabled) {
       &:focus-visible {
         outline: none;
+        box-shadow: none;
       }
 
       border-color: var(--button-secondary-border-color-active);
@@ -97,26 +98,29 @@
     color: var(--button-ghost-color);
     border-color: var(--button-ghost-border-color);
 
+    .tl-icon {
+      color: var(--button-ghost-icon-color);
+    }
+
     &:hover:not(:disabled) {
       border-color: var(--button-ghost-border-color-hover);
     }
 
     &:disabled {
-      color: var(--button-ghost-color-disabled);
       cursor: not-allowed;
-      opacity: 0.6;
+      opacity: var(--button-opacity-disabled);
     }
 
     &:focus-visible:not(:disabled) {
       background: var(--button-ghost-background-focus);
       border-color: var(--button-ghost-border-color-focus);
       color: var(--button-ghost-color-focus);
-      outline-color: var(--button-ghost-outline-color-focus);
     }
 
     &:active:not(:disabled) {
       &:focus-visible {
         outline: none;
+        box-shadow: none;
       }
 
       border-color: var(--button-ghost-border-color-active);
@@ -128,28 +132,29 @@
     color: var(--button-danger-color);
     border-color: var(--button-danger-border-color);
 
+    .tl-icon {
+      color: var(--button-danger-icon-color);
+    }
+
     &:hover:not(:disabled) {
       background-color: var(--button-danger-background-hover);
     }
 
     &:disabled {
-      background-color: var(--button-danger-background-disabled);
-      color: var(--button-danger-color-disabled);
-      border-color: var(--button-danger-border-color-disabled);
       cursor: not-allowed;
-      opacity: 0.6;
+      opacity: var(--button-opacity-disabled);
     }
 
     &:focus-visible:not(:disabled) {
       background: var(--button-danger-background-focus);
       border-color: var(--button-danger-border-color-focus);
       color: var(--button-danger-color-focus);
-      outline-color: var(--button-danger-outline-color-focus);
     }
 
     &:active:not(:disabled) {
       &:focus-visible {
         outline: none;
+        box-shadow: none;
       }
 
       background-color: var(--button-danger-background-active);
@@ -161,6 +166,7 @@
   &--xs {
     padding: var(--tds-spacing-element-4) var(--tds-spacing-element-8);
     height: 24px;
+    font-size: var(--detail-05-font-size);
   }
 
   &--sm {

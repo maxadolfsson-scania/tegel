@@ -13,8 +13,7 @@
   color: var(--tds-table-color);
   padding: var(--tds-spacing-element-16);
   min-width: 192px;
-  vertical-align: top;
-  background-color: transparent;
+  background-color: var(--row-bg);
   transition: background-color 200ms ease;
 }
 

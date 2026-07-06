@@ -1,7 +1,7 @@
 import formatHtmlPreview from '../../../stories/formatHtmlPreview';
 
 export default {
-  title: 'Tegel Lite (Beta)/Toggle',
+  title: 'Tegel Lite/Toggle',
   parameters: {
     layout: 'centered',
   },
@@ -77,10 +77,11 @@ const Template = ({ size, headline, label, checked, disabled }) =>
           class="tl-toggle__input ${
             size === 'Large' ? 'tl-toggle__input--lg' : 'tl-toggle__input--sm'
           }"
+          id="tl-toggle"
           ${checked ? 'checked' : ''}
           ${disabled ? 'disabled' : ''}
         />
-        <label class="tl-toggle__label">${label}</label>
+        <label class="tl-toggle__label" for="tl-toggle">${label}</label>
     </div>
   `);
 export const Default = Template.bind({});

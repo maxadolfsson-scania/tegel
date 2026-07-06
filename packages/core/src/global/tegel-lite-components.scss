@@ -1,4 +1,27 @@
+/*
+ * Storybook bundle for Tegel Lite component styles.
+ * Imported by .storybook/preview.ts so every tl-* story can render —
+ * including un-shipped components in dev mode (VITE_STORYBOOK_ENV=dev).
+ *
+ * Production Storybook hides un-shipped components via the story-file
+ * allowlist in .storybook/main.ts; the npm-package bundle is
+ * src/tegel-lite/components.scss, which is restricted separately.
+ */
+
 @use 'tl-scrollbar-vars' as *;
+
+/* Icon tokens for Storybook (in production Tegel Lite these come from the brand variable CSS files) */
+@use '../../../../tokens/scss/scania/scania-icons-primitive' with (
+  $local-assets: '../dist/tegel/assets'
+);
+@use '../../../../tokens/scss/scania/scania-icons' as *;
+@use '../../../../tokens/scss/traton/traton-icons-primitive' with (
+  $local-assets: '../dist/tegel/assets'
+);
+@use '../../../../tokens/scss/traton/traton-icons' as *;
+
+/* Cross-brand placeholder fallbacks — generated alongside icon.scss */
+@use '../../../../tokens/scss/component/icon-fallbacks' as *;
 
 @use '../tegel-lite/components/tl-button/tl-button' as *;
 @use '../tegel-lite/components/tl-header/tl-header' as *;

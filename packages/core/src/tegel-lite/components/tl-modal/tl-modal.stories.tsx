@@ -1,7 +1,7 @@
 import formatHtmlPreview from '../../../stories/formatHtmlPreview';
 
 export default {
-  title: 'Tegel Lite (Beta)/Modal',
+  title: 'Tegel Lite/Modal',
   parameters: {
     layout: 'fullscreen',
   },
@@ -119,8 +119,8 @@ const ModalTemplate = ({ actionsPosition, size, headerText, bodyContent, showMod
           ${bodyContent}
         </>
         <div class="tl-modal__actions">
-          <button class="tl-button tl-button--md tl-button--primary">Button Text</>
-          <button class="tl-button tl-button--md tl-button--secondary">Button Text</>
+          <button class="tl-button tl-button--sm tl-button--primary">Button Text</>
+          <button class="tl-button tl-button--sm tl-button--secondary">Button Text</>
         </>
       </>
     </>

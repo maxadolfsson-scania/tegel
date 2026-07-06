@@ -28,32 +28,33 @@ export class TdsModal {
   @Element() host!: HTMLElement;
 
   /** Sets the header of the Modal. */
-  @Prop() header?: string;
+  @Prop({ reflect: true }) header?: string;
 
   /** Disables closing Modal on clicking on overlay area. */
-  @Prop() prevent: boolean = false;
+  @Prop({ reflect: true }) prevent: boolean = false;
 
   /** Size of Modal  */
-  @Prop() size: 'xs' | 'sm' | 'md' | 'lg' = 'md';
+  @Prop({ reflect: true }) size: 'xs' | 'sm' | 'md' | 'lg' = 'md';
 
   /** Changes the position behaviour of the actions slot.  */
-  @Prop() actionsPosition: 'sticky' | 'static' = 'static';
+  @Prop({ reflect: true }) actionsPosition: 'sticky' | 'static' = 'static';
 
   /** CSS selector for the element that will show the Modal. */
-  @Prop() selector?: string;
+  @Prop({ reflect: true }) selector?: string;
 
   /** Element that will show the Modal (takes priority over selector) */
   @Prop() referenceEl?: HTMLElement | null;
 
-  /** Controls whether the Modal is shown or not. If this is set hiding and showing
-   * will be decided by this prop and will need to be controlled from the outside. */
-  @Prop() show?: boolean;
+  /** Controls whether the Modal is shown or not. <br/> This prop allows the consumer of Tegel to control
+   * the open/close interaction or set the modal visibility when opening the page. If it is not set, then
+   * the modal has a fallback state for that interaction, defaulting to false. */
+  @Prop({ reflect: true }) show?: boolean;
 
   /** Shows or hides the close [X] button. */
-  @Prop() closable: boolean = true;
+  @Prop({ reflect: true }) closable: boolean = true;
 
   /** Role of the modal component. Can be either 'alertdialog' for important messages that require immediate attention, or 'dialog' for regular messages. */
-  @Prop() tdsAlertDialog: 'alertdialog' | 'dialog' = 'dialog';
+  @Prop({ reflect: true }) tdsAlertDialog: 'alertdialog' | 'dialog' = 'dialog';
 
   // State that keeps track of show/closed state for the Modal.
   @State() isShown: boolean = false;
@@ -113,7 +114,7 @@ export class TdsModal {
     }
   }
 
-  connectedCallback() {
+  private initializeWithProps() {
     if (this.closable === undefined) {
       this.closable = true;
     }
@@ -136,8 +137,12 @@ export class TdsModal {
     }
   }
 
+  connectedCallback() {
+    this.initializeWithProps();
+  }
+
   componentWillLoad() {
-    this.initializeModal();
+    this.initializeWithProps();
   }
 
   disconnectedCallback() {
@@ -360,19 +365,17 @@ export class TdsModal {
     });
   }
 
+  private headerId = `tds-modal-header-${generateUniqueId()}`;
+  private bodyId = `tds-modal-body-${generateUniqueId()}`;
+
   render() {
     const usesHeaderSlot = hasSlot('header', this.host);
     const usesActionsSlot = hasSlot('actions', this.host);
 
-    const headerId = this.header ? `tds-modal-header-${generateUniqueId()}` : undefined;
-    const bodyId = `tds-modal-body-${generateUniqueId()}`;
+    const hasLabel = this.header || usesHeaderSlot;
 
     return (
       <Host
-        role={this.tdsAlertDialog}
-        aria-modal="true"
-        aria-describedby={bodyId}
-        aria-labelledby={headerId}
         class={{
           show: this.isShown,
           hide: !this.isShown,
@@ -381,11 +384,19 @@ export class TdsModal {
       >
         <div class="tds-modal-backdrop" />
         <div
+          role={this.tdsAlertDialog}
+          aria-modal="true"
+          aria-describedby={this.bodyId}
+          aria-labelledby={hasLabel ? this.headerId : undefined}
           class={`tds-modal tds-modal__actions-${this.actionsPosition} tds-modal-${this.size}`}
           tabindex="-1"
         >
-          <div id={headerId} class="header">
-            {this.header && <div class="header-text">{this.header}</div>}
+          <div class="header">
+            {this.header && (
+              <h1 id={this.headerId} class="header-text">
+                {this.header}
+              </h1>
+            )}
             {usesHeaderSlot && <slot name="header" />}
 
             {this.closable && (
@@ -399,7 +410,7 @@ export class TdsModal {
             )}
           </div>
 
-          <div id={bodyId} class="body">
+          <div id={this.bodyId} class="body">
             <slot name="body" />
           </div>
 

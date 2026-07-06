@@ -57,7 +57,8 @@ export default {
     },
     showModal: {
       name: 'Show Modal',
-      description: 'Toggles if the Modal is displayed.',
+      description:
+        'Allows the consumer of Tegel to control the open/close interaction or set the modal visibility when opening the page. If it is not set, then the modal has a fallback state for that interaction, defaulting to false.',
       control: {
         type: 'boolean',
       },
@@ -139,8 +140,8 @@ const ModalTemplate = ({
         ${bodyContent}
       </span>
       <span slot='actions' class='tds-u-flex tds-u-gap2'>
-        <tds-button data-dismiss-modal size="md" text="Button Text" variant="primary"></tds-button>
-        <tds-button data-dismiss-modal size="md" text="Button Text" variant="secondary"></tds-button>
+        <tds-button data-dismiss-modal size="sm" text="Button Text" variant="primary"></tds-button>
+        <tds-button data-dismiss-modal size="sm" text="Button Text" variant="secondary"></tds-button>
       </span>      
   </tds-modal>
   

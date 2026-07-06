@@ -35,20 +35,32 @@ export class TdsTableFooter {
   /** Sets the pagination number. */
   @Prop({ reflect: true, mutable: true }) paginationValue: number = 1;
 
+  /** Set pagination label. Use {pages} as placeholder for the total number of pages. */
+  @Prop({ reflect: true }) paginationLabel: string = 'of {pages} pages';
+
   /** Enable rows per page dropdown */
   @Prop({ reflect: true }) rowsperpage: boolean = true;
 
-  /** Set available rows per page values */
+  /** Set rows per page label. */
+  @Prop({ reflect: true }) rowsPerPageLabel: string = 'Rows per page';
+
+  /** Set available rows per page values. <br/> If pagination is enabled, this array must be defined and controlled by the consumer of Tegel */
   @Prop() rowsPerPageValues: number[] = [10, 25, 50];
 
   /** Set rows per page dropdown open direction */
   @Prop() rowsPerPageDropdownOpenDirection: 'up' | 'down' | 'auto' = 'auto';
 
-  /** Sets the number of pages. */
+  /** Set rows per page dropdown aria label. */
+  @Prop({ reflect: true }) rowsPerPageDropdownAriaLabel: string = 'Select rows per page';
+
+  /** Sets the number of pages. <br/> If pagination is enabled, this value must be defined and controlled by the consumer of Tegel. */
   @Prop({ reflect: true }) pages: number = 0;
 
   /** <b>Client override</b> Used to set the column span of the footer. Use as fallback if the automatic count of columns fails. */
-  @Prop() cols: number | null = null;
+  @Prop({ reflect: true }) cols: number | null = null;
+
+  /** Sets the number of rows that should appear per page. <br/> If pagination is enabled, this value must be defined and controlled by the consumer of Tegel. <br/> Otherwise, it will default to the first element of the "rowsPerPageValues". */
+  @Prop({ mutable: true }) rowsPerPageValue?: number;
 
   /** State that memorize number of columns to display colSpan correctly - set from parent level */
   @State() columnsNumber: number = 0;
@@ -67,8 +79,6 @@ export class TdsTableFooter {
   @State() tableId: string | undefined = '';
 
   @State() horizontalScrollWidth: string | null = null;
-
-  @State() rowsPerPageValue: number = this.rowsPerPageValues[0];
 
   @Element() host!: HTMLElement;
 
@@ -148,6 +158,10 @@ export class TdsTableFooter {
     relevantTableProps.forEach((tablePropName) => {
       this[tablePropName] = this.tableEl?.[tablePropName];
     });
+
+    if (!this.rowsPerPageValue) {
+      this.rowsPerPageValue = this.rowsPerPageValues[0];
+    }
 
     this.storeLastCorrectValue(this.paginationValue);
 
@@ -243,11 +257,16 @@ export class TdsTableFooter {
     this.storeLastCorrectValue(this.paginationValue);
   }
 
+  @Watch('pages')
+  pagesChange(newValue: number) {
+    if (this.paginationValue > newValue) {
+      this.paginationValue = this.pages;
+      this.emitTdsPagination();
+    }
+  }
+
   private rowsPerPageChange(event) {
     this.rowsPerPageValue = parseInt(event.detail.value);
-    if (this.paginationValue > this.pages) {
-      this.paginationValue = this.pages;
-    }
     this.emitTdsPagination();
   }
 
@@ -257,6 +276,19 @@ export class TdsTableFooter {
       styles.width = `${this.horizontalScrollWidth}px`;
     }
     return styles;
+  }
+
+  private renderPaginationLabel() {
+    const pagesPlaceholder = '{pages}';
+    const paginationLabelParts = this.paginationLabel.split(pagesPlaceholder);
+
+    if (paginationLabelParts.length === 1) {
+      return this.paginationLabel;
+    }
+
+    return paginationLabelParts.flatMap((part, index) =>
+      index === paginationLabelParts.length - 1 ? [part] : [part, <span>{this.pages}</span>],
+    );
   }
 
   render() {
@@ -275,13 +307,14 @@ export class TdsTableFooter {
                 <div class="tds-table__row-selector">
                   {this.rowsperpage && this.rowsPerPageValues?.length > 0 && (
                     <div class="rows-per-page">
-                      <p>Rows per page</p>
+                      <p>{this.rowsPerPageLabel}</p>
                       <tds-dropdown
                         modeVariant="secondary"
                         id="rows-dropdown"
                         class="page-dropdown"
                         size="xs"
-                        defaultValue={`${this.rowsPerPageValues[0]}`}
+                        tdsAriaLabel={this.rowsPerPageDropdownAriaLabel}
+                        defaultValue={`${this.rowsPerPageValue}`}
                         onTdsChange={(event) => this.rowsPerPageChange(event)}
                         openDirection={this.rowsPerPageDropdownOpenDirection}
                       >
@@ -309,9 +342,7 @@ export class TdsTableFooter {
                     onChange={(event) => this.paginationInputChange(event)}
                     onAnimationEnd={removeShakeAnimation}
                   />
-                  <p class="tds-table__footer-text">
-                    of <span>{this.pages}</span> pages
-                  </p>
+                  <p class="tds-table__footer-text">{this.renderPaginationLabel()}</p>
                   <button
                     type="button"
                     class="tds-table__footer-btn"

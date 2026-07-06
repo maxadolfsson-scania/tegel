@@ -14,8 +14,18 @@ import { join } from 'node:path';
 register(StyleDictionary); // Register Token Studio transforms
 
 // Brand+mode only: component tokens use .${brand} .tds-mode-${theme} (no component host selectors).
+// Scania light includes :root as fallback so components work without a brand class.
 const BRANDS = ['scania', 'traton'];
-const getBrandModeSelector = (brand, theme) => `.${brand} .tds-mode-${theme}`;
+const getBrandModeSelector = (brand, theme) => {
+  const base = `.${brand} .tds-mode-${theme},\n.${brand}.tds-mode-${theme},\n.${brand} .tl-mode-${theme},\n.${brand}.tl-mode-${theme}`;
+  if (brand === 'scania' && theme === 'light') {
+    return `:root,\n.tds-mode-${theme},\n${base}`;
+  }
+  if (brand === 'scania') {
+    return `.tds-mode-${theme},\n${base}`;
+  }
+  return base;
+};
 
 // Cache for semantic theme JSON files so we can recover brand-specific
 // component values even when Style Dictionary has merged tokens.
@@ -57,7 +67,8 @@ function getComponentValueFromSemanticJson(brand, themeKey, rawParts) {
       .slice(1, -1)
       .split('.')
       .join('-')
-      .replace(/\s+/g, '-');
+      .replace(/\s+/g, '-')
+      .replace(/[^a-zA-Z0-9-]/g, '');
     return `var(--${refPath})`;
   }
   return refValue;
@@ -92,21 +103,25 @@ StyleDictionary.registerFormat({
     componentTokens.forEach(token => {
       const rawParts = token.path.slice(1);
       const pathParts = rawParts
-        .map(part =>
+        .map((part, index) =>
           part
             .trim()
             .replace(/\s+/g, '-')
             .replace(/[^a-zA-Z0-9-]/g, '')
-            .replace(/^-+/, '')
+            // Preserve a single leading "-" on the first path segment (e.g. "-focus", "-input",
+            // "-shadow") so emitted variables match Style Dictionary's auto-generated references
+            // (e.g. var(--component--focus-ring-radius-extra-large)). Strip leading dashes
+            // elsewhere to avoid accidental "--" runs from non-prefix segments.
+            .replace(index === 0 ? /^--+/ : /^-+/, '')
         )
         .filter(part => part.length > 0);
       const variableName = ['component', ...pathParts].join('-');
       if (!variableMeta.has(variableName)) {
         variableMeta.set(variableName, { rawParts });
       }
-      
+
       let value = null;
-      
+
       const originalValue = token.original?.$value;
       if (originalValue) {
         const refValue = originalValue;
@@ -115,7 +130,8 @@ StyleDictionary.registerFormat({
             .slice(1, -1)
             .split('.')
             .join('-')
-            .replace(/\s+/g, '-');
+            .replace(/\s+/g, '-')
+            .replace(/[^a-zA-Z0-9-]/g, '');
           value = `var(--${refPath})`;
         } else {
           value = refValue;
@@ -322,10 +338,11 @@ function extractBrandInfo(themes) {
 
 // List of [componentName, matchType] for component token files (used for both merged and per-theme builds)
 const COMPONENT_FILE_LIST = [
+  ['-focus', 'exact'],
   ['header', 'includes'],
   ['side-menu', 'includes'],
   ['card', 'includes'],
-  ['input-field', 'includes'],
+  ['-input', 'exact'],
   ['table', 'exact'],
   ['stepper', 'exact'],
   ['spinner', 'exact'],
@@ -334,11 +351,29 @@ const COMPONENT_FILE_LIST = [
   ['badge', 'exact'],
   ['button', 'exact'],
   ['chip', 'exact'],
-   ['tag', 'exact'],
+  ['tag', 'exact'],
+  ['link', 'exact'],
+  ['breadcrumbs', 'exact'],
+  ['divider', 'exact'],
   ['logo', 'exact'],
   ['shadow', 'exact'],
   ['cookie', 'exact'],
+  ['tooltip', 'exact'],
   ['text', 'exact'],
+  ['banner', 'exact'],
+  ['message', 'exact'],
+  ['toast', 'exact'],
+  ['overlay', 'exact'],
+  ['modal', 'exact'],
+  ['scrollbar', 'exact'],
+  ['text-field', 'exact'],
+  ['textarea', 'exact'],
+  ['accordion', 'exact'],
+  ['block', 'exact'],
+  ['radio-button', 'exact'],
+  ['checkbox', 'exact'],
+  ['toggle', 'exact'],
+  ['popover', 'exact'],
 ];
 
 // Helper function to create component file configuration
@@ -351,22 +386,22 @@ function createComponentFile(componentName, matchType = 'exact') {
       return false;
     }
     // Handle component names with -- prefix (e.g., --shadow, --input-field)
-  const rawComponentName = token.path[1] || '';
-  const actualComponentName = rawComponentName.replace(/^--/, '');
+    const rawComponentName = token.path[1] || '';
+    const actualComponentName = rawComponentName.replace(/^--/, '');
     if (matchFn === 'includes') {
       return actualComponentName.includes(componentName);
     }
     return actualComponentName === componentName;
   };
-  
+
   return {
     destination,
     format: 'component/variables',
     filter: filterFn,
     options: {
       showFileHeader: true,
-      outputReferences: true
-    }
+      outputReferences: true,
+    },
   };
 }
 

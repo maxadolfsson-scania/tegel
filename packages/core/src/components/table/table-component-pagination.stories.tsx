@@ -47,9 +47,25 @@ export default {
         defaultValue: { summary: false },
       },
     },
+    pagination: {
+      name: 'Pagination',
+      description: 'Pagination enabled on the table footer',
+      control: 'boolean',
+    },
+    paginationLabel: {
+      name: 'Pagination label',
+      description: 'Label displayed after the page number input. Use {pages} as a placeholder.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        defaultValue: { summary: 'of {pages} pages' },
+      },
+    },
     rowsPerPageValues: {
       name: 'Rows per page values',
-      description: 'List of rows per page values',
+      description:
+        'List of rows per page values to populate the dropdown, If pagination is enabled, this array must be defined and controlled by the consumer of Tegel',
       control: {
         type: 'select',
       },
@@ -57,11 +73,23 @@ export default {
     },
     pages: {
       name: 'Pages',
-      description: 'Number of pages',
+      description:
+        'Number of pages. If pagination is enabled, this value must be defined and controlled by the consumer of Tegel',
       control: {
         type: 'number',
         min: 1,
         max: 1000,
+      },
+    },
+    rowsPerPageValue: {
+      name: 'Rows per page value',
+      description:
+        'Number of rows displayed in a page as selected in the dropdown list of "Rows per page values". If pagination is enabled, this value must be defined and controlled by the consumer of Tegel. Otherwise, it will default to the first element of the "rowsPerPageValues"',
+      control: {
+        type: 'number',
+      },
+      table: {
+        defaultValue: 5,
       },
     },
     rowsPerPage: {
@@ -74,6 +102,17 @@ export default {
         defaultValue: { summary: true },
       },
     },
+    rowsPerPageLabel: {
+      name: 'Rows per page label',
+      description: 'Label displayed before the rows per page dropdown.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        defaultValue: { summary: 'Rows per page' },
+      },
+      if: { arg: 'rowsPerPage', eq: true },
+    },
     rowsPerPageDropdownOpenDirection: {
       name: 'Rows per page dropdown open direction',
       description: 'Controls opening direction for rows per page dropdown',
@@ -83,6 +122,17 @@ export default {
       options: ['auto', 'up', 'down'],
       table: {
         defaultValue: { summary: 'auto' },
+      },
+      if: { arg: 'rowsPerPage', eq: true },
+    },
+    rowsPerPageDropdownAriaLabel: {
+      name: 'Rows per page dropdown aria label',
+      description: 'Aria label for the rows per page dropdown.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        defaultValue: { summary: 'Select rows per page' },
       },
       if: { arg: 'rowsPerPage', eq: true },
     },
@@ -136,10 +186,15 @@ export default {
     compactDesign: false,
     responsiveDesign: false,
     verticalDivider: false,
-    rowsPerPage: true,
-    rowsPerPageValues: '[10,25,50]',
-    rowsPerPageDropdownOpenDirection: 'auto',
+    pagination: true,
+    paginationLabel: 'of {pages} pages',
     pages: 4,
+    rowsPerPage: true,
+    rowsPerPageLabel: 'Rows per page',
+    rowsPerPageValues: '[10,25,50]',
+    rowsPerPageValue: 10,
+    rowsPerPageDropdownOpenDirection: 'auto',
+    rowsPerPageDropdownAriaLabel: 'Select rows per page',
     noMinWidth: false,
     column1Width: '',
     column2Width: '',
@@ -153,10 +208,15 @@ const PaginationTemplate = ({
   compactDesign,
   responsiveDesign,
   verticalDivider,
-  rowsPerPage,
-  rowsPerPageValues,
-  rowsPerPageDropdownOpenDirection,
+  pagination,
+  paginationLabel,
   pages,
+  rowsPerPage,
+  rowsPerPageLabel,
+  rowsPerPageValues,
+  rowsPerPageValue,
+  rowsPerPageDropdownOpenDirection,
+  rowsPerPageDropdownAriaLabel,
   noMinWidth,
   column1Width,
   column2Width,
@@ -164,6 +224,12 @@ const PaginationTemplate = ({
   column4Width,
 }) =>
   formatHtmlPreview(`
+    <h1>⚠️ Warning ⚠️</h1>
+    <p>This pagination demo is not fully functional. It shows the base elements expected for the pagination, but the consumer of Tegel is responsible for handling the pagination events.</p>
+    <p>For a functional example, please refer to our 
+    <tds-link><a href="https://react-demo.tegel.scania.com/">React</a></tds-link> and 
+    <tds-link><a href="https://angular-17-demo.tegel.scania.com/">Angular</a></tds-link> Demo pages.</p> 
+    <br/> 
     <tds-table
       table-id='pagination-table'
       vertical-dividers="${verticalDivider}"
@@ -226,11 +292,18 @@ const PaginationTemplate = ({
           </tds-table-body>
           <tds-table-footer
             pages="${pages}"
-            pagination
+            pagination="${pagination}"
+            pagination-label="${paginationLabel}"
             rowsperpage="${rowsPerPage}"
+            rows-per-page-label="${rowsPerPageLabel}"
+            rows-per-page-value="${rowsPerPageValue}"
             rows-per-page-dropdown-open-direction="${rowsPerPageDropdownOpenDirection}"
+            rows-per-page-dropdown-aria-label="${rowsPerPageDropdownAriaLabel}"
           ></tds-table-footer>
   </tds-table>
+
+  <br/> 
+
   <!-- Note: Code below is just for demo purposes -->
   <div class="tds-u-mt1" style="width: 500px; background-color: lightblue; padding: 16px;">
     <p class="tds-u-mt0">Note: This box works only in "Canvas" tab.</p>

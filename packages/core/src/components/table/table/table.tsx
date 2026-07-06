@@ -25,6 +25,8 @@ type Props = {
   modeVariant: 'primary' | 'secondary' | null;
   textAlign: string;
   horizontalScrollWidth?: string;
+  sortColumnKey?: string;
+  sortDirection?: SortDirection;
   zebraMode: 'rows-odd' | 'rows-even' | 'columns-odd' | 'columns-even' | 'none';
 };
 
@@ -34,6 +36,8 @@ export type InternalTdsTablePropChange = {
 } & Partial<Props>;
 
 export type TextAlign = 'left' | 'start' | 'right' | 'end' | 'center';
+
+export type SortDirection = 'asc' | 'desc';
 
 /**
  * @slot <default> - <b>Unnamed slot.</b> For the table contents.
@@ -79,14 +83,20 @@ export class TdsTable {
   /** Width of the table, used as the constraint for horizontal scrolling.
    * **NOTE**: this will disable usage of the responsive flag
    * */
-  @Prop() horizontalScrollWidth?: string | null = null;
+  @Prop({ reflect: true }) horizontalScrollWidth?: string | null = null;
+
+  /** Column key for the currently sorted column. */
+  @Prop({ reflect: true }) sortColumnKey?: string;
+
+  /** Current sorting direction for the column set by sortColumnKey. */
+  @Prop({ reflect: true }) sortDirection?: SortDirection;
 
   /** ID used for internal Table functionality and events, must be unique.
    *
    * **NOTE**: If you're listening for Table events, you need to set this ID yourself to identify the Table,
    * as the default ID is random and will be different every time.
    */
-  @Prop() tableId: string = generateUniqueId();
+  @Prop({ reflect: true }) tableId: string = generateUniqueId();
 
   @State() enableHorizontalScrollToolbarDesign: boolean = false;
 
@@ -200,6 +210,16 @@ export class TdsTable {
   @Watch('horizontalScrollWidth')
   widthChanged(newValue: string) {
     this.emitInternalTdsPropChange('horizontalScrollWidth', newValue);
+  }
+
+  @Watch('sortColumnKey')
+  sortColumnKeyChanged(newValue: string | undefined) {
+    this.emitInternalTdsPropChange('sortColumnKey', newValue);
+  }
+
+  @Watch('sortDirection')
+  sortDirectionChanged(newValue: SortDirection | undefined) {
+    this.emitInternalTdsPropChange('sortDirection', newValue);
   }
 
   componentWillRender() {

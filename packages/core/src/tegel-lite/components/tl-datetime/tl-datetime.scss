@@ -55,43 +55,27 @@
   .tl-datetime:has(input:disabled) & {
     cursor: not-allowed;
   }
+}
 
-  /* CSS-generated icon */
-  &::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 18px;
-    width: 20px;
-    height: 20px;
-    mask-repeat: no-repeat;
-    mask-position: center;
-    mask-size: 20px 20px;
-    background-color: var(--datetime-icon);
-    pointer-events: none;
+.tl-datetime__icon {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  color: var(--datetime-icon);
+  pointer-events: none;
 
-    /* Default: calendar icon for date/datetime inputs */
-    mask-image: var(--icon-calendar-svg);
-
-    /* Firefox - hide our custom icon since Firefox shows its own */
-    @supports (-moz-appearance: none) {
-      display: none;
-    }
+  /* Firefox shows its own native picker icon — hide ours to avoid a duplicate */
+  @supports (-moz-appearance: none) {
+    display: none;
   }
 
-  /* Change to clock icon for time input */
-  &:has(input[type='time'])::after {
-    mask-image: var(--icon-clock-svg);
+  .tl-datetime--error & {
+    color: var(--datetime-icon-error);
   }
 
-  .tl-datetime--error &::after {
-    background-color: var(--datetime-icon-error);
-  }
-
-  /* Disabled state */
-  .tl-datetime:has(input:disabled) &::after {
-    background-color: var(--datetime-icon-disabled);
+  .tl-datetime:has(input:disabled) & {
+    color: var(--datetime-icon-disabled);
   }
 }
 
@@ -116,7 +100,7 @@
     box-shadow: inset var(--datetime-box-shadow-focus);
   }
 
-  .tl-datetime:hover &:not(:focus):not(:disabled) {
+  .tl-datetime:hover &:not(:focus, :disabled) {
     box-shadow: inset var(--datetime-box-shadow-hover);
   }
 
@@ -128,7 +112,7 @@
     }
   }
 
-  .tl-datetime--error:hover &:not(:focus):not(:disabled) {
+  .tl-datetime--error:hover &:not(:focus, :disabled) {
     box-shadow: inset var(--datetime-box-shadow-error-hover);
   }
 
@@ -143,6 +127,41 @@
 
   &:focus::placeholder {
     color: var(--datetime-placeholder-focus);
+  }
+
+  /*
+   * Empty/default state: when no date is picked Safari renders the placeholder
+   * (e.g. "yyyy/mm/dd") through the ::-webkit-datetime-edit container and its
+   * -fields-wrapper. Safari ignores `color` on these pseudos and paints the
+   * text via `-webkit-text-fill-color`; with neither set it falls back to the
+   * UA accent (aqua) — most visible on TRATON, where no theme rule overrides
+   * it. Set both `color` (other engines) and `-webkit-text-fill-color` (Safari)
+   * to the placeholder colour. We only target the container + fields-wrapper,
+   * not the individual sub-fields: when a value IS present Safari paints the
+   * digits in the sub-field pseudos (e.g. ::-webkit-datetime-edit-year-field),
+   * which keep `--datetime-text` from the rules below — so a filled value is
+   * not dimmed in either state. We cover both `:not(:focus)` and `:focus`:
+   * Safari keeps painting the empty placeholder through the container while the
+   * input is focused, so without the focused branch it falls back to the aqua
+   * UA accent again on focus. The focused branch uses the focus placeholder
+   * token to mirror the `::placeholder` rule above.
+   */
+  @supports selector(input::-webkit-datetime-edit) {
+    &:not(:focus) {
+      &::-webkit-datetime-edit,
+      &::-webkit-datetime-edit-fields-wrapper {
+        color: var(--datetime-placeholder);
+        -webkit-text-fill-color: var(--datetime-placeholder);
+      }
+    }
+
+    &:focus {
+      &::-webkit-datetime-edit,
+      &::-webkit-datetime-edit-fields-wrapper {
+        color: var(--datetime-placeholder-focus);
+        -webkit-text-fill-color: var(--datetime-placeholder-focus);
+      }
+    }
   }
 
   /* WebKit datetime fields */

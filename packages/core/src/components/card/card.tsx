@@ -19,43 +19,44 @@ export class TdsCard {
   @Element() host!: HTMLElement;
 
   /** Variant of the Card based on the theme used. */
-  @Prop() modeVariant: 'primary' | 'secondary' | null = null;
+  @Prop({ reflect: true }) modeVariant: 'primary' | 'secondary' | null = null;
 
   /** Placement of the header */
-  @Prop() imagePlacement: 'above-header' | 'below-header' = 'below-header';
+  @Prop({ reflect: true }) imagePlacement: 'above-header' | 'below-header' = 'below-header';
 
   /** Text in the header */
-  @Prop() header?: string;
+  @Prop({ reflect: true }) header?: string;
 
   /** Subheader text in the header */
-  @Prop() subheader?: string;
+  @Prop({ reflect: true }) subheader?: string;
 
   /** Body image src */
-  @Prop() bodyImg?: string;
+  @Prop({ reflect: true }) bodyImg?: string;
 
   /** Alt text for the body image */
-  @Prop() bodyImgAlt?: string;
+  @Prop({ reflect: true }) bodyImgAlt?: string;
 
   /** Divider for the body */
-  @Prop() bodyDivider: boolean = false;
+  @Prop({ reflect: true }) bodyDivider: boolean = false;
 
   /** Makes the Card clickable. */
-  @Prop() clickable: boolean = false;
+  @Prop({ reflect: true }) clickable: boolean = false;
 
-  @Prop() stretch: boolean = false;
+  /** Makes the Card fill the available height in stretching layouts and lets the body section grow. */
+  @Prop({ reflect: true }) stretch: boolean = false;
 
   /** ID for the Card, must be unique.
    *
    * **NOTE**: If you're listening for Card events, you need to set this ID yourself to identify the Card,
    * as the default ID is random and will be different every time.
    */
-  @Prop() cardId: string = generateUniqueId();
+  @Prop({ reflect: true }) cardId: string = generateUniqueId();
 
   /**
    * Enables expandable behaviour.
    * When true, clicking the header toggles content visibility.
    */
-  @Prop() expandable: boolean = false;
+  @Prop({ reflect: true }) expandable: boolean = false;
 
   /**
    * Tracks the current expanded state when expandable is enabled.
@@ -134,7 +135,7 @@ export class TdsCard {
           {usesBodyImageSlot && <slot name="body-image"></slot>}
           {this.bodyImg && <img class="card-body-img" src={this.bodyImg} alt={this.bodyImgAlt} />}
           {this.imagePlacement === 'above-header' && this.getCardHeader()}
-          {this.bodyDivider && <tds-divider></tds-divider>}
+          {this.bodyDivider && <tds-divider variant="discrete"></tds-divider>}
           {usesBodySlot && <slot name="body"></slot>}
         </div>
         {usesActionsSlot && <slot name={`actions`}></slot>}

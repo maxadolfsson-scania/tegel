@@ -1,6 +1,14 @@
-import CardPlaceholder from '../../stories/assets/image/card-placeholder.png';
-import CardBodyImage from '../../stories/assets/image/card-img.png';
 import formatHtmlPreview from '../../stories/formatHtmlPreview';
+
+const CardThumbnailSVG = `data:image/svg+xml;utf8,${encodeURIComponent(
+  `<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36'></svg>`,
+)}`;
+
+// Transparent placeholder so the brand-adjusted `--color-background-layer-03`
+// background on `.card-body-img` shows through (and changes with the brand).
+const CardBodyImage = `data:image/svg+xml;utf8,${encodeURIComponent(
+  `<svg xmlns='http://www.w3.org/2000/svg' width='600' height='300'></svg>`,
+)}`;
 
 export default {
   title: 'Components/Card',
@@ -109,8 +117,9 @@ export default {
       },
     },
     stretch: {
-      name: 'Stretch card body',
-      description: 'Toggles if the card body should scale with the card.',
+      name: 'Stretch card',
+      description:
+        'Makes the Card fill the available height in stretching layouts and lets the body section grow. <br/> <br/> ℹ️ If the consumer uses multiples Card on grid or flexbox container it is up to them to manage the amount of content that is populated the body of the Card so that the overall design of the application is visually well balanced. ',
       control: {
         type: 'boolean',
       },
@@ -194,7 +203,7 @@ const Template = ({
     >
     ${
       thumbnail
-        ? `<img slot="thumbnail" src="${CardPlaceholder}" alt="Thumbnail for the card."/>`
+        ? `<img slot="thumbnail" src="${CardThumbnailSVG}" alt="Thumbnail for the card."/>`
         : ''
     }
   ${

@@ -13,7 +13,7 @@ export class TdsSideMenuDropdownListItem {
   @Element() host!: HTMLElement;
 
   /** If the item should appear selected. */
-  @Prop() selected: boolean = false;
+  @Prop({ reflect: true }) selected: boolean = false;
 
   @State() dropdownHasIcon: boolean = false;
 
@@ -28,7 +28,7 @@ export class TdsSideMenuDropdownListItem {
     this.collapsed = event.detail.collapsed;
   }
 
-  connectedCallback() {
+  componentWillLoad() {
     this.sideMenuEl = this.host.closest('tds-side-menu');
     this.collapsed = !!this.sideMenuEl?.collapsed;
   }

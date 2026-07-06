@@ -23,20 +23,20 @@ export class TdsInlineTabs {
   @Element() host!: HTMLElement;
 
   /** Variant of the Tabs, primary= on white, secondary= on grey50 */
-  @Prop() modeVariant: 'primary' | 'secondary' = 'primary';
+  @Prop({ reflect: true }) modeVariant: 'primary' | 'secondary' = 'primary';
 
   /** Sets the default selected Tab. */
-  @Prop() defaultSelectedIndex: number = 0;
+  @Prop({ reflect: true }) defaultSelectedIndex: number = 0;
 
   /** Sets the selected Tab.
    * If this is set, all Tab changes need to be handled by the user. */
   @Prop({ reflect: true }) selectedIndex?: number;
 
   /** Defines aria-label on left scroll button */
-  @Prop() tdsScrollLeftAriaLabel: string = 'Scroll left';
+  @Prop({ reflect: true }) tdsScrollLeftAriaLabel: string = 'Scroll left';
 
   /** Defines aria-label on right scroll button */
-  @Prop() tdsScrollRightAriaLabel: string = 'Scroll right';
+  @Prop({ reflect: true }) tdsScrollRightAriaLabel: string = 'Scroll right';
 
   /** Custom left padding value for the wrapper element. */
   @Prop({ reflect: true }) leftPadding: number = 32;
@@ -133,6 +133,7 @@ export class TdsInlineTabs {
   }
 
   private addResizeObserver = (): void => {
+    if (typeof ResizeObserver === 'undefined') return;
     const resizeObserver = new ResizeObserver((entries) => {
       entries.forEach((entry) => {
         const componentWidth = entry.contentRect.width;
@@ -158,7 +159,7 @@ export class TdsInlineTabs {
 
   private addEventListenerToTabs = (): void => {
     this.tabElements = Array.from(this.host.children) as Array<HTMLTdsInlineTabElement>;
-    this.tabElements.map((item, index) => {
+    this.tabElements.forEach((item, index) => {
       const clickHandler = () => {
         if (!item.disabled) {
           const tdsChangeEvent = this.tdsChange.emit({
@@ -173,7 +174,6 @@ export class TdsInlineTabs {
       };
       item.addEventListener('click', clickHandler);
       this.clickHandlers.set(item, clickHandler); // Store the handler in WeakMap
-      return item;
     });
   };
 

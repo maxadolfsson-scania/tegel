@@ -21,7 +21,7 @@
     border-bottom: 1px solid var(--accordion-border);
   }
 
-  &:hover:not(&--expanded):not(&--disabled) {
+  &:hover:not(&--expanded, &--disabled) {
     .tl-accordion__header-icon-start,
     .tl-accordion__header-icon-end {
       background-color: var(--accordion-background-hover);
@@ -38,12 +38,14 @@
   /* Focus state  */
   &:has(.tl-accordion__header-icon-start:focus-visible),
   &:has(.tl-accordion__header-icon-end:focus-visible) {
-    outline: 2px solid var(--color-foreground-border-accent-focus);
-    outline-offset: 1px;
+    @include tds-focus-state;
+
     background-color: var(--accordion-background-focus);
   }
 
   &--disabled {
+    opacity: var(--accordion-opacity-disabled);
+
     &:hover,
     &:active {
       background-color: transparent;
@@ -60,7 +62,7 @@
 .tl-accordion__title {
   flex-grow: 2;
   text-align: left;
-  color: var(--color-foreground-text-strong);
+  color: var(--accordion-text);
 
   .tl-accordion__item--disabled & {
     color: var(--accordion-text-disabled);

@@ -19,8 +19,8 @@
   font: inherit;
 
   &:focus-visible {
-    outline: var(--link-focus-outline-width) solid var(--link-focus-outline-color);
-    outline-offset: 1px;
+    @include tds-focus-state;
+
     text-decoration: none;
   }
 
@@ -39,15 +39,9 @@
   }
 
   &--disabled {
-    color: var(--link-disabled);
-    text-decoration-color: var(--link-disabled);
+    opacity: var(--link-opacity-disabled);
     pointer-events: none;
     cursor: not-allowed;
-
-    &:visited {
-      color: var(--link-disabled);
-      text-decoration-color: var(--link-disabled);
-    }
   }
 
   &--underline {
