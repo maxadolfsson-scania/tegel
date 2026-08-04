@@ -16,6 +16,8 @@
  * Env: FIGMA_API_KEY
  */
 
+import { figmaFetch } from './lib/figma-rest.js';
+
 const API_KEY = process.env.FIGMA_API_KEY;
 const FIGMA_API = 'https://api.figma.com';
 const BRANCH_KEY = 'Qppo2Y2ZpXIwBHGmgd8WW2';
@@ -47,7 +49,7 @@ function hexToRgba(hex) {
 }
 
 async function fetchVariables(fileKey) {
-  const res = await fetch(`${FIGMA_API}/v1/files/${fileKey}/variables/local`, {
+  const res = await figmaFetch(`${FIGMA_API}/v1/files/${fileKey}/variables/local`, {
     headers: { 'X-Figma-Token': API_KEY },
   });
   if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${await res.text()}`);
@@ -56,7 +58,7 @@ async function fetchVariables(fileKey) {
 }
 
 async function postVariables(fileKey, payload) {
-  const res = await fetch(`${FIGMA_API}/v1/files/${fileKey}/variables`, {
+  const res = await figmaFetch(`${FIGMA_API}/v1/files/${fileKey}/variables`, {
     method: 'POST',
     headers: { 'X-Figma-Token': API_KEY, 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),

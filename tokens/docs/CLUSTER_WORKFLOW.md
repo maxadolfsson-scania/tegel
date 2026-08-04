@@ -109,13 +109,24 @@ Common decisions:
 
 ## Phase 4: Figma branch + implementation
 
-### 4a. Create the branch
+### 4a. Create the branch in Figma, then capture its key
+
+**Branch creation is a Figma UI action.** The REST API has no endpoint for it —
+`POST /v1/files/:key/branches` returns 404, as does a GET on the same route
+(verified 2026-08-03). Create the branch in Figma, naming it for the cluster, then
+snapshot the keys:
 
 ```bash
-npm run audit:figma:branch -- --name "cluster/footer-divider-link-breadcrumbs"
+npm run audit:figma:branches
 ```
 
-This creates a branch on both library files and saves the branch keys to `tokens/audit/figma-branches.json`.
+That lists every branch on both library files and caches them to
+`tokens/audit/figma-branches.json`, which the `spec-push` skill reads to propose a
+branch candidate. Narrow a long list with `--file traton` or `--match "cluster 15"`.
+A `--match` run prints only, deliberately leaving the cache authoritative.
+
+The cache is a snapshot of live Figma state, not a log — re-run it rather than
+trusting an old entry. It is gitignored, like `figma-libraries.json`.
 
 ### 4b. Push specs to the branch
 
@@ -153,7 +164,8 @@ After each major binding batch, run a **lightweight visual sweep**:
 
 | Task | Tool | Notes |
 |---|---|---|
-| Create branch | `npm run audit:figma:branch` | REST API, saves branch keys |
+| Create branch | Figma UI | No REST endpoint exists for this |
+| Capture branch keys | `npm run audit:figma:branches` | REST API, caches keys per library |
 | Push spec variables | `npm run audit:figma:push` | REST API, batch-creates from spec JSON |
 | Create variables manually | `use_figma` (Plugin API via MCP) | For one-offs or complex cases |
 | Inspect existing variables | `get_variable_defs` (MCP) | Check what's already applied |

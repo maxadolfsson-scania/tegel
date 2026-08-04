@@ -16,6 +16,7 @@
 import { readFileSync } from 'fs';
 import { resolve, dirname, join } from 'path';
 import { fileURLToPath } from 'url';
+import { figmaFetch } from './lib/figma-rest.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -45,7 +46,7 @@ function parseArgs() {
 // ── Figma API ────────────────────────────────────────────────
 
 async function fetchVariables(fileKey) {
-  const res = await fetch(`${FIGMA_API}/v1/files/${fileKey}/variables/local`, {
+  const res = await figmaFetch(`${FIGMA_API}/v1/files/${fileKey}/variables/local`, {
     headers: { 'X-Figma-Token': API_KEY },
   });
   if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${await res.text()}`);
@@ -54,7 +55,7 @@ async function fetchVariables(fileKey) {
 }
 
 async function postVariables(fileKey, payload) {
-  const res = await fetch(`${FIGMA_API}/v1/files/${fileKey}/variables`, {
+  const res = await figmaFetch(`${FIGMA_API}/v1/files/${fileKey}/variables`, {
     method: 'POST',
     headers: { 'X-Figma-Token': API_KEY, 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),

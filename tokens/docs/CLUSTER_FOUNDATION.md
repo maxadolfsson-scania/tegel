@@ -129,13 +129,22 @@ States: `default` | `hover` | `active` (no `focus` — focus is global, not per-
 |---|---|---|---|
 | `tokens/scripts/push-spec-to-figma.js` | Batch-create variables from spec JSON | REST | Yes |
 | `tokens/scripts/fetch-figma-colors.js` | Snapshot styles + variables to JSON | REST | Yes |
-| `tokens/scripts/create-figma-branch.js` | Create branch on library files | REST | Yes |
+| `tokens/scripts/list-figma-branches.js` | Snapshot branch keys per library | REST | Yes |
 | `tokens/scripts/scan-figma-vs-specs.js` | Diff specs vs Figma | REST or MCP-snapshot | Yes (REST path) |
 | `tokens/scripts/run-cluster-audit.js` | Code-side audit pipeline | none | No |
 
-REST scripts fail in Claude Code's Bash sandbox because `~/.zshrc` and `**/.env*` are deny-read — the env var doesn't propagate. Two workarounds:
-- Run terminal commands with `FIGMA_API_KEY` set in `~/.claude/settings.local.json` env config
-- Or use Plugin API path (`mcp__figma__use_figma`) and bypass the script entirely
+All REST scripts read `process.env.FIGMA_API_KEY` and send it as the `X-Figma-Token`
+header. Two things to know:
+
+- **Export it from `.zshenv`, not `.zshrc`.** zsh sources `.zshrc` only for interactive
+  shells, so an agent-spawned or CI shell won't see it. `.zshenv` is sourced for every
+  invocation.
+- **The variables endpoints need a Figma Enterprise plan and a Full seat** — guests are
+  refused. Scopes: `file_variables:read`, plus `file_variables:write` to push.
+
+Troubleshooting a 403: read the response body. `Token expired` means rotate the token;
+`Invalid token` means it's missing or malformed. The Plugin API path
+(`mcp__figma__use_figma`) needs no token and bypasses the scripts entirely.
 
 ### 2.5 Verification
 

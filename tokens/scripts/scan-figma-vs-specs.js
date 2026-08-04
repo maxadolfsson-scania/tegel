@@ -43,6 +43,7 @@ import {
 } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { figmaFetch } from './lib/figma-rest.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -88,7 +89,7 @@ function getRunId() {
 // ── Figma REST ────────────────────────────────────────────────
 
 async function figmaGet(path) {
-  const res = await fetch(`${FIGMA_API}${path}`, {
+  const res = await figmaFetch(`${FIGMA_API}${path}`, {
     headers: { 'X-Figma-Token': API_KEY },
   });
   if (!res.ok) {

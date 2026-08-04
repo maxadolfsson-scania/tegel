@@ -46,7 +46,7 @@ Run commands from project root:
 | `npm run audit:tokens:palette:all` | Palette comparison for all brands |
 | `npm run audit:figma:colors` | Fetch Figma color styles + variables |
 | `npm run audit:figma:colors:all` | Fetch from all registered Figma libraries |
-| `npm run audit:figma:branch -- --name "cluster/..."` | Create a Figma branch on library files |
+| `npm run audit:figma:branches` | Snapshot branch keys per library to `tokens/audit/figma-branches.json` (branch *creation* is a Figma UI action — no REST endpoint) |
 | `npm run audit:figma:push -- --spec tokens/specs/footer.json` | Preview spec push (dry run, default) |
 | `npm run audit:figma:push -- --spec tokens/specs/footer.json --push` | Push spec variables to Figma |
 | `node tokens/scripts/scan-figma-vs-specs.js --branch <branchKey>` | Scan specs vs Figma main + branch; write reports to `tokens/audit/{ts}-figma-scan/` (REST path — needs `FIGMA_API_KEY`) |

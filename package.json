@@ -38,7 +38,7 @@
     "audit:tokens:hardcoded": "node tokens/scripts/scan-hardcoded-values.js",
     "audit:tokens:report": "node tokens/scripts/generate-audit-report.js",
     "audit:figma:colors": "node tokens/scripts/fetch-figma-colors.js",
-    "audit:figma:branch": "node tokens/scripts/create-figma-branch.js",
+    "audit:figma:branches": "node tokens/scripts/list-figma-branches.js",
     "audit:figma:push": "node tokens/scripts/push-spec-to-figma.js",
     "audit:status": "node tokens/scripts/status.js"
   },

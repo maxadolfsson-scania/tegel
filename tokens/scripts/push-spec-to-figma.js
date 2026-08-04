@@ -37,6 +37,7 @@
 import { readFileSync } from 'fs';
 import { join, dirname, resolve } from 'path';
 import { fileURLToPath } from 'url';
+import { figmaFetch } from './lib/figma-rest.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -90,7 +91,7 @@ function isNumericValue(value) {
 // ── Figma API ─────────────────────────────────────────────────
 
 async function fetchExistingVariables(fileKey) {
-  const res = await fetch(`${FIGMA_API}/v1/files/${fileKey}/variables/local`, {
+  const res = await figmaFetch(`${FIGMA_API}/v1/files/${fileKey}/variables/local`, {
     headers: { 'X-Figma-Token': API_KEY },
   });
 
@@ -104,7 +105,7 @@ async function fetchExistingVariables(fileKey) {
 }
 
 async function postVariables(fileKey, payload) {
-  const res = await fetch(`${FIGMA_API}/v1/files/${fileKey}/variables`, {
+  const res = await figmaFetch(`${FIGMA_API}/v1/files/${fileKey}/variables`, {
     method: 'POST',
     headers: {
       'X-Figma-Token': API_KEY,

@@ -22,6 +22,7 @@
 import { writeFileSync, mkdirSync, readFileSync, symlinkSync, unlinkSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
+import { figmaFetch } from './lib/figma-rest.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -66,7 +67,7 @@ function loadRegistry() {
 
 async function figmaGet(path) {
   const url = `${FIGMA_API}${path}`;
-  const res = await fetch(url, {
+  const res = await figmaFetch(url, {
     headers: { 'X-Figma-Token': API_KEY },
   });
   if (!res.ok) {

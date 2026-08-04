@@ -58,7 +58,13 @@ node tokens/scripts/fetch-figma-colors.js --file d8bTgEx7h694MSesi2CTLF
 # Output goes to tokens/audit/{timestamp}-colors/
 ```
 
-Requires `FIGMA_API_KEY` env variable (personal access token).
+Requires `FIGMA_API_KEY` (a Figma personal access token) in the environment. Export it
+from `.zshenv` rather than `.zshrc` — zsh only sources `.zshrc` for interactive shells,
+so scripts run from an agent or CI won't see it otherwise.
+
+The variables endpoints require a Figma Enterprise plan and a Full seat. If a call
+returns 403, check the body: `Token expired` means rotate the token, `Invalid token`
+means it's absent or malformed.
 
 ---
 
